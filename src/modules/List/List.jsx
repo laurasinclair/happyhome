@@ -12,10 +12,10 @@ class LocalFileRead extends Component {
   
     render() {
       return (
-        <Container>
+        <Container fluid>
             <Row>
                 {rentals.results.map((rental, i) => (
-                    <Col xs='12' md='6' key={i}>
+                    <Col lg='6' xl='4' key={i}>
                         <div className="list_card">
                             <div className="list_card_thumbnail">
                                 <img src={placeholder} alt={rental.id} />
