@@ -1,13 +1,13 @@
 import {Container, Row, Col} from 'react-bootstrap'
-import './Hero.sass'
+import './List.sass'
 
-export default function Hero (props) {
+export default function List (props) {
 	return (
-		<section id="hero" className="hero">
+		<section id="list" className="list">
 			<Container>
 				<Row>
 					<Col>
-						hero
+						list
 					</Col>
 				</Row>
 			</Container>
