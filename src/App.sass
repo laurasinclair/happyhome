@@ -1,0 +1,43 @@
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+body
+	margin: 0
+	padding: 0
+	// min-height: 100vh
+	max-width: 100%
+
+a
+	font-weight: 500
+	color: var(--primary)
+	text-decoration: none
+	&:hover
+		color: var(--secondary)
+
+h1, h2, h3, h4, h5, h6
+	line-height: 1.2
+
+img
+	max-width: 100%
+
+@media (prefers-color-scheme: light)
+	:root
+		color: #213547
+		background-color: #ffffff
+
+	a:hover
+		color: #747bff
+
+#app
+	margin: 0
+	padding: 0
+	display: grid
+	// grid-template-columns: [main] auto
+	// @include media-breakpoint-up(md)
+		// grid-template-columns: [sidebar] 20% [main] auto
+	grid-template-columns: [sidebar] 20% [main] auto
+
+nav, section, footer
+	padding: 2em 1em

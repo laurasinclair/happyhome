@@ -1,9 +1,13 @@
 import './SideBar.sass'
 
-export default function SideBar (props) {
+export default function SideBar() {
 	return (
-		<div className="sidebar">
-			
-		</div>
+		<>
+            <div id="sidebar" className="sidebar">
+				<div>
+                	sidebar
+				</div>
+            </div>
+		</>
 	)
 }

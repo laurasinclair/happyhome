@@ -1,2 +1,14 @@
 .sidebar
-    border: 1px solid #897bf3
+    display: block !important
+    &>div
+        background-color: var(--primary)
+        color: var(--white)
+        overflow: hidden
+        padding: 2em 20px
+        height: 100vh
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        align-items: center
+        top: 0
+        position: sticky

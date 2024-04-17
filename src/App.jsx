@@ -1,22 +1,16 @@
 import { useState } from 'react'
-import NavBar from './components/NavBar/NavBar'
+import Main from './components/Main/Main'
 import SideBar from './components/SideBar/SideBar'
-import Hero from './components/Hero/Hero'
-import Footer from './components/Footer/Footer'
+import './App.sass'
+
 
 function App() {
 	return (
 		<>
-		<NavBar />
-
-		<SideBar />
-		
-		<Hero 
-			title="!"
-			text="..."
-		/>
-
-		<Footer />
+		<div id="app">
+			<SideBar />
+			<Main />
+		</div>
 		</>
 	)
 }
