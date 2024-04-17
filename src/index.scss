@@ -2,6 +2,7 @@
 // Override Bootstrap variables before the import
 // $body-bg: #000;
 @import 'bootstrap/scss/bootstrap-grid.scss';
+@import '/src/assets/styles/fonts.sass';
 
 :root {
 	--white: #fff;
@@ -11,10 +12,10 @@
 	--primary-dark: #101658;
 	--secondary: #a43311;
 
-	font-family: 'Roboto', Avenir, Helvetica, Arial, sans-serif;
+	font-family: 'CircularStd', 'Open sans', Noto, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
-	font-size: 18px;
+	font-size: 20px;
 
 	color: var(--dark);
 	background-color: var(--white);
