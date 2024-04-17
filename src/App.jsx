@@ -3,7 +3,6 @@ import Main from './modules/Main/Main'
 import SideBar from './modules/SideBar/SideBar'
 import './App.sass'
 
-
 function App() {
 	window.appName = "Pretty Cool App";
 

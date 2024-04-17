@@ -18,17 +18,17 @@ class LocalFileRead extends Component {
         <Container fluid>
             <Row>
                 {rentals.results.map((rental, i) => (
-                    <Col lg='6' xl='4' key={i}>
+                    <Col lg='6' xl='4' key={i} className="d-flex align-items-stretch">
                         <div className="list_card">
                             <div className="list_card_thumbnail">
                                 <img src={placeholder} alt={rental.id} />
                             </div>
                             <div className="list_card_body">
+                                <h3>
+                                    {rental.name}
+                                </h3>
                                 <p>
                                     <strong>ID:</strong> {rental.id}
-                                </p>
-                                <p>
-                                    <strong>Name:</strong> {rental.name}
                                 </p>
                                 <p>
                                     <strong>Country:</strong> {rental.country}
@@ -37,7 +37,7 @@ class LocalFileRead extends Component {
                                     <strong>City:</strong> {rental.city}
                                 </p>
                                 <p>
-                                    <strong>Description:</strong> {truncate(rental.description)}
+                                    {truncate(rental.description)}
                                 </p>
                             </div>
                         </div>

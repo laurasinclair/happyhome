@@ -44,9 +44,13 @@ img
 	width: 100%
 	min-height: 100vh
 	display: grid
-	grid-template-columns: 20% auto
+	grid-template-columns: 100%
 	grid-template-rows: 100px auto
-	grid-template-areas: "navbar navbar" "sidebar main"
+	grid-template-areas: "navbar navbar" "main main"
+	@media (min-width: 768px)
+		grid-template-columns: 20% auto
+		grid-template-rows: 100px auto
+		grid-template-areas: "navbar navbar" "sidebar main"
 
 nav, section, footer
 	padding: 2em 1em
@@ -62,6 +66,10 @@ p
 h1
 	font-size: 3rem
 	margin-bottom: 10px
+
+h3
+	margin-bottom: 10px
+	color: var
 
 .lead
 	font-size: 1.2rem
