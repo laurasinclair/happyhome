@@ -11,6 +11,9 @@ class LocalFileRead extends Component {
     }
   
     render() {
+    function truncate(str) {
+        return str.length > 10 ? str.substring(0, 100) + " (...)" : str;
+    }
       return (
         <Container fluid>
             <Row>
@@ -34,7 +37,7 @@ class LocalFileRead extends Component {
                                     <strong>City:</strong> {rental.city}
                                 </p>
                                 <p>
-                                    <strong>Description:</strong> {rental.description}
+                                    <strong>Description:</strong> {truncate(rental.description)}
                                 </p>
                             </div>
                         </div>
