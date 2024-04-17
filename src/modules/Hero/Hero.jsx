@@ -6,8 +6,11 @@ export default function Hero (props) {
 		<section id="hero" className="hero">
 			<Container>
 				<Row>
-					<Col>
-						hero
+					<Col md='8' lg='6'>
+						<h1>{props.pageTitle}</h1>
+						<p className="lead">
+							{props.leadParagraph}
+						</p>
 					</Col>
 				</Row>
 			</Container>

@@ -7,10 +7,9 @@ export default function Main (props) {
 	return (
 		<main id="main" className="main">		
 			<Hero 
-				title="!"
-				text="..."
+				pageTitle="So many flats."
+				leadParagraph="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero, saepe."
 			/>
-
 
 			<List 
 				title="!"

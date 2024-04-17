@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import NavBar from './modules/NavBar/NavBar'
 import Main from './modules/Main/Main'
 import SideBar from './modules/SideBar/SideBar'
@@ -12,9 +11,9 @@ function App() {
 		<>
 		<div id="app">
 			<NavBar 
-				logoUrl="./public/hamburger.png"
-				logoWidth="50"
-				logoHeight="50"
+				logoUrl="./hamburger.png"
+				logoWidth="30"
+				logoHeight="30"
 			/>
 			<SideBar />
 			<Main />
