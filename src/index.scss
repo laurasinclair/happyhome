@@ -12,7 +12,7 @@
 	--primary-dark: #101658;
 	--secondary: #a43311;
 	--another-color: #d7daf7;
-	--pink: #d179c0;
+	--pink: #e48bd3;
 
 	font-family: 'CircularStd', 'Open sans', Noto, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -27,3 +27,17 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+
+::-moz-selection {
+	color: var(--white);
+	background: var(--pink);
+}
+::-webkit-selection {
+	color: var(--white);
+	background: var(--pink);
+}
+::selection {
+	color: var(--white);
+	background: var(--pink);
+}
+	
