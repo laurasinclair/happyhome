@@ -8,7 +8,7 @@ export default function Footer (props) {
 				<Row>
 					<Col>
 						<p>
-							<a href={props.repositoryLink}>{props.repositoryLinkDesc}</a>
+							<a href={props.repositoryLink} className="wavy">{props.repositoryLinkDesc}</a>
 						</p>
 					</Col>
 					<Col>

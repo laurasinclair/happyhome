@@ -13,8 +13,14 @@ a
 	font-weight: 500
 	color: var(--primary)
 	text-decoration: none
-	&:hover
-		color: var(--secondary)
+	font-weight: 600
+	&.wavy
+		text-decoration: 2.5px underline wavy #a2a9e2
+		&:hover,
+		&:focus
+			transition: all .2s ease-in-out
+			outline: none
+			text-decoration: 2.5px underline wavy var(--pink)
 
 h1, h2, h3, h4, h5, h6
 	line-height: 1.2
