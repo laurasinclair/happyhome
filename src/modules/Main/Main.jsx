@@ -1,6 +1,5 @@
 import Hero from '../Hero/Hero'
 import Footer from '../Footer/Footer'
-
 import './Main.sass'
 
 export default function Main (props) {

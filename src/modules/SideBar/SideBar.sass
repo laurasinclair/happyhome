@@ -1,0 +1,28 @@
+.sidebar
+    display: block !important
+    grid-area: sidebar
+    background-color: var(--primary)
+    height: 100%
+    position: sticky
+    color: var(--white)
+    overflow: hidden
+    padding: 2em 20px
+    display: flex
+    flex-direction: column
+    top: 0
+    &_link
+        a
+            display: flex
+            align-items: center
+            padding: 15px 20px
+            color: var(--white)
+            border-radius: 10px
+            margin-bottom: 5px
+            transition: all .2s ease-in-out
+            svg
+                margin-right: 10px  
+            &:hover,
+            &:focus
+                background-color: var(--primary-dark)
+                color: var(--white)
+

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import NavBar from './components/NavBar/NavBar'
-import Main from './components/Main/Main'
-import SideBar from './components/SideBar/SideBar'
+import NavBar from './modules/NavBar/NavBar'
+import Main from './modules/Main/Main'
+import SideBar from './modules/SideBar/SideBar'
 import './App.sass'
 
 
@@ -16,7 +16,6 @@ function App() {
 				logoWidth="50"
 				logoHeight="50"
 			/>
-			
 			<SideBar />
 			<Main />
 		</div>
