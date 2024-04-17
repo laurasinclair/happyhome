@@ -33,11 +33,12 @@ img
 #app
 	margin: 0
 	padding: 0
+	width: 100%
+	min-height: 100vh
 	display: grid
-	// grid-template-columns: [main] auto
-	// @include media-breakpoint-up(md)
-		// grid-template-columns: [sidebar] 20% [main] auto
-	grid-template-columns: [sidebar] 20% [main] auto
+	grid-template-columns: 20% auto
+	grid-template-rows: 100px auto
+	grid-template-areas: "navbar navbar" "sidebar main"
 
 nav, section, footer
 	padding: 2em 1em

@@ -1,14 +1,15 @@
 .sidebar
     display: block !important
+    grid-area: sidebar
+    background-color: var(--primary)
     &>div
-        background-color: var(--primary)
+        height: 100%
+        position: sticky
         color: var(--white)
         overflow: hidden
         padding: 2em 20px
-        height: 100vh
         display: flex
         flex-direction: column
         justify-content: space-between
         align-items: center
         top: 0
-        position: sticky
