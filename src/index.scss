@@ -5,8 +5,6 @@
 @import '/src/assets/styles/fonts.sass';
 
 :root {
-	// Variables for the whole document. You can reuse them later, for example:
-	// background-color: var(--dark)
 	--white: #fff;
 	--light: #bfc4f1;
 	--dark: #02052c;
@@ -16,7 +14,6 @@
 	--another-color: #d7daf7;
 	--pink: #e48bd3;
 
-	// Standard things for the whole document. These don't have to be here, but why not
 	font-family: 'CircularStd', 'Open sans', Noto, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	font-weight: 400;
@@ -24,7 +21,6 @@
 	color: var(--dark);
 	background-color: var(--white);
  	
-	// I would keep these
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
