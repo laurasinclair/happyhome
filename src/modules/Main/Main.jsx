@@ -1,6 +1,6 @@
-import Hero from '../Hero/Hero'
-import List from '../List/List'
-import Footer from '../Footer/Footer'
+import Hero from '/src/modules/Hero/Hero'
+import FlatList from '/src/modules/FlatList/FlatList'
+import Footer from '/src/modules/Footer/Footer'
 import './Main.sass'
 
 export default function Main (props) {
@@ -11,9 +11,7 @@ export default function Main (props) {
 				leadParagraph="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero, saepe."
 			/>
 
-			<List 
-				title="!"
-				text="..."
+			<FlatList 
 			/>
 
 			<Footer 

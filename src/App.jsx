@@ -1,6 +1,7 @@
 import NavBar from './modules/NavBar/NavBar'
 import Main from './modules/Main/Main'
 import SideBar from './modules/SideBar/SideBar'
+// import { Routes, Route } from "react-router-dom";
 import './App.sass'
 
 function App() {
