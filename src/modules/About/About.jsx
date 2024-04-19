@@ -1,17 +1,13 @@
 import Hero from '/src/modules/Hero/Hero'
-import FlatList from '/src/modules/FlatList/FlatList'
 import Footer from '/src/modules/Footer/Footer'
-import './Main.sass'
+import './About.sass'
 
-export default function Main (props) {
+export default function About (props) {
 	return (
-		<main id="main" className="main">		
+		<main id="main" className="main">	
 			<Hero 
-				pageTitle="So many flats."
+				pageTitle="About"
 				leadParagraph="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero, saepe."
-			/>
-
-			<FlatList 
 			/>
 
 			<Footer 

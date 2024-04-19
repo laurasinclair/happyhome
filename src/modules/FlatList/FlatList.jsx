@@ -8,11 +8,9 @@ export default function FlatList() {
 	const [rentals, setRentals] = useState(rentalsData.results)
 
 	const deleteRental = rentalId => {
-        console.log("Deleting rental with ID:", rentalId);
 		const filteredRentals = rentals && rentals.filter(rental => {
             return rental.id !== rentalId;
         });
-        console.log(filteredRentals)
 		setRentals(filteredRentals)
 	}
 
@@ -21,7 +19,7 @@ export default function FlatList() {
 			<Row>
 				{rentals && rentals.map((rental) => {
 					return (
-						<Col lg="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
+						<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
 							<FlatCard rental={rental} clickToDelete={deleteRental} />
 						</Col>
 					)

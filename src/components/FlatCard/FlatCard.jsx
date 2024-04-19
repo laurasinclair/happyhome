@@ -1,4 +1,4 @@
-import { Trash } from 'react-bootstrap-icons'
+import { Trash, StarFill } from 'react-bootstrap-icons'
 import placeholder from '/src/assets/img/placeholder_image.jpg'
 
 export default function FlatCard(props) {
@@ -10,8 +10,8 @@ export default function FlatCard(props) {
 
 	return (
 		<div className="list_card">
-			<div className="list_card_thumbnail">
-				<img src={placeholder} alt={rental.id} />
+			<div className="list_card_thumbnail" style={{ backgroundImage: 'url(' + placeholder + ')' }}>
+				{rental.review_scores_rating && <p className="list_card_score"><StarFill size="15" /><span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5</p>}
 			</div>
 			<div className="list_card_body">
 				<div>

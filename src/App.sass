@@ -8,6 +8,8 @@ body
 	padding: 0
 	// min-height: 100vh
 	max-width: 100%
+	background-color: var(--another-color)
+	color: var(--primary)
 
 a
 	font-weight: 500
@@ -93,8 +95,29 @@ h3
 	svg
 		margin-left: 10px
 
-
 button
 	@extend .btn
 	&:hover
 		background-color: #c8c8c8
+ 
+.tag
+	display: inline-block
+	bottom: 0
+	left: 0
+	background-color: #fff
+	border-radius: 40px
+	padding: 0 11px
+	font-weight: 600
+	margin: 3px
+	font-size: 1rem
+	&_deals
+		background-color: #bbddff
+	&_premium
+		background: linear-gradient(120deg, #e9b743, #ffffff, #fff4a9, #cfb579)
+
+#page
+	display: flex
+	flex-direction: column
+
+.main
+	flex: 1

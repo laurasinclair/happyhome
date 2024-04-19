@@ -1,4 +1,5 @@
-import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons';
+import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons'
+import { NavLink } from 'react-router-dom'
 import './SideBar.sass'
 
 export default function SideBar() {
@@ -7,34 +8,40 @@ export default function SideBar() {
 			id: 0,
 			icon: HouseDoorFill,
 			linkText: 'Home',
-			url: '#'
+			url: '/',
 		},
 		{
 			id: 1,
 			icon: InfoCircleFill,
 			linkText: 'About',
-			url: '#'
-		}
-	  ];
-	  
-	  const LinksList = () => (
+			url: '/about',
+		},
+		{
+			id: 1,
+			icon: InfoCircleFill,
+			linkText: 'Contact',
+			url: '/contact',
+		},
+	]
+
+	const LinksList = () => (
 		<ul>
-		  {sidebarLinks.map(item => (
-			<li key={item.id} className="sidebar_link">
-			  <a href={item.url}>
-				<item.icon />
-			 	{item.linkText}
-			  </a>
-			</li>
-		  ))}
+			{sidebarLinks.map((item) => (
+				<li key={item.id} className="sidebar_link">
+					<NavLink to={item.url}>
+						<item.icon />
+						{item.linkText}
+					</NavLink>
+				</li>
+			))}
 		</ul>
-	  );
-	  
+	)
+
 	return (
 		<>
-            <div id="sidebar" className="sidebar">
+			<div id="sidebar" className="sidebar">
 				<LinksList />
-            </div>
+			</div>
 		</>
 	)
 }
