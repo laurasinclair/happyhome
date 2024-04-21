@@ -1,33 +1,35 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './NavBar.module.sass'
 import { Logo, Button } from '@components'
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default function NavBar({ toggleSidebar }) {
-	const [stickyClass, setStickyClass] = useState('relative');
+	const [stickyClass, setStickyClass] = useState('relative')
 
 	useEffect(() => {
-	  window.addEventListener('scroll', stickNavbar);
-  
-	  return () => {
-		window.removeEventListener('scroll', stickNavbar);
-	  };
-	}, []);
-  
+		window.addEventListener('scroll', stickNavbar)
+
+		return () => {
+			window.removeEventListener('scroll', stickNavbar)
+		}
+	}, [])
+
 	const stickNavbar = () => {
-	  if (window !== undefined) {
-		let windowHeight = window.scrollY;
-		windowHeight > 100 ? setStickyClass(styles.navbar_sticky) : setStickyClass('');
-	  }
-	};
+		if (window !== undefined) {
+			let windowHeight = window.scrollY
+			windowHeight > 100 ? setStickyClass(styles.navbar_sticky) : setStickyClass('')
+		}
+	}
 
 	return (
 		<nav className={styles.navbar + ' ' + stickyClass}>
 			<Container fluid>
 				<Row>
 					<Col className="m-0 p-0 d-flex align-items-center justify-content-between">
-						<Logo size="xs" hasText />
+						<NavLink to='/'>
+							<Logo size="xs" hasText />
+						</NavLink>
 
 						<a href="#" className={styles.navbar_menuToggle} onClick={toggleSidebar}>
 							<svg width="30" height="30" viewBox="0 0 46 40" fill="none" xmlns="http://www.w3.org/2000/svg">
