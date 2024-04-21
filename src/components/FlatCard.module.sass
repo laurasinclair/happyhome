@@ -1,3 +1,5 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+
 .flatcard
     background-color: var(--white)
     border-radius: 10px
@@ -7,7 +9,9 @@
     margin-bottom: 40px
     box-shadow: 0 10px 10px #25242b0f
     &_thumbnail
-        height: 350px
+        height: 250px
+        @include media-breakpoint-up(lg)
+            height: 350px
         overflow: hidden
         display: flex
         align-items: end
@@ -18,17 +22,6 @@
         padding: 10px 15px
         img
             width: 100%
-    &_body
-        padding: 30px 30px
-        display: flex
-        align-items: stretch
-        flex-direction: column
-        justify-content: space-between
-    &_button
-        flex: 1
-        display: flex
-        flex-direction: column
-        justify-content: flex-end
     &_score
         padding: 10px 20px
         font-size: 1.3rem
@@ -39,3 +32,12 @@
         span
             font-weight: 900
             font-size: 1.6rem
+    &_body
+        padding: 30px 30px 15px
+        display: flex
+        align-items: stretch
+        flex-direction: column
+        justify-content: space-between
+        flex: 1
+    &_footer
+        padding: 20px 20px

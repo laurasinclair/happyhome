@@ -1,60 +1,62 @@
 .btn
-	padding: 8px 20px
+	padding: 10px 20px
 	display: inline-flex
 	align-items: center
 	justify-content: center
 	width: fit-content
-	margin: 4px
+	margin-top: 4px
+	margin-bottom: 4px
+	border-radius: 4px
 	&-primary
 		@extend .btn
-		background-color: var(--white)
-		color: var(--darkish)
-		border: 2px solid var(--white)
+		background-color: var(--primary)
+		color: var(--white)
+		border: 2px solid var(--primary)
 		&:hover,
 		&:focus,
 		&:active
-			background-color: var(--accent)
-			color: var(--darkish)
-			border: 2px solid var(--accent)
+			background-color: var(--primary-dark)
+			color: var(--white)
+			border: 2px solid var(--primary-dark)
 		&-outline
 			@extend .btn
 			background-color: transparent
-			color: var(--white)
-			border: 2px solid var(--white)
+			color: var(--primary)
+			border: 2px solid var(--primary)
 			&:hover,
 			&:focus,
 			&:active
-				background-color: var(--white)
-				color: var(--darkish)
-				border: 2px solid var(--white)
+				background-color: var(--primary)
+				color: var(--white)
+				border: 2px solid var(--primary)
 	&-secondary
 		@extend .btn
-		background-color: var(--medium)
-		color: var(--darkish)
-		border: 2px solid var(--medium)
+		background-color: var(--lightgrey)
+		color: var(--darkgrey)
+		border: 2px solid var(--lightgrey)
 		&:hover,
 		&:focus,
 		&:active
-			background-color: var(--accent)
-			color: var(--dark)
-			border: 2px solid var(--accent)
+			background-color: var(--mediumgrey)
+			color: var(--darkgrey)
+			border: 2px solid var(--mediumgrey)
 		&-outline
 			@extend .btn
 			background-color: transparent
-			color: var(--medium)
-			border: 2px solid var(--medium)
+			color: var(--mediumgrey)
+			border: 2px solid var(--mediumgrey)
 			&:hover,
 			&:focus,
 			&:active
-				background-color: var(--medium)
-				color: var(--dark)
-				border: 2px solid var(--medium)
+				background-color: var(--mediumgrey)
+				color: var(--white)
+				border: 2px solid var(--mediumgrey)
 	&.full-width
 		width: 100%
 	&.icon
 		svg
-			width: 25px
-			height: 25px
+			width: 22px
+			height: 22px
 		&-left
 			@extend .icon
 			svg

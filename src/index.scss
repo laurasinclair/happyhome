@@ -1,6 +1,3 @@
-	
-// Override Bootstrap variables before the import
-// $body-bg: #000;
 @import 'bootstrap/scss/bootstrap-grid.scss';
 @import '/src/assets/styles/fonts.sass';
 
@@ -13,6 +10,9 @@
 	--secondary: #a43311;
 	--another-color: #d7daf7;
 	--pink: #e48bd3;
+	--lightgrey: #ddd;
+	--mediumgrey: #c7c7c7;
+	--darkgrey: #232323;
 
 	font-family: 'CircularStd', 'Open sans', Noto, Helvetica, Arial, sans-serif;
 	line-height: 1.5;
@@ -25,12 +25,6 @@
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-}
-
-@media (min-width: 768px) {
-	:root {
-		font-size: 18px;
-	}
 }
 
 ::-moz-selection {
@@ -47,4 +41,3 @@
 	color: var(--white);
 	background: var(--pink);
 }
-	
