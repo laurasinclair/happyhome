@@ -3,10 +3,10 @@ import './NavBar.sass'
 
 export default function NavBar (props) {
 	return (
-		<nav id="navbar">
+		<nav className="navbar">
 			<Container fluid>
 				<Row>
-					<Col className="navbar">
+					<Col>
 						<div className="navbar_logo">
 							<img src={props.logoUrl} alt={window.appName} width={props.logoWidth} height={props.logoHeight} />
 							<h2>{window.appName}</h2>

@@ -1,8 +1,9 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
 import './FlatList.sass'
-import FlatCard from '/src/components/FlatCard/FlatCard'
-import rentalsData from './rentals.json'
+import FlatCard from '@components/FlatCard'
+import Hero from '@components/Hero'
+import rentalsData from '@/assets/data/rentals.json'
 
 export default function FlatList() {
 	const [rentals, setRentals] = useState(rentalsData.results)
@@ -15,6 +16,7 @@ export default function FlatList() {
 	}
 
 	return (
+		<>
 		<Container fluid>
 			<Row>
 				{rentals && rentals.map((rental) => {
@@ -26,5 +28,6 @@ export default function FlatList() {
 				})}
 			</Row>
 		</Container>
+		</>
 	)
 }

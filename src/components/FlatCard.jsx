@@ -1,5 +1,7 @@
 import { Trash, StarFill } from 'react-bootstrap-icons'
-import placeholder from '/src/assets/img/placeholder_image.jpg'
+import placeholder from '@img/placeholder_image.jpg'
+import Button from '@components/Button'
+import styles from './FlatCard.module.sass';
 
 export default function FlatCard(props) {
 	const { rental, clickToDelete } = props
@@ -9,11 +11,11 @@ export default function FlatCard(props) {
 	}
 
 	return (
-		<div className="list_card">
-			<div className="list_card_thumbnail" style={{ backgroundImage: 'url(' + placeholder + ')' }}>
-				{rental.review_scores_rating && <p className="list_card_score"><StarFill size="15" /><span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5</p>}
+		<div className={styles.flatcard}>
+			<div className={styles.flatcard_thumbnail} style={{ backgroundImage: 'url(' + placeholder + ')' }}>
+				{rental.review_scores_rating && <p className={styles.flatcard_score}><StarFill size="15" /><span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5</p>}
 			</div>
-			<div className="list_card_body">
+			<div className={styles.flatcard_body}>
 				<div>
 					<h3>{rental.name}</h3>
 					<p>
@@ -30,6 +32,7 @@ export default function FlatCard(props) {
 				</div>
 
 				<div className="card_button">
+					<Button />
 					<button id="deleteItem" className="btn btn-primary mt-3" onClick={() => {
 						console.log("Delete button clicked")
 						clickToDelete(rental.id)}

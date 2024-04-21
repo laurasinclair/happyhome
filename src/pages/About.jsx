@@ -1,5 +1,5 @@
-import Hero from '/src/modules/Hero/Hero'
-import Footer from '/src/modules/Footer/Footer'
+import Hero from '@components/Hero'
+import Footer from '@components/Footer'
 import './About.sass'
 
 export default function About (props) {

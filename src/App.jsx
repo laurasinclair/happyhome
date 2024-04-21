@@ -1,10 +1,11 @@
-import NavBar from './modules/NavBar/NavBar'
-import Home from './modules/Home/Home'
-import About from './modules/About/About'
-import SideBar from './modules/SideBar/SideBar'
-import NotFound from './modules/NotFound/NotFound'
-import Footer from '/src/modules/Footer/Footer'
-import Hero from '/src/modules/Hero/Hero'
+import Home from '@pages/HomePage'
+import NotFound from '@pages/NotFound'
+import About from '@pages/About'
+
+import NavBar from '@components/NavBar'
+import SideBar from '@components/SideBar'
+import Footer from '@components/Footer'
+import Hero from '@components/Hero'
 
 import { Routes, Route } from "react-router-dom";
 import './App.sass'
