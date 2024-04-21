@@ -55,8 +55,8 @@ img
 	grid-template-rows: 100px auto
 	grid-template-areas: "navbar navbar" "main main"
 	@include media-breakpoint-up(md)
-		grid-template-columns: auto auto // sidebar width will change depending on whether it's toggled or not. left side will take up all the remaining space.
-		grid-template-rows: auto auto // same here
+		grid-template-columns: auto 1fr // sidebar width will change depending on whether it's toggled or not. left side will take up all the remaining space.
+		grid-template-rows: auto 1fr // same here
 		grid-template-areas: "navbar navbar" "sidebar main"
 
 nav, section, footer
@@ -100,6 +100,9 @@ h3
 	display: flex
 	flex-direction: column
 	overflow: scroll
+	border: 1px solid red
 
 .main
 	flex: 1
+	width: 100%
+	display: flex

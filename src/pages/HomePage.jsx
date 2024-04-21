@@ -1,12 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { Hero, Footer } from '@components';
+import { Hero } from '@components';
 import { FlatList } from '@pages';
 
 import './HomePage.sass'
 
 export default function Home(props) {
 	return (
-		<main id="home" className="home">
+		<main className="home">
 			<Container fluid>
 				<Row>
 					<Col>
