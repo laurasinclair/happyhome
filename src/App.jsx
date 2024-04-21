@@ -28,7 +28,7 @@ function App() {
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
-					<Footer repositoryLink="#" repositoryLinkDesc="Repository link" />
+					<Footer repositoryLink="https://github.com/laurasinclair/project-2-react-app" repositoryLinkDesc="Repository link" />
 				</div>
 			</div>
 		</>
