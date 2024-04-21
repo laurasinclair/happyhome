@@ -1,9 +1,8 @@
-import Hero from '@components/Hero'
-import Footer from '@components/Footer'
+import { Hero, Footer } from '@components';
 
 export default function NotFound (props) {
 	return (
-		<main id="main" className="main">	
+		<main className="main">	
 			<Hero 
 				pageTitle="404"
 				leadParagraph="Page not found."

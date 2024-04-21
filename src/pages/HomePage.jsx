@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import FlatList from '@pages/FlatList'
 import { Logo, Hero } from '@components';
+import { FlatList } from '@pages';
 
 import './HomePage.sass'
 
