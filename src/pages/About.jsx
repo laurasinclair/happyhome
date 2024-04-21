@@ -6,7 +6,7 @@ import './HomePage.sass'
 
 export default function About(props) {
 	return (
-		<main className="about">
+		<main className="main about">
 			<Container fluid>
 				<Row>
 					<Col>
