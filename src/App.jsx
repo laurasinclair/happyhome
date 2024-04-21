@@ -10,9 +10,9 @@ import Hero from '@components/Hero'
 import { Routes, Route } from "react-router-dom";
 import './App.sass'
 
-function App() {
-	window.appName = "Pretty Cool App";
+window.appName = "Pretty Cool App";
 
+function App() {
 	return (
 		<>
 		<div id="app">
