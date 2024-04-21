@@ -1,6 +1,6 @@
 import {Container, Row, Col} from 'react-bootstrap'
 import styles from './NavBar.module.sass'
-import Logo from '@components/Logo'
+import { Logo } from '@components';
 
 export default function NavBar (props) {
 	return (

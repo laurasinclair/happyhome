@@ -1,6 +1,6 @@
 import { Trash, StarFill } from 'react-bootstrap-icons'
 import placeholder from '@img/placeholder_image.jpg'
-import Button from '@components/Button'
+import { Button } from '@components';
 import styles from './FlatCard.module.sass'
 
 export default function FlatCard(props) {

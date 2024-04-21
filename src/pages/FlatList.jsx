@@ -1,8 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import './FlatList.sass'
-import FlatCard from '@components/FlatCard'
-import Hero from '@components/Hero'
+import { FlatCard } from '@components';
 import rentalsData from '@/assets/data/rentals.json'
 
 export default function FlatList() {

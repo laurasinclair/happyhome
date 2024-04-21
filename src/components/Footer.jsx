@@ -1,10 +1,10 @@
 import { BoxArrowUpRight } from 'react-bootstrap-icons';
 import {Container, Row, Col} from 'react-bootstrap'
-import './Footer.sass'
+import styles from './Footer.module.sass'
 
 export default function Footer (props) {
 	return (
-		<footer className="footer">
+		<footer className={styles.footer}>
 			<Container fluid>
 				<Row>
 					<Col>
