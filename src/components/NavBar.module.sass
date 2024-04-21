@@ -1,5 +1,11 @@
 .navbar
     width: 100%
+    height: 100px
+    &_sticky
+        transition: 0.15s all ease-in-out
+        height: 60px
+        p
+            opacity: 0
     background-color: var(--primary-dark)
     border-bottom: 1px solid var(--primary-dark)
     grid-area: navbar
@@ -7,9 +13,19 @@
     display: flex
     flex-direction: row
     align-items: center
+    position: sticky
+    top: 0
+    z-index: 99999
     &_logo
         display: flex
         align-items: center
         img
             margin-right: 20px
-            
+        p
+            opacity: 1
+    &_menuToggle
+        margin: 0
+        padding: 0
+        display: block
+        width: 30px
+        height: 30px

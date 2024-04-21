@@ -1,8 +1,11 @@
 import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons'
 import { NavLink } from 'react-router-dom'
 import styles from './SideBar.module.sass'
+import classNames from 'classnames';
 
-export default function SideBar() {
+export default function SideBar({isActive}) {
+	const sidebarClass = `${styles.sidebar} ${isActive ? styles.toggled : ''}`;
+
 	const sidebarLinks = [
 		{
 			id: 0,
@@ -11,13 +14,13 @@ export default function SideBar() {
 			url: '/',
 		},
 		{
-			id: 1,
+			id: 2,
 			icon: InfoCircleFill,
 			linkText: 'About',
 			url: '/about',
 		},
 		{
-			id: 1,
+			id: 3,
 			icon: InfoCircleFill,
 			linkText: 'Contact',
 			url: '/contact',
@@ -39,7 +42,7 @@ export default function SideBar() {
 
 	return (
 		<>
-			<div className={styles.sidebar}>
+			<div className={sidebarClass}>
 				<LinksList />
 			</div>
 		</>

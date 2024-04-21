@@ -52,8 +52,8 @@ img
 	grid-template-rows: 100px auto
 	grid-template-areas: "navbar navbar" "main main"
 	@include media-breakpoint-up(md)
-		grid-template-columns: 20% auto
-		grid-template-rows: 60px auto
+		grid-template-columns: auto auto // sidebar width will change depending on whether it's toggled or not. left side will take up all the remaining space.
+		grid-template-rows: auto auto // same here
 		grid-template-areas: "navbar navbar" "sidebar main"
 
 nav, section, footer
