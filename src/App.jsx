@@ -8,8 +8,9 @@ window.appName = 'Pretty Cool App'
 
 function App() {
 	const [isSidebarActive, setSidebarActive] = useState(false)
-	
-	const toggleSidebar = () => {
+
+	const toggleSidebar = (event) => {
+		event.preventDefault();
 		setSidebarActive((prev) => !prev)
 	}
 
@@ -20,7 +21,7 @@ function App() {
 
 				<SideBar isActive={isSidebarActive} />
 
-				<div id="page">
+				<div className="page">
 					<Routes>
 						<Route path="/" element={<HomePage />} />
 						<Route path="/about" element={<About />} />

@@ -1,5 +1,5 @@
 import { BoxArrowUpRight } from 'react-bootstrap-icons';
-import {Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import styles from './Footer.module.sass'
 
 export default function Footer (props) {

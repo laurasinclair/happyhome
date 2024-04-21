@@ -46,6 +46,9 @@ img
 	margin: 0
 	padding: 0
 	width: 100%
+	position: relative
+	// height: 100vh
+	// overflow: hidden
 	min-height: 100vh
 	display: grid
 	grid-template-columns: 100%
@@ -93,9 +96,10 @@ h3
 	&_premium
 		background: linear-gradient(120deg, #e9b743, #ffffff, #fff4a9, #cfb579)
 
-#page
+.page
 	display: flex
 	flex-direction: column
+	overflow: scroll
 
 .main
 	flex: 1

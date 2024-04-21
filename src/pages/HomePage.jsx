@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { Logo, Hero } from '@components';
+import { Hero, Footer } from '@components';
 import { FlatList } from '@pages';
 
 import './HomePage.sass'
