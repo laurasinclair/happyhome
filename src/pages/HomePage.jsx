@@ -13,7 +13,7 @@ export default function Home(props) {
 						<Hero 
 							title="So many flats" 
 							lead="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
-							size="l"
+							size="m"
 						/>
 					</Col>
 				</Row>

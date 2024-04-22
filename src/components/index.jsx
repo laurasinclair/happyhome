@@ -10,6 +10,7 @@ import Footer from './Footer'
 
 // Specific
 import FlatCard from './FlatCard'
+import CreateItem from './CreateItem'
 
 export {
     Button,
@@ -18,5 +19,6 @@ export {
     NavBar,
     SideBar,
     Footer,
-    FlatCard
+    FlatCard,
+    CreateItem
 }

@@ -7,7 +7,7 @@ export default function FlatCard(props) {
 	const { rental, clickToDelete } = props
 
 	function truncate(str) {
-		return str.length > 10 ? str.substring(0, 100) + ' (...)' : str
+		return str && str.length > 100 ? str.substring(0, 100) + ' (...)' : str
 	}
 
 	return (

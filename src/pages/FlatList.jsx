@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { FlatCard } from '@components';
+import { FlatCard, CreateItem } from '@components';
 import rentalsData from '@/assets/data/rentals.json'
 
 export default function FlatList() {
@@ -13,9 +13,18 @@ export default function FlatList() {
 		setRentals(filteredRentals)
 	}
 
+	const handleAddRental = (newRental) => {
+		setRentals([newRental, ...rentals])
+	}
+
 	return (
 		<>
 		<Container fluid>
+			<Row>
+				<Col>
+					<CreateItem handleAddRental={handleAddRental} />
+				</Col>
+			</Row>
 			<Row>
 				{rentals && rentals.map((rental) => {
 					return (
