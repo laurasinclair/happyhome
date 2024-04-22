@@ -11,8 +11,7 @@ export default function Home(props) {
 				<Row>
 					<Col>
 						<Hero 
-							title="So many flats" 
-							lead="Lorem ipsum dolor sit, amet consectetur adipisicing elit."
+							title="Admin dashboard" 
 							size="m"
 						/>
 					</Col>
