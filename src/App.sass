@@ -50,11 +50,10 @@ img
 	// height: 100vh
 	// overflow: hidden
 	min-height: 100vh
-	display: grid
-	grid-template-columns: 100%
-	grid-template-rows: 100px auto
-	grid-template-areas: "navbar navbar" "main main"
-	@include media-breakpoint-up(md)
+	display: flex
+	flex-direction: column
+	@include media-breakpoint-up(sm)
+		display: grid
 		grid-template-columns: auto 1fr // sidebar width will change depending on whether it's toggled or not. left side will take up all the remaining space.
 		grid-template-rows: auto 1fr // same here
 		grid-template-areas: "navbar navbar" "sidebar main"
