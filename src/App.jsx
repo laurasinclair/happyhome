@@ -36,7 +36,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<HomePage rentalsData={rentalsData} gimmethedata={gimmethedata} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem rentals={rentals}  />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem rentals={rentals} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 

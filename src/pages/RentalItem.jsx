@@ -9,9 +9,9 @@ import { useState, useEffect } from 'react'
 
 export default function RentalItem({ rentals, newRental }) {
 
-	const allTheRentalsInTheWorld = [newRental, ...rentals.results]
+	// const allTheRentalsInTheWorld = [newRental, ...rentals]
 	// setting up the right page
-	const { name, review_scores_rating, country, id, neighbourhood, city, description } = allTheRentalsInTheWorld.find((rental) => rental.id === useParams().rentalId)
+	const { name, review_scores_rating, country, id, neighbourhood, city, description } = rentals.results.find((rental) => rental.id === useParams().rentalId)
 
 	// adjusting rating background color to rating
 	const [ratingStyle, setRatingStyle] = useState('')
