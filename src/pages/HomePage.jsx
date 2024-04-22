@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Hero } from '@components';
-import { FlatList } from '@pages';
+import { Dashboard } from '@pages';
 
 import './HomePage.sass'
 
@@ -18,7 +18,7 @@ export default function Home(props) {
 				</Row>
 			</Container>
 
-			<FlatList />
+			<Dashboard />
 		</main>
 	)
 }

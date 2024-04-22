@@ -9,8 +9,9 @@ import SideBar from './SideBar'
 import Footer from './Footer'
 
 // Specific
-import FlatCard from './FlatCard'
+import RentalCard from './RentalCard'
 import CreateItem from './CreateItem'
+import UnsplashImage from './UnsplashImage'
 
 export {
     Button,
@@ -19,6 +20,7 @@ export {
     NavBar,
     SideBar,
     Footer,
-    FlatCard,
-    CreateItem
+    RentalCard,
+    CreateItem,
+    UnsplashImage
 }

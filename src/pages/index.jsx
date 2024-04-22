@@ -1,11 +1,11 @@
 import HomePage from './HomePage'
-import FlatList from './FlatList'
+import Dashboard from './Dashboard'
 import About from './About'
 import NotFound from './NotFound'
 
 export {
     HomePage,
-    FlatList,
+    Dashboard,
     About,
     NotFound
 }

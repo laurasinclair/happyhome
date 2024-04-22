@@ -17,7 +17,7 @@ function App() {
 	return (
 		<>
 			<div id="app">
-				<NavBar logoUrl="./hamburger.png" logoWidth="30" logoHeight="30" toggleSidebar={toggleSidebar} />
+				<NavBar toggleSidebar={toggleSidebar} />
 
 				<SideBar isActive={isSidebarActive} />
 

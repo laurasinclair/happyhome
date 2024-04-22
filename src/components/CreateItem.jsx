@@ -39,12 +39,12 @@ export default function CreateItem({ handleAddRental }) {
 					<Row className="mb-3">
 						<Col>
 							<div>
-								<label for="name">Name</label>
+								<label htmlFor="name">Name</label>
 
 								<input name="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} required />
 							</div>
 							<div>
-								<label for="country">Country</label>
+								<label htmlFor="country">Country</label>
 
 								<input name="country" type="text" placeholder="Country" value={country} onChange={handleCountryInput} required />
 							</div>
@@ -52,12 +52,12 @@ export default function CreateItem({ handleAddRental }) {
 
 						<Col>
 							<div>
-								<label for="city">City</label>
+								<label htmlFor="city">City</label>
 
 								<input name="city" type="text" placeholder="City" value={city} onChange={handleCityInput} />
 							</div>
 							<div>
-								<label for="description">Description</label>
+								<label htmlFor="description">Description</label>
 
 								<textarea name="description" type="description" placeholder="This flat is fantastic because..." value={description} onChange={handleDescriptionInput} />
 							</div>
@@ -66,10 +66,10 @@ export default function CreateItem({ handleAddRental }) {
 
 					<Row>
 						<Col md="6">
-							<div class="slidecontainer">
-								<label for="score">Rating</label>
+							<div>
+								<label htmlFor="score">Rating</label>
 								<div>{review_scores_rating / 20}</div>
-								<input class="slider" type="range" min="1" max="100" value={review_scores_rating} name="score" onChange={handleScoreInput} />
+								<input type="range" min="1" max="100" value={review_scores_rating} name="score" onChange={handleScoreInput} />
 							</div>
 						</Col>
 					</Row>
