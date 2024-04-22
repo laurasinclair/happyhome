@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
 import { RentalCard, CreateItem } from '@components'
 
-export default function Dashboard({rentalsData}) {
+export default function Dashboard({rentalsData, gimmethedata}) {
 	const [rentals, setRentals] = useState(rentalsData.results)
 
 	const deleteRental = (rentalId) => {
@@ -15,6 +15,7 @@ export default function Dashboard({rentalsData}) {
 	}
 
 	const handleAddRental = (newRental) => {
+		gimmethedata(newRental);
 		setRentals([newRental, ...rentals])
 	}
 

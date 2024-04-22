@@ -3,7 +3,7 @@ import { Logo } from '@components';
 import styles from './Hero.module.sass';
 import classNames from 'classnames';
 
-export default function Hero({ size = 'm', title, h3, leadText, hasLogo }) {
+export default function Hero({ size = 'm', title, category, leadText, hasLogo }) {
     // Define the size classes
     const sizeClasses = {
         s: styles['hero-small'],
@@ -22,7 +22,7 @@ export default function Hero({ size = 'm', title, h3, leadText, hasLogo }) {
             <Container fluid>
                 <Row className={styles.row}>
                     <Col sm={9} lg={8}>
-                        {h3 && <h3 className={styles['mb-3']}>{h3}</h3>}
+                        {category && <h3 className={styles['mb-3']}>{category}</h3>}
                         {hasLogo && <Logo size='s' hasText />}
                         <h1 className={styles['mt-2']}>{title}</h1>
                         {leadText && <p>{leadText}</p>}

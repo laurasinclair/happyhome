@@ -21,7 +21,7 @@ export default function CreateItem({ handleAddRental }) {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		const newId = Math.floor(Math.random() * 1000000)
+		const newId = Math.floor(Math.random() * 100000000)
 		handleAddRental({ name, country, city, description, id: newId, review_scores_rating })
 
 		setName('')

@@ -17,6 +17,14 @@ function App() {
 
 	const [rentals, setUptoDateRentals] = useState(rentalsData)
 
+	const gimmethedata = (newRental) => {
+		console.log('the data', newRental)
+
+		// setUptoDateRentals([newRental, ...rentals])
+		// pretty sure that from here I can pass this new rental to :rentalId tooo
+		// I think that the id generated for new items is the problem, it doesn't lead anywhere
+	}
+
 	return (
 		<>
 			<div id="app">
@@ -26,9 +34,9 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<HomePage rentalsData={rentalsData} />} />
+						<Route path="/" element={<HomePage rentalsData={rentalsData} gimmethedata={gimmethedata} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem rentals={rentals} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem rentals={rentals}  />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 

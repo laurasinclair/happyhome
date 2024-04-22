@@ -1,6 +1,7 @@
 // Basics
 import Button from './Button'
 import Logo from './Logo'
+import BackButton from './BackButton'
 
 // Layout
 import Hero from './Hero'
@@ -16,6 +17,7 @@ import UnsplashImage from './UnsplashImage'
 export {
     Button,
     Logo,
+    BackButton,
     Hero,
     NavBar,
     SideBar,

@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Hero } from '@components';
 import { Dashboard } from '@pages';
 
-export default function HomePage({rentalsData}) {
+export default function HomePage({rentalsData, gimmethedata}) {
 	return (
 		<main className="home">
 			<Container fluid>
@@ -17,7 +17,7 @@ export default function HomePage({rentalsData}) {
 				</Row>
 			</Container>
 
-			<Dashboard rentalsData={rentalsData} />
+			<Dashboard rentalsData={rentalsData} gimmethedata={gimmethedata} />
 		</main>
 	)
 }
