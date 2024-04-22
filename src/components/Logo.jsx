@@ -1,4 +1,4 @@
-import logo from '@img/logo.png'
+import logo from '@img/logo_happyhome.svg'
 import styles from './Logo.module.sass'
 
 export default function Logo ({ size, hasText }) {

@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import './App.sass'
 
-window.appName = 'Pretty Cool App'
+window.appName = 'HappyHome'
 
 function App() {
 	const [isSidebarActive, setSidebarActive] = useState(false)
