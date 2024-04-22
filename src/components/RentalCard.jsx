@@ -4,6 +4,7 @@ import { Button } from '@components'
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 export default function RentalCard({ index, rental, clickToDelete }) {
 	function truncate(str) {
@@ -27,10 +28,8 @@ export default function RentalCard({ index, rental, clickToDelete }) {
 	// 1. The function passed to useEffect is a callback function. This will be called after the component renders.
 	// 2. The second argument is an array, called the dependencies array. This array should include all of the values that our side effect relies upon.
 
-
 	return (
 		<div className={styles.rentalcard}>
-			{/* <div className={styles.rentalcard_thumbnail} style={{ backgroundImage: 'url(' + unsplashImage + ')' }}> */}
 			<div className={styles.rentalcard_thumbnail}>
 				{rental.review_scores_rating && (
 					<p className={`${styles.rentalcard_score} ${ratingStyle}`}>
@@ -39,7 +38,9 @@ export default function RentalCard({ index, rental, clickToDelete }) {
 					</p>
 				)}
 
-            	<img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" />
+				<Link to={`/rentals/${rental.id}`}>
+					<img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" />
+				</Link>
 			</div>
 			<div className={styles.rentalcard_body}>
 				<h3>{rental.name}</h3>

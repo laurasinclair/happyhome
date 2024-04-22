@@ -1,14 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Hero } from '@components'
-import { Dashboard } from '@pages'
-
-import './HomePage.sass'
 
 export default function About(props) {
 
 	return (
 		<main className="main about">
-			<div className="image"></div>
 			<Container fluid>
 				<Row>
 					<Col>

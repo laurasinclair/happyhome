@@ -1,10 +1,8 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { RentalCard, CreateItem, UnsplashImage } from '@components'
-import rentalsData from '@/assets/data/rentals.json'
-const unsplashUrl = 'https://api.unsplash.com/search/photos?query=home&per_page=20&client_id=482IFLBmLCZUSRJAKS453o-0vaF6t1jLvbOUa40iYZo'
+import { RentalCard, CreateItem } from '@components'
 
-export default function Dashboard() {
+export default function Dashboard({rentalsData}) {
 	const [rentals, setRentals] = useState(rentalsData.results)
 
 	const deleteRental = (rentalId) => {

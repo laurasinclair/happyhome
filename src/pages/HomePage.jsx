@@ -2,9 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Hero } from '@components';
 import { Dashboard } from '@pages';
 
-import './HomePage.sass'
-
-export default function Home(props) {
+export default function HomePage({rentalsData}) {
 	return (
 		<main className="home">
 			<Container fluid>
@@ -14,11 +12,12 @@ export default function Home(props) {
 							title="Admin dashboard" 
 							size="m"
 						/>
+
 					</Col>
 				</Row>
 			</Container>
 
-			<Dashboard />
+			<Dashboard rentalsData={rentalsData} />
 		</main>
 	)
 }
