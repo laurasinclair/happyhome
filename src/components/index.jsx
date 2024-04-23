@@ -12,7 +12,7 @@ import Footer from './Footer'
 // Specific
 import RentalCard from './RentalCard'
 import CreateItem from './CreateItem'
-import UnsplashImage from './UnsplashImage'
+// import UnsplashImage from './UnsplashImage'
 
 export {
     Button,
@@ -24,5 +24,5 @@ export {
     Footer,
     RentalCard,
     CreateItem,
-    UnsplashImage
+    // UnsplashImage
 }

@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { RentalCard, CreateItem } from '@components'
+import { Hero, RentalCard, CreateItem } from '@components'
 
 export default function Dashboard({rentalsData, gimmethedata}) {
 	const [rentals, setRentals] = useState(rentalsData.results)
@@ -24,12 +24,21 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 			<Container fluid>
 				<Row>
 					<Col>
+						<Hero 
+							title="Admin dashboard" 
+							size="m"
+						/>
+
+					</Col>
+				</Row>
+				<Row>
+					<Col>
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
 				</Row>
 				<Row>
 					{rentals &&
-						rentals.map((rental, index) => {
+						rentals.map((rental) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
 									<RentalCard rental={rental} clickToDelete={deleteRental} />

@@ -1,4 +1,4 @@
-import { HomePage, NotFound, About, RentalItem } from '@pages'
+import { Dashboard, NotFound, About, RentalItem } from '@pages'
 import { NavBar, SideBar, Footer } from '@components'
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
@@ -34,7 +34,7 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<HomePage rentalsData={rentalsData} gimmethedata={gimmethedata} />} />
+						<Route path="/" element={<Dashboard rentalsData={rentalsData} gimmethedata={gimmethedata} />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/rentals/:rentalId" element={<RentalItem rentals={rentals} />} />
 						<Route path="*" element={<NotFound />} />

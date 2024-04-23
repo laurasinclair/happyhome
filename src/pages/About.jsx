@@ -2,26 +2,46 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Hero } from '@components'
 
 export default function About(props) {
-
 	return (
 		<main className="main about">
 			<Container fluid>
 				<Row>
 					<Col>
-						<Hero title="About" lead="Lorem ipsum dolor sit, amet consectetur adipisicing elit." />
+						<Hero 
+							title="About" 
+							lead="Lorem ipsum dolor sit, amet consectetur adipisicing elit." 
+						/>
 					</Col>
 				</Row>
 			</Container>
 
 			<div className="d-none">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde sequi amet reiciendis iste illum deleniti ab iure est rerum mollitia ad esse ipsa illo vel quo error nemo consequuntur, animi at eum placeat. Incidunt animi modi doloremque eligendi cupiditate, quos aut distinctio hic sed maiores quidem earum delectus nemo voluptas et natus dignissimos eum dicta rem illum in commodi dolor ratione! Ea nostrum voluptate quae reiciendis voluptatibus dignissimos exercitationem molestiae, eius atque vitae veritatis maiores quo suscipit, pariatur odit. Provident veniam earum inventore ipsum placeat maxime harum odit voluptas quo? Ipsam ea, non corrupti nihil voluptatum laudantium quia, quasi exercitationem facilis ipsa voluptas minus! Minima iste doloremque, sapiente cum molestias libero dignissimos? Cum sequi eligendi, ullam in possimus commodi minima, odio, voluptatibus mollitia soluta excepturi aperiam delectus? Consectetur, voluptas fugiat iusto at velit soluta molestiae
-				voluptatum, libero atque a hic magni molestias dicta deleniti! Alias, eaque. Pariatur iure tenetur maxime, modi animi, unde temporibus asperiores reiciendis repellat officiis praesentium autem ea laborum eligendi ducimus, molestiae molestias adipisci beatae minima vel sequi saepe laudantium voluptatibus. Quibusdam officiis sapiente modi aliquam voluptatum maiores deleniti repellat quis enim quisquam esse, soluta ab nulla accusamus consectetur aut ut eius. Maxime veritatis itaque eum sed quas, aliquid dignissimos porro iure quis fugiat similique accusantium! Amet earum tempora rerum quo saepe possimus molestias odit culpa. Aspernatur dolorem, est eaque atque minima itaque iure eum obcaecati commodi! Qui, ducimus soluta. Dolores est nobis corrupti ipsum doloremque inventore eveniet sapiente, voluptate accusamus et harum molestiae, vero ea voluptates laborum, illo optio? Excepturi eveniet et unde delectus odit est deserunt laborum rem nesciunt! Esse est debitis modi
-				sapiente, cum officiis officia molestiae ipsa voluptatibus maxime vero, dolore nam non sequi dicta pariatur, aliquid ea similique. Corporis laborum et sapiente eveniet quasi accusamus recusandae minima aperiam aliquam. Amet error repudiandae ad nam eaque nobis minus recusandae eius earum, veniam, repellendus impedit accusantium consectetur suscipit similique reprehenderit aperiam velit numquam accusamus exercitationem aliquid soluta neque excepturi. Doloribus excepturi ratione id vero corporis in ullam aliquam perspiciatis nihil eligendi aspernatur earum voluptate rem deleniti ipsa, quae, expedita assumenda voluptatem iste dolorem vel? Voluptas fugiat impedit ea fuga, odit dolorum optio expedita quam alias at officia animi libero labore eveniet incidunt quibusdam eum non numquam iste nobis, perspiciatis ipsa magnam! At cupiditate culpa corrupti doloremque obcaecati quod facere officiis facilis iste, recusandae perferendis earum voluptatem ipsum velit, vel rerum. Aliquam
-				quam quibusdam, id pariatur quo possimus quae dolor adipisci beatae tempora quisquam sed aspernatur et consectetur nam eligendi nobis esse rem est? Fugit odit deleniti voluptates aliquid minima? Eveniet temporibus sequi tenetur placeat doloribus, omnis velit culpa? Maiores voluptatibus totam eius, vitae recusandae saepe reprehenderit natus perferendis itaque libero labore nostrum soluta non quod, alias voluptatum fugiat unde error, beatae tempore consectetur reiciendis! Maiores exercitationem, distinctio accusantium, sit totam magnam autem laboriosam impedit unde optio cum cupiditate, earum quam repudiandae. Aspernatur quam ab veritatis consectetur ex consequuntur expedita pariatur facilis laudantium tenetur maiores ratione fuga nulla a obcaecati autem aut ad architecto aliquam inventore dolorem voluptatum repellendus, nam asperiores? Tenetur vel a dicta quaerat ducimus quo magni eveniet dolor sint atque in qui laudantium velit asperiores aliquid ut, quae blanditiis
-				esse porro tempora nulla molestiae et deserunt. Harum veritatis dolorum iste porro? Nam, inventore deleniti? Eius voluptatem neque dolorum minima pariatur vitae quod ratione? Cum odit consequuntur eum mollitia eius reprehenderit impedit. At obcaecati nemo necessitatibus aut, pariatur possimus quibusdam! Dignissimos animi eius aliquam quasi? In eius reiciendis qui, assumenda iure quod praesentium, consequuntur dicta quas nostrum laboriosam. Adipisci tempora eaque accusantium velit explicabo fuga similique doloremque doloribus totam, aspernatur hic possimus sint dolores quam, eligendi distinctio id necessitatibus excepturi ab! Culpa enim unde quas laborum sunt quo ex in molestiae similique quos? Quo nihil, voluptates et, veniam fugit tempora eum impedit nostrum sit nisi corrupti vero illo. Nemo perferendis eius laudantium eligendi natus, hic, necessitatibus ad consequuntur voluptate ratione numquam tempora impedit incidunt fuga vitae accusantium, sequi excepturi expedita
-				corrupti nulla consequatur vel labore illo iure! Totam officiis unde beatae quam officia neque voluptatibus quia hic, vel nesciunt repellat laudantium excepturi nostrum delectus ad, aliquid numquam voluptas. Neque corporis tempora illo perferendis, eveniet sunt, enim nam amet ab eos molestias quasi ullam maiores non inventore vitae explicabo at placeat sapiente in ut voluptatum tenetur cum! Non reprehenderit eligendi in quod, laudantium architecto animi enim facere excepturi soluta voluptas neque consequatur unde a, harum sit explicabo modi? Accusantium cumque consectetur velit voluptate ipsum error tenetur illo quam facilis, assumenda saepe corporis modi excepturi laudantium natus magni corrupti sunt officiis aliquam repellat incidunt. Quisquam voluptate non consequuntur illum error nulla, corrupti veritatis recusandae in neque voluptas nihil cupiditate repudiandae facilis voluptatem officiis quod, ipsum quo. Odit, esse et voluptate ab ducimus sint earum odio dolor
-				suscipit debitis voluptas ea harum recusandae, dolorem temporibus provident voluptatem fugit vitae velit laudantium itaque dignissimos aliquid aperiam accusamus. Accusantium, rerum. Molestiae veritatis rem corporis enim minus ab eos quasi unde corrupti facere amet sunt facilis, sed nulla at perferendis voluptates omnis dolores quis quae fugit! Id sunt corporis neque veniam iure, hic aspernatur distinctio! Nemo possimus quos illum autem consectetur nesciunt ipsam molestias quibusdam corporis quasi officiis natus accusantium rerum maiores provident sapiente odio dolorem numquam atque sint voluptas, magnam iusto explicabo. Quidem voluptatibus aperiam temporibus tempora vitae, nihil velit corporis dolor deleniti aut. Hic quod, possimus pariatur aspernatur excepturi dicta corrupti? Ducimus id mollitia officiis omnis explicabo consequatur doloremque aliquid, ea provident molestiae consectetur natus dignissimos, porro, fugiat quo laudantium corporis facilis laboriosam
-				perspiciatis tempore officia neque! Aperiam ullam, fugit ipsam nisi rerum vitae tempora vel eligendi debitis est quidem nemo reiciendis hic nulla doloribus alias nesciunt adipisci amet. Totam repudiandae nostrum quo ab eligendi et fugiat accusamus provident, recusandae ducimus illum sequi dicta nam fuga illo labore nobis, quia laboriosam nesciunt quas. Eos nisi eligendi illum repudiandae fugiat similique voluptatum commodi porro ipsum aut esse sapiente at nostrum vero, repellendus inventore nulla enim eveniet ut rerum. Sit, eius? Nemo accusantium odio amet expedita totam dolores officiis?
+				<p>This project was developed as part of a bootcamp group project.</p>
+
+				<p>
+					The dashboard is designed to provide a user-friendly interface for managing rental properties, tenants, and other administrative tasks. It includes features such as:
+					<ul>
+						<li>Viewing and updating property listings</li>
+						<li>Viewing and processing rental payments </li>
+						<li>Managing tenant information</li>
+					</ul>
+					<h3>Technologies Used</h3>
+					<ul>
+						<li>React: The core library for building the dashboard's interactive UI.</li>
+						<li>Sass/CSS: For styling the application with an organized and efficient approach.</li>
+						<li>Managing tenant information</li>
+						<li>Vite: For fast development and build times. </li>
+						<li>Netlify: For deploying and hosting the application seamlessly.</li>
+						<li>JSON Dataset: Provided by the bootcamp, it serves as the data source for the application.</li>
+					</ul>
+					<h3>Future Improvements</h3>
+					<ul>
+						<li>More comprehensive reporting and analytics </li>
+						<li>A more customizable and user-friendly interface</li>
+					</ul>
+				</p>
+
+				<p> Thank you for checking out the project! Feel free to explore the code and reach out with any feedback or questions.</p>
 			</div>
 		</main>
 	)
