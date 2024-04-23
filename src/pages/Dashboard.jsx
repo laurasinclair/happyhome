@@ -1,6 +1,13 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { Hero, RentalCard, CreateItem } from '@components'
+import { Hero, RentalCard, CreateItem, UnsplashImage } from '@components'
+
+// TO TRY
+// Load Unsplash pic array
+// 1. Grab images in the order they come (image[0], image[1], image[2])
+// 2. Grab all data in rentalsdata.json
+// 3. Create a new array by adding 1 image to each object
+// HOW THE FUCK DOES IT WORK WITH NEW ITEMS  🤯
 
 export default function Dashboard({rentalsData, gimmethedata}) {
 	const [rentals, setRentals] = useState(rentalsData.results)
@@ -15,7 +22,7 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 	}
 
 	const handleAddRental = (newRental) => {
-		// gimmethedata(newRental);
+		gimmethedata(newRental);
 		setRentals([newRental, ...rentals])
 	}
 
@@ -38,10 +45,10 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 				</Row>
 				<Row>
 					{rentals &&
-						rentals.map((rental) => {
+						rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
-									<RentalCard rental={rental} clickToDelete={deleteRental} />
+									<RentalCard rental={rental} index={index} clickToDelete={deleteRental} />
 								</Col>
 							)
 						})}

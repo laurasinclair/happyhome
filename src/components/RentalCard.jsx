@@ -1,7 +1,7 @@
 import { Trash, StarFill, Pen } from 'react-bootstrap-icons'
 import placeholder from '@img/placeholder_image.jpg'
-import { Button } from '@components'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Button, UnsplashImage } from '@components'
+import { Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
@@ -39,6 +39,7 @@ export default function RentalCard({ index, rental, clickToDelete }) {
 				)}
 
 				<Link to={`/rentals/${rental.id}`}>
+					<UnsplashImage index={index} classes={styles.rentalcard_thumbnail_img /* to improve, not connected to component */} name={rental.name} />
 					<img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" />
 				</Link>
 			</div>

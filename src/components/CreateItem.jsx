@@ -37,12 +37,15 @@ export default function CreateItem({ handleAddRental }) {
                 <h3>Add a new flat</h3>
 				<form>
 					<Row className="mb-3">
-						<Col>
+						<Col sm="6">
 							<div>
 								<label htmlFor="name">Name</label>
 
 								<input name="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} required />
 							</div>
+						</Col>
+
+						<Col sm="6">
 							<div>
 								<label htmlFor="country">Country</label>
 
@@ -50,22 +53,21 @@ export default function CreateItem({ handleAddRental }) {
 							</div>
 						</Col>
 
-						<Col>
+						<Col sm="6">
 							<div>
 								<label htmlFor="city">City</label>
 
 								<input name="city" type="text" placeholder="City" value={city} onChange={handleCityInput} />
 							</div>
+						</Col>
+						<Col sm="6">
 							<div>
 								<label htmlFor="description">Description</label>
 
 								<textarea name="description" type="description" placeholder="This flat is fantastic because..." value={description} onChange={handleDescriptionInput} />
 							</div>
 						</Col>
-					</Row>
-
-					<Row>
-						<Col md="6">
+						<Col>
 							<div>
 								<label htmlFor="score">Rating</label>
 								<div>{review_scores_rating / 20}</div>

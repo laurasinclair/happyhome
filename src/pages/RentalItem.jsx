@@ -3,12 +3,11 @@ import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, StarFill, Pen } from 'react-bootstrap-icons'
 import placeholder from '@img/placeholder_image.jpg'
-import { Button, BackButton } from '@components'
+import { Button, BackButton, UnsplashImage } from '@components'
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ rentals }) {
-	
+export default function RentalItem({ index, rentals }) {
 	// setting up the right page
 	const { name, review_scores_rating, country, id, neighbourhood, city, description } = rentals.results.find((rental) => rental.id === useParams().rentalId)
 
@@ -51,7 +50,9 @@ export default function RentalItem({ rentals }) {
 								</p>
 							)}
 
-							<img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" />
+							<UnsplashImage index={index} className={styles.rentalcard_thumbnail_img /* to improve, not connected to component */} name={name} />
+
+							{/* <img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" /> */}
 						</div>
 					</Col>
 					<Col>

@@ -5,6 +5,10 @@
 	padding: 0
 	box-sizing: border-box
 
+.debug
+	outline: 1px solid red
+	outline-offset: 1px
+
 body
 	margin: 0
 	padding: 0
@@ -179,6 +183,7 @@ h3
 form
 	label
 		display: block
+		// @extend .debug
 		margin-bottom: 6px
 	input, textarea
 		width: 100%
@@ -195,6 +200,7 @@ form
 				outline-offset: -2px
 		&[type=range]
 			padding: 0
+			margin-bottom: 50px
 			-webkit-appearance: none
 			appearance: none
 			width: 100%
