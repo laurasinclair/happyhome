@@ -15,7 +15,7 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 	}
 
 	const handleAddRental = (newRental) => {
-		gimmethedata(newRental);
+		// gimmethedata(newRental);
 		setRentals([newRental, ...rentals])
 	}
 

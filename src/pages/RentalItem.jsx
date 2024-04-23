@@ -7,9 +7,8 @@ import { Button, BackButton } from '@components'
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ rentals, newRental }) {
-
-	// const allTheRentalsInTheWorld = [newRental, ...rentals]
+export default function RentalItem({ rentals }) {
+	
 	// setting up the right page
 	const { name, review_scores_rating, country, id, neighbourhood, city, description } = rentals.results.find((rental) => rental.id === useParams().rentalId)
 
