@@ -71,7 +71,8 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="score">Rating</label>
 								<div>{review_scores_rating / 20}</div>
-								<input type="range" min="1" max="100" value={review_scores_rating} name="score" onChange={handleScoreInput} />
+
+								<input type="range" min="1" max="100" value="{review_scores_rating} "name="score" onChange={handleScoreInput} />
 							</div>
 						</Col>
 					</Row>

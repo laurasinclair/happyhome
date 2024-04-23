@@ -1,7 +1,24 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import { Hero, UnsplashImage } from '@components'
+import { useState, useEffect } from 'react'
+const breakingBadUrl = 'https://api.breakingbadquotes.xyz/v1/quotes'
 
 export default function About(props) {
+	const [quotes, setQuotes] = useState([])
+
+	useEffect(() => {
+		fetch(breakingBadUrl)
+			.then((resp) => {
+				console.log(resp.json)
+				return resp.json()
+			})
+			.then((data) => {
+				console.log(data)
+				setQuotes([data])
+			})
+			.catch((err) => 'Error')
+	}, [])
+
 	return (
 		<main className="main about">
 			<Container fluid>
@@ -11,13 +28,19 @@ export default function About(props) {
 					</Col>
 				</Row>
 				<Row>
-					<Col>
-						<UnsplashImage index="1" name="aa" />
-						<UnsplashImage index="2" />
-						<UnsplashImage index="3" />
+					<Col md="8" className="px-4">
+						<div className="quote">
+							{quotes.map((e, i) => {
+								return (
+									<div key={i}>
+									<h3>{e[i].quote}</h3>
+									<p>{e[i].author}</p>
+									</div>
+								)
+							})}
+						</div>
 					</Col>
 				</Row>
-
 
 				<Row className="d-none">
 					<Col>
