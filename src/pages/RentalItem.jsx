@@ -52,6 +52,8 @@ export default function RentalItem({ index, rentals }) {
 
 							<UnsplashImage index={index} className={styles.rentalcard_thumbnail_img /* to improve, not connected to component */} name={name} />
 
+							<img src={`https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`}  alt="" />
+
 							{/* <img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" /> */}
 						</div>
 					</Col>

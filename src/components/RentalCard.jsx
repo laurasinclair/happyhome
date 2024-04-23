@@ -7,6 +7,10 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export default function RentalCard({ index, rental, clickToDelete }) {
+	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
+	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
+	
+
 	function truncate(str) {
 		return str && str.length > 100 ? str.substring(0, 100) + ' (...)' : str
 	}
@@ -39,8 +43,13 @@ export default function RentalCard({ index, rental, clickToDelete }) {
 				)}
 
 				<Link to={`/rentals/${rental.id}`}>
-					<UnsplashImage index={index} classes={styles.rentalcard_thumbnail_img /* to improve, not connected to component */} name={rental.name} />
-					<img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" />
+					<img
+						onError={() => {
+							if (rentalImageSrc !== placeholder) setImageSrc(placeholder)
+						}}
+						src={rentalImageSrc}
+						alt={rental.name}
+					/>
 				</Link>
 			</div>
 			<div className={styles.rentalcard_body}>

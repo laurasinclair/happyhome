@@ -7,7 +7,7 @@ export default function About(props) {
 	const [quotes, setQuotes] = useState([])
 
 	useEffect(() => {
-		fetch(breakingBadUrl)
+		fetch(breakingBad)
 			.then((resp) => {
 				console.log(resp.json)
 				return resp.json()
