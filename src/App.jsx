@@ -1,13 +1,15 @@
 import { Dashboard, NotFound, About, RentalItem } from '@pages'
 import { NavBar, SideBar, Footer } from '@components'
 import { Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.sass'
-import rentalsData from '@/assets/data/rentals.json'
+import rentalsJSON from '/src/assets/data/rentals.json'
+import axios from 'axios'
 
 window.appName = 'HappyHome'
 
 function App() {
+	// sidebar stuff
 	const [isSidebarActive, setSidebarActive] = useState(false)
 
 	const toggleSidebar = (event) => {
@@ -15,15 +17,23 @@ function App() {
 		setSidebarActive((prev) => !prev)
 	}
 
-	const [rentals, setUptoDateRentals] = useState(rentalsData)
-
-	const gimmethedata = (newRental) => {
-		console.log('the data', newRental)
-
-		// setUptoDateRentals([newRental, ...rentals])
-		// pretty sure that from here I can pass this new rental to :rentalId tooo
-		// I think that the id generated for new items is the problem, it doesn't lead anywhere
-	}
+	// fetching rentals 
+	const [rentals, setRentals] = useState([])
+	const [loading, setLoading] = useState(true)
+	useEffect(() => {
+		axios
+			.get('/src/assets/data/rentals.json')
+			.then(function (data) {
+				setRentals([...data?.data?.results])
+			})
+			.catch(function (err) {
+				console.log('oh no!', err)
+			})
+			.finally(function () {
+				rentals.unshift({'1': '1'}) // just a test
+				setLoading(false)
+			})
+	}, [])
 
 	return (
 		<>
@@ -34,13 +44,13 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard rentalsData={rentalsData} gimmethedata={gimmethedata} />} />
+						<Route path="/" element={<Dashboard rentals={rentals} loading={loading} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem index="1" rentals={rentals} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
-					<Footer repositoryLink="https://github.com/laurasinclair/project-2-react-app" repositoryLinkDesc="HappyHome | Repository link" />
+					<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
 				</div>
 			</div>
 		</>

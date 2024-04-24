@@ -1,15 +1,14 @@
 import { Trash, StarFill, Pen } from 'react-bootstrap-icons'
 import placeholder from '@img/placeholder_image.jpg'
-import { Button, UnsplashImage } from '@components'
+import { Button } from '@components'
 import { Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export default function RentalCard({ index, rental, clickToDelete }) {
+export default function RentalCard({ rental, clickToDelete }) {
 	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
 	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
-	
 
 	function truncate(str) {
 		return str && str.length > 100 ? str.substring(0, 100) + ' (...)' : str
@@ -78,7 +77,9 @@ export default function RentalCard({ index, rental, clickToDelete }) {
 							type="secondary"
 							fullWidth
 							iconRight={<Trash />}
-							onClick={() => {
+							clickToDelete={clickToDelete}
+							onClick={(e) => {
+								e.preventDefault();
 								clickToDelete(rental.id)
 							}}
 						/>

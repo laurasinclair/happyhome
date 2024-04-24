@@ -3,26 +3,23 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useState } from 'react'
 
 export default function CreateItem({ handleAddRental }) {
-	const [name, setName] = useState('')
-	const [country, setCountry] = useState('')
-	const [city, setCity] = useState('')
-	const [description, setDescription] = useState('')
-	const [review_scores_rating, setScore] = useState(25)
+	const 	[name, setName] = useState(''),
+			[country, setCountry] = useState(''),
+			[city, setCity] = useState(''),
+			[description, setDescription] = useState(''),
+			[review_scores_rating, setScore] = useState(50)
 
-	const handleNameInput = (e) => setName(e.target.value)
-	const handleCountryInput = (e) => setCountry(e.target.value)
-	const handleCityInput = (e) => setCity(e.target.value)
-	const handleDescriptionInput = (e) => setDescription(e.target.value)
-	const handleScoreInput = (e) => {
-		console.log(e.target.value)
-		setScore(e.target.value)
-	}
+	const 	handleNameInput = (e) => setName(e.target.value),
+			handleCountryInput = (e) => setCountry(e.target.value),
+			handleCityInput = (e) => setCity(e.target.value),
+			handleDescriptionInput = (e) => setDescription(e.target.value),
+			handleScoreInput = (e) => setScore(e.target.value)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
 		const newId = Math.floor(Math.random() * 100000000)
-		handleAddRental({ name, country, city, description, id: newId, review_scores_rating })
+		handleAddRental({ name, country, city, description, id: newId, review_scores_rating, imageSrc: 'http://127.0.0.1:3000/lab-es6-promises/images/mashed-potatoes.jpg' })
 
 		setName('')
 		setCountry('')
@@ -41,7 +38,7 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="name">Name</label>
 
-								<input name="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} required />
+								<input name="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} />
 							</div>
 						</Col>
 
@@ -70,9 +67,9 @@ export default function CreateItem({ handleAddRental }) {
 						<Col>
 							<div>
 								<label htmlFor="score">Rating</label>
-								<div>{review_scores_rating / 20}</div>
+								<p>{review_scores_rating / 20}</p>
 
-								<input type="range" min="1" max="100" value="{review_scores_rating} "name="score" onChange={handleScoreInput} />
+								<input type="range" min="1" max="100" list="markers" value={review_scores_rating} name="score" onChange={handleScoreInput} />
 							</div>
 						</Col>
 					</Row>

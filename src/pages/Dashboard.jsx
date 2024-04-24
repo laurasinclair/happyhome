@@ -1,16 +1,25 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState } from 'react'
-import { Hero, RentalCard, CreateItem, UnsplashImage } from '@components'
+import { Hero, RentalCard, CreateItem } from '@components'
 
-// TO TRY
-// Load Unsplash pic array
-// 1. Grab images in the order they come (image[0], image[1], image[2])
-// 2. Grab all data in rentalsdata.json
-// 3. Create a new array by adding 1 image to each object
-// HOW THE FUCK DOES IT WORK WITH NEW ITEMS  🤯
+export default function Dashboard({ rentals, loading }) {
+	// const [rentals, setRentals] = useState([])
 
-export default function Dashboard({rentalsData, gimmethedata}) {
-	const [rentals, setRentals] = useState(rentalsData.results)
+	// useEffect(() => {
+	// 	axios
+	// 		.get(rentalsJSON)
+	// 		.then(function (data) {
+	// 			setRentals(data.results)
+	// 		})
+	// 		.catch(function (err) {
+	// 			console.log('oh no!', err)
+	// 			setLoading(false)
+	// 		})
+	// 		.finally(function () {})
+	// }, [])
+
+	// if (loading) return <div> loading... </div>
+
 
 	const deleteRental = (rentalId) => {
 		const filteredRentals =
@@ -22,9 +31,15 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 	}
 
 	const handleAddRental = (newRental) => {
-		gimmethedata(newRental);
+		rentals.push(newRental)
 		setRentals([newRental, ...rentals])
 	}
+
+	localStorage.setItem('rentals', JSON.stringify(rentals))
+	
+	localStorage.setItem('title', 'hello')
+
+	if (loading) return <div> loading... </div>
 
 	return (
 		<>
@@ -44,8 +59,7 @@ export default function Dashboard({rentalsData, gimmethedata}) {
 					</Col>
 				</Row>
 				<Row>
-					{rentals &&
-						rentals.map((rental, index) => {
+					{rentals && rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
 									<RentalCard rental={rental} index={index} clickToDelete={deleteRental} />

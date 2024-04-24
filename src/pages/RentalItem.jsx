@@ -3,33 +3,43 @@ import { Link, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, StarFill, Pen } from 'react-bootstrap-icons'
 import placeholder from '@img/placeholder_image.jpg'
-import { Button, BackButton, UnsplashImage } from '@components'
+import { Button, BackButton } from '@components'
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ index, rentals }) {
-	// setting up the right page
-	const { name, review_scores_rating, country, id, neighbourhood, city, description } = rentals.results.find((rental) => rental.id === useParams().rentalId)
+export default function RentalItem({ loading, clickToDelete }) {
+	// getting the right rental
+	const rentals = JSON.parse(localStorage.getItem('rentals'))
+	const rental = rentals.find((rental) => rental?.id === useParams().rentalId)
+	console.log('rental?', rental)
+
+
+	// setting placeholder for thumbnail
+	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
+	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
+		
 
 	// adjusting rating background color to rating
 	const [ratingStyle, setRatingStyle] = useState('')
-
 	useEffect(() => {
-		// pass 2 arguments to it:
-		if (review_scores_rating !== undefined) {
-			if (review_scores_rating <= 50) {
+		if (rental.review_scores_rating !== undefined) {
+			if (rental.review_scores_rating <= 50) {
 				setRatingStyle(styles.rentalcard_score_bad)
-			} else if (review_scores_rating > 50 && review_scores_rating < 75) {
+			} else if (rental.review_scores_rating > 50 && rental.review_scores_rating < 75) {
 				setRatingStyle(styles.rentalcard_score_okay)
-			} else if (review_scores_rating >= 75) {
+			} else if (rental.review_scores_rating >= 75) {
 				setRatingStyle(styles.rentalcard_score_good)
 			}
-		} // 1. a function...
-	}, [review_scores_rating])
+		}
+	}, [])
+
+
+	// to style maybe later
+	if (loading) return <div> loading... </div>
 
 	return (
 		<main className="main">
-			<Container fluid>
+			 <Container fluid>
 				<Row>
 					<Col className="p-4">
 						<BackButton />
@@ -37,43 +47,45 @@ export default function RentalItem({ index, rentals }) {
 				</Row>
 				<Row>
 					<Col>
-						<Hero category="Rental item" title={name} size="s" lead="Lorem ipsum dolor sit, amet consectetur adipisicing elit." />
+						<Hero category="Rental item" title={rental.name} size="s" />
 					</Col>
 				</Row>
 				<Row className="mb-5">
 					<Col>
 						<div className={styles.rentalcard_thumbnail}>
-							{review_scores_rating && (
+							{rental.review_scores_rating && (
 								<p className={`${styles.rentalcard_score} ${ratingStyle}`}>
 									<StarFill size="15" />
-									<span>{(review_scores_rating / 20).toFixed(1)}</span>/5
+									<span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5
 								</p>
 							)}
 
-							<UnsplashImage index={index} className={styles.rentalcard_thumbnail_img /* to improve, not connected to component */} name={name} />
-
-							<img src={`https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`}  alt="" />
-
-							{/* <img src={placeholder} className={styles.rentalcard_thumbnail_img} alt="" /> */}
+							<img
+								onError={() => {
+									if (rentalImageSrc !== placeholder) setImageSrc(placeholder)
+								}}
+								src={rentalImageSrc}
+								alt={rental.name}
+							/>
 						</div>
 					</Col>
 					<Col>
 						<p>
-							<strong>ID:</strong> {id}
+							<strong>ID:</strong> {rental.id}
 						</p>
 						<p>
-							<strong>Country:</strong> {country}
+							<strong>Country:</strong> {rental.country}
 						</p>
 						<p>
-							<strong>City:</strong> {city}
-							{neighbourhood ? ' 📍 ' + neighbourhood : null}
+							<strong>City:</strong> {rental.city}
+							{rental.neighbourhood ? ' 📍 ' + rental.neighbourhood : null}
 						</p>
 					</Col>
 				</Row>
 				<Row>
 					<Col className="px-4">
 						<h3>Description</h3>
-						<p>{description}</p>
+						<p>{rental.description}</p>
 					</Col>
 				</Row>
 
@@ -84,11 +96,14 @@ export default function RentalItem({ index, rentals }) {
 					<Col className="ps-md-1">
 						<Button
 							text="Delete"
+							link="/"
 							type="secondary"
 							fullWidth
 							iconRight={<Trash />}
-							onClick={() => {
-								clickToDelete(id)
+							onClick={(e) => {
+								e.preventDefault();
+								console.log('heeyeyyye')
+								// clickToDelete({id})
 							}}
 						/>
 					</Col>

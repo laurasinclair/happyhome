@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { Hero, UnsplashImage } from '@components'
+import { Hero } from '@components'
 import { useState, useEffect } from 'react'
 const breakingBadUrl = 'https://api.breakingbadquotes.xyz/v1/quotes'
 
