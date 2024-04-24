@@ -11,6 +11,7 @@ window.appName = 'HappyHome'
 function App() {
 	// sidebar stuff
 	const [isSidebarActive, setSidebarActive] = useState(false)
+
 	const toggleSidebar = (event) => {
 		event.preventDefault();
 		setSidebarActive((prev) => !prev)
@@ -24,12 +25,12 @@ function App() {
 			.get('/src/assets/data/rentals.json')
 			.then(function (data) {
 				setRentals([...data?.data?.results])
-				localStorage.setItem('rentals', rentalsArray);
 			})
 			.catch(function (err) {
 				console.log('oh no!', err)
 			})
 			.finally(function () {
+				rentals.unshift({'1': '1'}) // just a test
 				setLoading(false)
 			})
 	}, [])
@@ -43,7 +44,7 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard loading={loading} />} />
+						<Route path="/" element={<Dashboard rentals={rentals} loading={loading} />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} />} />
 						<Route path="*" element={<NotFound />} />
