@@ -42,7 +42,7 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard rentals={rentals} loading={loading} />} />
+						<Route path="/" element={<Dashboard loading={loading} />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} />} />
 						<Route path="*" element={<NotFound />} />

@@ -8,26 +8,44 @@ import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalItem({ loading }) {
+	const [rental, setRental] = useState({})
+	const rentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+
 	// getting the right rental
-	const rentals = JSON.parse(localStorage.getItem('rentals'))
+	// const rentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+	// setRental(rentals.find((rental) => rental.id === useParams().rentalId))
 	// console.log('rentals from localStorage', rentals)
 
-	const rental = rentals.find((rental) => rental.id === useParams().rentalId)
-	console.log('rental from rentals from localStorage', rental)
+	useEffect(() => {
+		setRental(rentals.find((rental) => rental.id === useParams().rentalId))
+	}, [])
+
+	const {
+		id,
+		name,
+		country,
+		city,
+		description,
+		neighbourhood,
+		review_scores_rating,
+		// picture_url: { filename }
+	} = rental
+
 
 	// setting placeholder for thumbnail
-	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
-	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
+	// const rentalImage = picture_url?.filename || placeholder;
+	const rentalImage = placeholder;
+
 
 	// adjusting rating background color to rating
 	const [ratingStyle, setRatingStyle] = useState('')
 	useEffect(() => {
-		if (rental.review_scores_rating !== undefined) {
-			if (rental.review_scores_rating <= 50) {
+		if (review_scores_rating !== undefined) {
+			if (review_scores_rating <= 50) {
 				setRatingStyle(styles.rentalcard_score_bad)
-			} else if (rental.review_scores_rating > 50 && rental.review_scores_rating < 75) {
+			} else if (review_scores_rating > 50 && review_scores_rating < 75) {
 				setRatingStyle(styles.rentalcard_score_okay)
-			} else if (rental.review_scores_rating >= 75) {
+			} else if (review_scores_rating >= 75) {
 				setRatingStyle(styles.rentalcard_score_good)
 			}
 		}
@@ -47,46 +65,43 @@ export default function RentalItem({ loading }) {
 				</Row>
 				<Row>
 					<Col>
-						<Hero category="Rental item" title={rental.name} size="s" />
+						<Hero category="Rental item" title={name} size="s" />
 					</Col>
 				</Row>
 				<Row className="mb-5">
 					<Col>
 						<div className={styles.rentalcard_thumbnail}>
-							{rental.review_scores_rating && (
+							{review_scores_rating && (
 								<p className={`${styles.rentalcard_score} ${ratingStyle}`}>
 									<StarFill size="15" />
-									<span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5
+									<span>{(review_scores_rating / 20).toFixed(1)}</span>/5
 								</p>
 							)}
 
 							<img
-								onError={() => {
-									if (rentalImageSrc !== placeholder) setImageSrc(placeholder)
-								}}
-								src={rentalImageSrc}
-								alt={rental.name}
+								src={rentalImage}
+								alt={name}
 								style={{borderRadius: '8px'}}
 							/>
 						</div>
 					</Col>
 					<Col>
 						<p>
-							<strong>ID:</strong> {rental.id}
+							<strong>ID:</strong> {id}
 						</p>
 						<p>
-							<strong>Country:</strong> {rental.country}
+							<strong>Country:</strong> {country}
 						</p>
 						<p>
-							<strong>City:</strong> {rental.city}
-							{rental.neighbourhood ? ' 📍 ' + rental.neighbourhood : null}
+							<strong>City:</strong> {city}
+							{neighbourhood ? ' 📍 ' + neighbourhood : null}
 						</p>
 					</Col>
 				</Row>
 				<Row>
 					<Col lg="8" xl="8" className="px-4 mb-4">
 						<h3>Description</h3>
-						<p>{rental.description}</p>
+						<p>{description}</p>
 					</Col>
 				</Row>
 

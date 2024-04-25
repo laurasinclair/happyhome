@@ -1,6 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { Hero, RentalCard, CreateItem } from '@components'
 
 export default function Dashboard({ loading }) {
@@ -11,11 +10,6 @@ export default function Dashboard({ loading }) {
 		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
 		setRentals(rentalsInLocalStorage || [])
 	}
-
-	useEffect(() => {
-		console.log('fetchdata();')
-		fetchData()
-	}, [reload])
 
 	const deleteRental = (rentalId) => {
 		const updatedRentals = rentals.filter(rental => rental.id !== rentalId);
@@ -31,6 +25,12 @@ export default function Dashboard({ loading }) {
 		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
 		setReload(true)
 	}
+
+	useEffect(() => {
+		setReload(true)
+		console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+		fetchData();
+	}, [reload])
 
 	if (loading) return <div> loading... </div>
 
