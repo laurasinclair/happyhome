@@ -7,7 +7,7 @@ import { Button, BackButton } from '@components'
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ loading, clickToDelete }) {
+export default function RentalItem({ loading }) {
 	// getting the right rental
 	const rentals = JSON.parse(localStorage.getItem('rentals'))
 	// console.log('rentals from localStorage', rentals)

@@ -20,6 +20,7 @@ function App() {
 	// fetching rentals 
 	const [rentals, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState('oops')
 	useEffect(() => {
 		axios
 			.get('/src/assets/data/rentals.json')
@@ -28,8 +29,9 @@ function App() {
 			.finally(() => setLoading(false))
 	}, [])
 
-
-	
+	useEffect(() => {
+        localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
+    }, [rentals]);
 
 	return (
 		<>

@@ -8,8 +8,8 @@ export default function Dashboard({ loading }) {
 	const [reload, setReload] = useState(false)
 
 	const fetchData = () => {
-		const storedData = JSON.parse(localStorage.getItem('rentals'))
-		setRentals(storedData || [])
+		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+		setRentals(rentalsInLocalStorage || [])
 	}
 
 	useEffect(() => {
@@ -19,19 +19,15 @@ export default function Dashboard({ loading }) {
 
 	const deleteRental = (rentalId) => {
 		const updatedRentals = rentals.filter(rental => rental.id !== rentalId);
-		
 		setRentals(updatedRentals);
-		
 		localStorage.setItem('rentals', JSON.stringify(updatedRentals));
-
+		setReload(true)
 	}
 
 	const handleAddRental = (newRental) => {
 		rentals.push(newRental)
 		setRentals([newRental, ...rentals])
 	}
-
-	// localStorage.setItem('rentals', JSON.stringify(rentals))
 
 	if (loading) return <div> loading... </div>
 
@@ -54,7 +50,7 @@ export default function Dashboard({ loading }) {
 						rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
-									<RentalCard rental={rental} index={index} deleteRental={deleteRental} clickToDelete={deleteRental} />
+									<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
 								</Col>
 							)
 						})}
