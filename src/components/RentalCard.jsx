@@ -51,20 +51,22 @@ export default function RentalCard({ rental, clickToDelete }) {
 					/>
 				</Link>
 			</div>
-			<div className={styles.rentalcard_body}>
-				<h3>{rental.name}</h3>
-				<p>
-					<strong>ID:</strong> {rental.id}
-				</p>
-				<p>
-					<strong>Country:</strong> {rental.country}
-				</p>
-				<p>
-					<strong>City:</strong> {rental.city}
-					{rental.neighbourhood ? ' 📍 ' + rental.neighbourhood : null}
-				</p>
-				<p>{truncate(rental.description)}</p>
-			</div>
+			<Link to={`/rentals/${rental.id}`}>
+				<div className={styles.rentalcard_body}>
+					<h3>{rental.name}</h3>
+					<p>
+						<strong>ID:</strong> {rental.id}
+					</p>
+					<p>
+						<strong>Country:</strong> {rental.country}
+					</p>
+					<p>
+						<strong>City:</strong> {rental.city}
+						{rental.neighbourhood ? ' 📍 ' + rental.neighbourhood : null}
+					</p>
+					<p>{truncate(rental.description)}</p>
+				</div>
+			</Link>
 
 			<div className={styles.rentalcard_footer}>
 				<Row>
