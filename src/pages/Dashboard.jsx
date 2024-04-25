@@ -2,14 +2,9 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import { Hero, RentalCard, CreateItem } from '@components'
 
-export default function Dashboard({ loading }) {
+export default function Dashboard({ loading, fetchData }) {
 	const [rentals, setRentals] = useState([])
 	const [reload, setReload] = useState(false)
-
-	const fetchData = () => {
-		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		setRentals(rentalsInLocalStorage || [])
-	}
 
 	const deleteRental = (rentalId) => {
 		const updatedRentals = rentals.filter(rental => rental.id !== rentalId);
@@ -28,7 +23,7 @@ export default function Dashboard({ loading }) {
 
 	useEffect(() => {
 		setReload(true)
-		console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+		// console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
 		fetchData();
 	}, [reload])
 

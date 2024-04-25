@@ -3,7 +3,6 @@ import { NavBar, SideBar, Footer } from '@components'
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.sass'
-import rentalsJSON from '/src/assets/data/rentals.json'
 import axios from 'axios'
 
 window.appName = 'HappyHome'
@@ -25,13 +24,30 @@ function App() {
 		axios
 			.get('/src/assets/data/rentals.json')
 			.then((resp) => setRentals([...resp.data?.results]))
-			.catch((err) => setError(err))
-			.finally(() => setLoading(false))
+			.catch((err) => setError(err => 'oops' + error))
+			.finally(() => {
+				console.log(rentals.length, 'are ready to be localStored')
+				
+				localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
+				setLoading(false)
+			})
 	}, [])
 
 	useEffect(() => {
-        localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-    }, [rentals]);
+		// console.log(rentals.length, 'are ready to be localStored')
+		// localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
+		// fetchData()
+	}, []);
+
+	useEffect(() => {
+        // fetchData();
+		// console.log(`🔆 fetchdata(); - App.jsx - rentals.length is ${rentals.length}`) // 100
+    }, []);
+
+	const fetchData = () => {
+		// const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+		// setRentals(rentalsInLocalStorage || [])
+	}
 
 	return (
 		<>
@@ -42,9 +58,9 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard loading={loading} />} />
+						<Route path="/" element={<Dashboard loading={loading} fetchData={fetchData} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} fetchData={fetchData} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
