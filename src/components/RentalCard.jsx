@@ -4,9 +4,11 @@ import { Button } from '@components'
 import { Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-export default function RentalCard({ rental, clickToDelete }) {
+export default function RentalCard({ rental, clickToDelete, deleteRental}) {
+	const navigate = useNavigate()
+
 	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
 	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
 
@@ -79,12 +81,14 @@ export default function RentalCard({ rental, clickToDelete }) {
 							type="secondary"
 							fullWidth
 							iconRight={<Trash />}
-							clickToDelete={clickToDelete}
 							onClick={(e) => {
 								e.preventDefault();
-								clickToDelete(rental.id)
+								deleteRental(rental.id)
+								console.log('delete button clicked')
+								navigate("/");
+
 							}}
-						/>
+						>Delete </Button>
 					</Col>
 				</Row>
 			</div>
