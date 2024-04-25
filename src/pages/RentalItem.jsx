@@ -10,14 +10,14 @@ import { useState, useEffect } from 'react'
 export default function RentalItem({ loading, clickToDelete }) {
 	// getting the right rental
 	const rentals = JSON.parse(localStorage.getItem('rentals'))
-	const rental = rentals.find((rental) => rental?.id === useParams().rentalId)
-	console.log('rental?', rental)
+	// console.log('rentals from localStorage', rentals)
 
+	const rental = rentals.find((rental) => rental.id === useParams().rentalId)
+	console.log('rental from rentals from localStorage', rental)
 
 	// setting placeholder for thumbnail
 	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
 	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
-		
 
 	// adjusting rating background color to rating
 	const [ratingStyle, setRatingStyle] = useState('')

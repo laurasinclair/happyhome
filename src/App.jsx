@@ -23,21 +23,13 @@ function App() {
 	useEffect(() => {
 		axios
 			.get('/src/assets/data/rentals.json')
-			.then(function (resp) {
-				console.log('resp.data from App.jsx', resp.data)
-				setRentals([...resp.data?.results])
-			})
-			.then(function (data) {
-				// setRentals([...data?.data?.results])
-			})
-			.catch(function (err) {
-				console.log('oh no!', err)
-			})
-			.finally(function () {
-				// rentals.unshift({'1': '1'}) // just a test
-				setLoading(false)
-			})
+			.then((resp) => setRentals([...resp.data?.results]))
+			.catch((err) => setError(err))
+			.finally(() => setLoading(false))
 	}, [])
+
+
+	
 
 	return (
 		<>

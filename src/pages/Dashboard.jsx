@@ -1,33 +1,31 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Hero, RentalCard, CreateItem } from '@components'
 
 export default function Dashboard({ rentals, loading }) {
-	// const [rentals, setRentals] = useState([])
+	const [data, setData] = useState([])
+	const [reload, setReload] = useState(false)
 
-	// useEffect(() => {
-	// 	axios
-	// 		.get(rentalsJSON)
-	// 		.then(function (data) {
-	// 			setRentals(data.results)
-	// 		})
-	// 		.catch(function (err) {
-	// 			console.log('oh no!', err)
-	// 			setLoading(false)
-	// 		})
-	// 		.finally(function () {})
-	// }, [])
+	const fetchData = () => {
+		const storedData = JSON.parse(localStorage.getItem('rentals'))
+		setData(storedData || [])
+	}
 
-	// if (loading) return <div> loading... </div>
-
+	useEffect(() => {
+		console.log('fetchdata();')
+		fetchData()
+	}, [reload])
 
 	const deleteRental = (rentalId) => {
-		const filteredRentals =
-			rentals &&
-			rentals.filter((rental) => {
-				return rental.id !== rentalId
-			})
-		setRentals(filteredRentals)
+
+		const indexToRemove = data.findIndex((rental) => rental.id === rentalId)
+
+		if (indexToRemove !== -1) {
+			data.splice(indexToRemove, 1)
+			localStorage.setItem('rentals', JSON.stringify(data))
+		}
+
+		setReload((prev) => !prev)
 	}
 
 	const handleAddRental = (newRental) => {
@@ -35,9 +33,7 @@ export default function Dashboard({ rentals, loading }) {
 		setRentals([newRental, ...rentals])
 	}
 
-	localStorage.setItem('rentals', JSON.stringify(rentals))
-	
-	localStorage.setItem('title', 'hello')
+	// localStorage.setItem('rentals', JSON.stringify(rentals))
 
 	if (loading) return <div> loading... </div>
 
@@ -46,20 +42,18 @@ export default function Dashboard({ rentals, loading }) {
 			<Container fluid>
 				<Row>
 					<Col>
-						<Hero 
-							title="Admin dashboard" 
-							size="m"
-						/>
-
+						<Hero title="Admin dashboard" size="m" />
 					</Col>
 				</Row>
+
 				<Row>
 					<Col>
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
 				</Row>
 				<Row>
-					{rentals && rentals.map((rental, index) => {
+					{rentals &&
+						rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
 									<RentalCard rental={rental} index={index} clickToDelete={deleteRental} />
