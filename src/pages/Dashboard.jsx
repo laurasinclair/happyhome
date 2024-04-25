@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import { Hero, RentalCard, CreateItem } from '@components'
 
-export default function Dashboard({getRentals}) {
+export default function Dashboard({getRentals, loading}) {
 	const [rentals, setRentals] = useState([])
 	
 	useEffect(() => {

@@ -7,16 +7,15 @@ export default function RentalCardImage({ rentalName, image }) {
 
 	useEffect(() => {
 		if (image) {
-			setImageUrl(`https://a0.muscache.com/im/pictures/${image}`)
+			setImageUrl(`https://a0.muscache.com/im/pictures/${image.filename}`)
 		}
-	}, [])
+	}, [image])
 
 	return (
 		<>
 			<img
 				src={imageUrl}
 				alt={rentalName}
-				className=''
 				onError={() => {
 					if (imageUrl !== placeholder) setImageUrl(placeholder)
 				}}

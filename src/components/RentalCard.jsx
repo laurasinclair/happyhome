@@ -27,7 +27,7 @@ export default function RentalCard({ rental }) {
 			<div className={styles.rentalcard_thumbnail}>
 				<Link to={`/rentals/${id}`}>
 					<RentalCardScore review_scores_rating={review_scores_rating} />
-					<RentalCardImage image={picture_url.filename} rentalName={name} />
+					<RentalCardImage image={picture_url} rentalName={name} />
 				</Link>
 			</div>
 			<Link to={`/rentals/${id}`}>

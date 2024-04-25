@@ -45,9 +45,9 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard getRentals={getRentals} />} />
+						<Route path="/" element={<Dashboard getRentals={getRentals} loading={loading} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem getRentals={getRentals} loading={loading} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
