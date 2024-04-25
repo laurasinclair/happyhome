@@ -66,6 +66,7 @@ export default function RentalItem({ loading, clickToDelete }) {
 								}}
 								src={rentalImageSrc}
 								alt={rental.name}
+								style={{borderRadius: '8px'}}
 							/>
 						</div>
 					</Col>
@@ -83,7 +84,7 @@ export default function RentalItem({ loading, clickToDelete }) {
 					</Col>
 				</Row>
 				<Row>
-					<Col className="px-4">
+					<Col lg="8" xl="8" className="px-4 mb-4">
 						<h3>Description</h3>
 						<p>{rental.description}</p>
 					</Col>
