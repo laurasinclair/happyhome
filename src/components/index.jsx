@@ -12,6 +12,8 @@ import Footer from './Footer'
 // Specific
 import RentalCard from './RentalCard'
 import CreateItem from './CreateItem'
+import RentalCardScore from './RentalCardScore'
+import RentalCardImage from './RentalCardImage'
 
 export {
     Button,
@@ -22,5 +24,7 @@ export {
     SideBar,
     Footer,
     RentalCard,
-    CreateItem
+    CreateItem,
+    RentalCardScore,
+    RentalCardImage
 }

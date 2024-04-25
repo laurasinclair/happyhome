@@ -16,51 +16,38 @@ function App() {
 		setSidebarActive((prev) => !prev)
 	}
 
-	// fetching rentals 
+	// fetching rentals
 	const [rentals, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('oops')
+
 	useEffect(() => {
 		axios
 			.get('/src/assets/data/rentals.json')
 			.then((resp) => setRentals([...resp.data?.results]))
-			.catch((err) => setError(err => 'oops' + error))
+			.catch((error) => setError(error => 'oops' + error))
 			.finally(() => {
-				console.log(rentals.length, 'are ready to be localStored')
-				
-				localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
 				setLoading(false)
 			})
-	}, [])
+	}, [loading])
 
-	useEffect(() => {
-		// console.log(rentals.length, 'are ready to be localStored')
-		// localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-		// fetchData()
-	}, []);
-
-	useEffect(() => {
-        // fetchData();
-		// console.log(`🔆 fetchdata(); - App.jsx - rentals.length is ${rentals.length}`) // 100
-    }, []);
-
-	const fetchData = () => {
-		// const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		// setRentals(rentalsInLocalStorage || [])
+	const getRentals = () => {
+		return rentals
 	}
+
+	if (loading) return <div>loading...</div>
 
 	return (
 		<>
 			<div id="app">
 				<NavBar toggleSidebar={toggleSidebar} />
-
 				<SideBar isActive={isSidebarActive} />
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard loading={loading} fetchData={fetchData} />} />
+						<Route path="/" element={<Dashboard getRentals={getRentals} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem loading={loading} fetchData={fetchData} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 

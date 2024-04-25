@@ -2,32 +2,13 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import { Hero, RentalCard, CreateItem } from '@components'
 
-export default function Dashboard({ loading, fetchData }) {
+export default function Dashboard({getRentals}) {
 	const [rentals, setRentals] = useState([])
-	const [reload, setReload] = useState(false)
-
-	const deleteRental = (rentalId) => {
-		const updatedRentals = rentals.filter(rental => rental.id !== rentalId);
-		setRentals(updatedRentals);
-		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
-		setReload(true)
-	}
-
-	const handleAddRental = (newRental) => {
-		const updatedRentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		updatedRentals.push(newRental)
-		setRentals([newRental, ...rentals])
-		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
-		setReload(true)
-	}
-
+	
 	useEffect(() => {
-		setReload(true)
-		// console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
-		fetchData();
-	}, [reload])
+		setRentals(getRentals())
+	}, [])
 
-	if (loading) return <div> loading... </div>
 
 	return (
 		<>
@@ -40,7 +21,7 @@ export default function Dashboard({ loading, fetchData }) {
 
 				<Row>
 					<Col>
-						<CreateItem handleAddRental={handleAddRental} />
+						<CreateItem />
 					</Col>
 				</Row>
 				<Row>
@@ -48,7 +29,7 @@ export default function Dashboard({ loading, fetchData }) {
 						rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental.id} className="list_item d-flex align-items-stretch">
-									<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
+									<RentalCard rental={rental} />
 								</Col>
 							)
 						})}

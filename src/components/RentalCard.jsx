@@ -1,67 +1,33 @@
-import { Trash, StarFill, Pen } from 'react-bootstrap-icons'
-import placeholder from '@img/placeholder_image.jpg'
-import { Button } from '@components'
+import { Trash, Pen } from 'react-bootstrap-icons'
+import { Button, RentalCardScore, RentalCardImage } from '@components'
 import { Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function RentalCard({ rental, deleteRental}) {
-	const navigate = useNavigate()
-
-	const {
-		id,
-		name,
-		country,
-		city,
-		description,
-		neighbourhood,
-		review_scores_rating,
-		picture_url
+export default function RentalCard({ rental }) {
+	const { 
+		id, 
+		name, 
+		country, 
+		city, 
+		description, 
+		neighbourhood, 
+		review_scores_rating, 
+		picture_url 
 	} = rental
-
-	// I should probably get rid of this
-	const imageSrc = `https://a0.muscache.com/im/pictures/${picture_url.filename}`
-	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
-
-
+	
 	// it's just prettier
 	function truncate(str) {
 		return str && str.length > 100 ? str.substring(0, 100) + ' (...)' : str
 	}
 
-	// colours change depending on the rating
-	const [ratingStyle, setRatingStyle] = useState('')
-	useEffect(() => {
-		if (review_scores_rating !== undefined) {
-			if (review_scores_rating <= 50) {
-				setRatingStyle(styles.rentalcard_score_bad)
-			} else if (review_scores_rating > 50 && review_scores_rating < 75) {
-				setRatingStyle(styles.rentalcard_score_okay)
-			} else if (review_scores_rating >= 75) {
-				setRatingStyle(styles.rentalcard_score_good)
-			}
-		}
-	}, [review_scores_rating])
-
 	return (
 		<div className={styles.rentalcard}>
 			<div className={styles.rentalcard_thumbnail}>
-				{review_scores_rating && (
-					<p className={`${styles.rentalcard_score} ${ratingStyle}`}>
-						<StarFill size="15" />
-						<span>{(review_scores_rating / 20).toFixed(1)}</span>/5
-					</p>
-				)}
-
 				<Link to={`/rentals/${id}`}>
-					<img
-						onError={() => {
-							if (rentalImageSrc !== placeholder) setImageSrc(placeholder)
-						}}
-						src={rentalImageSrc}
-						alt={name}
-					/>
+					<RentalCardScore review_scores_rating={review_scores_rating} />
+					<RentalCardImage image={picture_url.filename} rentalName={name} />
 				</Link>
 			</div>
 			<Link to={`/rentals/${id}`}>
@@ -93,7 +59,7 @@ export default function RentalCard({ rental, deleteRental}) {
 							fullWidth
 							iconRight={<Trash />}
 							onClick={(e) => {
-								e.preventDefault();
+								e.preventDefault()
 								deleteRental(id)
 								console.log('delete button clicked')
 							}}
