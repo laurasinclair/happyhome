@@ -6,65 +6,76 @@ import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function RentalCard({ rental, clickToDelete, deleteRental}) {
+export default function RentalCard({ rental, deleteRental}) {
 	const navigate = useNavigate()
 
-	const imageSrc = `https://a0.muscache.com/im/pictures/${rental.picture_url.filename}`
+	const {
+		id,
+		name,
+		country,
+		city,
+		description,
+		neighbourhood,
+		review_scores_rating,
+		picture_url
+	} = rental
+
+	// I should probably get rid of this
+	const imageSrc = `https://a0.muscache.com/im/pictures/${picture_url.filename}`
 	const [rentalImageSrc, setImageSrc] = useState(imageSrc)
 
+
+	// it's just prettier
 	function truncate(str) {
 		return str && str.length > 100 ? str.substring(0, 100) + ' (...)' : str
 	}
 
+	// colours change depending on the rating
 	const [ratingStyle, setRatingStyle] = useState('')
-
 	useEffect(() => {
-		// pass 2 arguments to it:
-		if (rental.review_scores_rating !== undefined) {
-			if (rental.review_scores_rating <= 50) {
+		if (review_scores_rating !== undefined) {
+			if (review_scores_rating <= 50) {
 				setRatingStyle(styles.rentalcard_score_bad)
-			} else if (rental.review_scores_rating > 50 && rental.review_scores_rating < 75) {
+			} else if (review_scores_rating > 50 && review_scores_rating < 75) {
 				setRatingStyle(styles.rentalcard_score_okay)
-			} else if (rental.review_scores_rating >= 75) {
+			} else if (review_scores_rating >= 75) {
 				setRatingStyle(styles.rentalcard_score_good)
 			}
-		} // 1. a function...
-	}, [rental.review_scores_rating]) // 2. and an array
-	// 1. The function passed to useEffect is a callback function. This will be called after the component renders.
-	// 2. The second argument is an array, called the dependencies array. This array should include all of the values that our side effect relies upon.
+		}
+	}, [review_scores_rating])
 
 	return (
 		<div className={styles.rentalcard}>
 			<div className={styles.rentalcard_thumbnail}>
-				{rental.review_scores_rating && (
+				{review_scores_rating && (
 					<p className={`${styles.rentalcard_score} ${ratingStyle}`}>
 						<StarFill size="15" />
-						<span>{(rental.review_scores_rating / 20).toFixed(1)}</span>/5
+						<span>{(review_scores_rating / 20).toFixed(1)}</span>/5
 					</p>
 				)}
 
-				<Link to={`/rentals/${rental.id}`}>
+				<Link to={`/rentals/${id}`}>
 					<img
 						onError={() => {
 							if (rentalImageSrc !== placeholder) setImageSrc(placeholder)
 						}}
 						src={rentalImageSrc}
-						alt={rental.name}
+						alt={name}
 					/>
 				</Link>
 			</div>
-			<Link to={`/rentals/${rental.id}`}>
+			<Link to={`/rentals/${id}`}>
 				<div className={styles.rentalcard_body}>
-					<h3>{rental.name}</h3>
+					<h3>{name}</h3>
 					<p>
-						<strong>ID:</strong> {rental.id}
+						<strong>ID:</strong> {id}
 					</p>
 					<p>
-						<strong>Country:</strong> {rental.country}
+						<strong>Country:</strong> {country}
 					</p>
 					<p>
-						<strong>City:</strong> {rental.city}
-						{rental.neighbourhood ? ' 📍 ' + rental.neighbourhood : null}
+						<strong>City:</strong> {city}
+						{neighbourhood ? ' 📍 ' + neighbourhood : null}
 					</p>
 					<p>{truncate(rental.description)}</p>
 				</div>
@@ -83,12 +94,10 @@ export default function RentalCard({ rental, clickToDelete, deleteRental}) {
 							iconRight={<Trash />}
 							onClick={(e) => {
 								e.preventDefault();
-								deleteRental(rental.id)
+								deleteRental(id)
 								console.log('delete button clicked')
-								navigate("/");
-
 							}}
-						>Delete </Button>
+						/>
 					</Col>
 				</Row>
 			</div>

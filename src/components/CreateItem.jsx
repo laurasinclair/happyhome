@@ -19,7 +19,17 @@ export default function CreateItem({ handleAddRental }) {
 		e.preventDefault()
 
 		const newId = Math.floor(Math.random() * 100000000)
-		handleAddRental({ name, country, city, description, id: newId, review_scores_rating, imageSrc: 'http://127.0.0.1:3000/lab-es6-promises/images/mashed-potatoes.jpg' })
+		handleAddRental({ 
+			name, 
+			country, 
+			city, 
+			description, 
+			id: newId, 
+			review_scores_rating, 
+			picture_url: {
+				filename: 'http://127.0.0.1:3000/lab-es6-promises/images/mashed-potatoes.jpg'
+			}
+		})
 
 		setName('')
 		setCountry('')
