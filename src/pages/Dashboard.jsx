@@ -20,7 +20,7 @@ export default function Dashboard({ loading }) {
 
 	const handleAddRental = (newRental) => {
 		const updatedRentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		updatedRentals.push(newRental)
+		updatedRentals.unshift(newRental)
 		setRentals([newRental, ...rentals])
 		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
 		setReload(true)
