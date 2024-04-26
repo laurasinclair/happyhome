@@ -6,22 +6,33 @@ import { Button, BackButton, RentalCardScore, RentalCardImage } from '@component
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ getRentals, loading }) {
-	const [rentals, setRentals] = useState([])
+export default function RentalItem({ getRentals, loading, rentalsJSON }) {
 	const [rental, setRental] = useState({})
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const rentalsData = getRentals();
-		setRentals(rentalsData)
-		console.log(getRentals().length)
+		const loadedRental = JSON.parse(localStorage.getItem("rentals"));
+		const allRentals = loadedRental || rentalsJSON;
+		const currentRental = allRentals.find(
+		  (rental) => rental.id.toString() === rentalId
+		);
+		setRental(currentRental);
+		console.log('currentRental', currentRental);
+	  }, [rentalId]);
+	
+	  console.log(rental);
 
-		const findRental = rentalsData.find((rental) => rental.id === rentalId);
-		setRental(findRental)
-	}, [getRentals, useParams().rentalId])
+	// useEffect(() => {
+	// 	const rentalsData = getRentals();
+	// 	setRentals(rentalsData)
+	// 	console.log(getRentals().length)
 
-	console.log(rental)
+	// 	const findRental = rentalsData.find((rental) => rental.id === rentalId);
+	// 	setRental(findRental)
+	// }, [getRentals, useParams().rentalId])
+
+	// console.log(rental)
 
 	const { id, name, country, city, description, neighbourhood, review_scores_rating, picture_url } = rental || {};
 

@@ -53,10 +53,10 @@ export default function RentalCard({ rental, deleteRental }) {
 
 			<div className={styles.rentalcard_footer}>
 				<Row>
-					<Col className="pe-md-1">
+					<Col className="pe-lg-1">
 						<Button text="Edit" type="primary" fullWidth iconRight={<Pen />} />
 					</Col>
-					<Col className="ps-md-1">
+					<Col className="ps-lg-1">
 						<Button
 							text="Delete"
 							type="secondary"

@@ -16,8 +16,9 @@ function App() {
 		setSidebarActive((prev) => !prev)
 	}
 
+
 	// fetching rentals
-	const [rentals, setRentals] = useState([])
+	const [rentalsJSON, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [err, setError] = useState('oops')
 
@@ -32,11 +33,10 @@ function App() {
 	}, [loading])
 	
 
-
 	// the source of everything
 	const getRentals = () => {
 		if (!loading) {
-			return rentals
+			return rentalsJSON
 		}
 	}
 
@@ -52,7 +52,7 @@ function App() {
 					<Routes>
 						<Route path="/" element={<Dashboard getRentals={getRentals} loading={loading} />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem getRentals={getRentals} loading={loading} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem getRentals={getRentals} loading={loading} rentalsJSON={rentalsJSON} />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
