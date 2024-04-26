@@ -12,18 +12,24 @@ export default function Dashboard({ loading }) {
 	}
 
 	const deleteRental = (rentalId) => {
-		const updatedRentals = rentals.filter(rental => rental.id !== rentalId);
-		setRentals(updatedRentals);
-		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
-		setReload(true)
+		const findIndex = rentals.findIndex(rental => rental.id === rentalId);
+		console.log('index of deleted item:', findIndex)
+
+		const tempRentals = [...rentals]
+		tempRentals.splice(findIndex, 1)
+		setRentals(tempRentals)
 	}
 
 	const handleAddRental = (newRental) => {
-		const updatedRentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		updatedRentals.unshift(newRental)
-		setRentals([newRental, ...rentals])
-		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
-		setReload(true)
+		// const updatedRentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+		// updatedRentals.unshift(newRental)
+		// setRentals([newRental, ...rentals])
+		// localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
+		// setReload(true)
+
+		const tempRentals = [...rentals]
+		tempRentals.unshift(newRental)
+		setRentals(tempRentals)
 	}
 
 	useEffect(() => {

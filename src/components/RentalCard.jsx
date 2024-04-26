@@ -2,8 +2,7 @@ import { Trash, Pen } from 'react-bootstrap-icons'
 import { Button, RentalCardScore, RentalCardImage } from '@components'
 import { Row, Col } from 'react-bootstrap'
 import styles from './RentalCard.module.sass'
-import { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function RentalCard({ rental, deleteRental }) {
 	const { 
@@ -65,8 +64,6 @@ export default function RentalCard({ rental, deleteRental }) {
 							onClick={(e) => {
 								e.preventDefault()
 								deleteRental(id)
-								console.log('delete button clicked')
-								navigate('/')
 							}}
 						/>
 					</Col>
