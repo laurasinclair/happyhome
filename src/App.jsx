@@ -12,12 +12,11 @@ function App() {
 	const [isSidebarActive, setSidebarActive] = useState(false)
 
 	const toggleSidebar = (event) => {
-		event.preventDefault()
+		event.preventDefault();
 		setSidebarActive((prev) => !prev)
 	}
 
 	// fetching rentals
-	const [rentalsFromJSON, setRentalsFromJSON] = useState([])
 	const [rentals, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [err, setError] = useState('oops')
@@ -25,13 +24,14 @@ function App() {
 	useEffect(() => {
 		axios
 			.get('/src/assets/data/rentals.json')
-			.then((resp) => setRentalsFromJSON([...resp.data?.results]))
+			.then((resp) => setRentals([...resp.data?.results]))
 			.catch((error) => setError(error))
 			.finally(() => {
-				localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentalsFromJSON))
 				setLoading(false)
 			})
 	}, [loading])
+	
+
 
 	// the source of everything
 	const getRentals = () => {
@@ -39,11 +39,6 @@ function App() {
 			return rentals
 		}
 	}
-
-	useEffect(() => {
-		const rentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		setRentals(rentals)
-	}, [])
 
 	if (loading) return <div>loading...</div>
 

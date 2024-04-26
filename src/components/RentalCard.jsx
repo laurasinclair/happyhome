@@ -66,6 +66,7 @@ export default function RentalCard({ rental, deleteRental }) {
 								e.preventDefault()
 								deleteRental(id)
 								console.log('delete button clicked')
+								navigate('/')
 							}}
 						/>
 					</Col>

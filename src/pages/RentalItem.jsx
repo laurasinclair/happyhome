@@ -1,5 +1,5 @@
 import { Hero } from '@components'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'
 import { Button, BackButton, RentalCardScore, RentalCardImage } from '@components'
@@ -8,24 +8,23 @@ import { useState, useEffect } from 'react'
 
 export default function RentalItem({ getRentals, loading }) {
 	const [rentals, setRentals] = useState([])
+	const [rental, setRental] = useState({})
+	const { rentalId } = useParams();
+	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (loading) {
-			setRentals(getRentals());
-		}
-	}, [])
+		const rentalsData = getRentals();
+		setRentals(rentalsData)
+		console.log(getRentals().length)
 
-	console.log('rentals', rentals.length)
-
-	const [rental, setRental] = useState([])
-	const findRental = rentals.find((rental) => rental.id === useParams().rentalId)
-
-	useEffect(() => {
-		console.log(findRental)
+		const findRental = rentalsData.find((rental) => rental.id === rentalId);
 		setRental(findRental)
-	}, [])
+	}, [getRentals, useParams().rentalId])
 
-	const { id, name, country, city, description, neighbourhood, review_scores_rating, picture_url } = rental || {}
+	console.log(rental)
+
+	const { id, name, country, city, description, neighbourhood, review_scores_rating, picture_url } = rental || {};
+
 
 	return (
 		<>
@@ -84,6 +83,7 @@ export default function RentalItem({ getRentals, loading }) {
 										onClick={(e) => {
 											e.preventDefault()
 											console.log('delete button')
+											navigate('/')
 										}}
 									/>
 								</Col>

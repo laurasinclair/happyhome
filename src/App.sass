@@ -71,10 +71,24 @@ img
 nav, section, footer
 	padding: 2em 1em
 
-ul, li
+ul
 	list-style-type: none
-	margin: 0
+	margin: 0 0 30px 0
 	padding: 0
+	&.list-arrow
+		li
+			display: flex
+			align-items: center
+			&:before
+				background-image: url(/src/assets/images/icon_arrow-right.svg)
+				background-size: contain
+				background-repeat: no-repeat
+				background-position: center center
+				content: ''
+				height: 14px
+				width: 14px
+				display: inline-block
+				margin-right: 8px
 
 p
 	margin-bottom: 6px
