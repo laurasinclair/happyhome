@@ -7,28 +7,28 @@ export default function CreateItem({ handleAddRental }) {
 			[country, setCountry] = useState(''),
 			[city, setCity] = useState(''),
 			[description, setDescription] = useState(''),
-			[review_scores_rating, setScore] = useState(50)
+			[review_scores_rating, setScore] = useState(50),
+			[image, setImage] = useState('')
 
 	const 	handleNameInput = (e) => setName(e.target.value),
 			handleCountryInput = (e) => setCountry(e.target.value),
 			handleCityInput = (e) => setCity(e.target.value),
 			handleDescriptionInput = (e) => setDescription(e.target.value),
-			handleScoreInput = (e) => setScore(e.target.value)
+			handleScoreInput = (e) => setScore(e.target.value),
+			handleImageInput = (e) => setImage(e.target.value)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
 		const newId = Math.floor(Math.random() * 100000000)
 		handleAddRental({ 
-			name, 
+			name: (name || 'Name not provided :('), 
 			country, 
 			city, 
-			description, 
+			description: (description || 'Description not provided :('), 
 			id: newId, 
 			review_scores_rating, 
-			picture_url: {
-				filename: 'http://127.0.0.1:3000/lab-es6-promises/images/mashed-potatoes.jpg'
-			}
+			image: image
 		})
 
 		setName('')
@@ -36,6 +36,7 @@ export default function CreateItem({ handleAddRental }) {
 		setCity('')
 		setDescription('')
 		setScore(50)
+		setImage('')
 	}
 
 	return (
@@ -68,6 +69,13 @@ export default function CreateItem({ handleAddRental }) {
 							</div>
 						</Col>
 						<Col sm="6">
+							<div>
+								<label htmlFor="image">Image url</label>
+
+								<input name="image" type="text" placeholder="Image" value={image} onChange={handleImageInput} required />
+							</div>
+						</Col>
+						<Col sm="12">
 							<div>
 								<label htmlFor="description">Description</label>
 

@@ -5,7 +5,7 @@ import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-export default function RentalCard({ rental }) {
+export default function RentalCard({ rental, deleteRental }) {
 	const { 
 		id, 
 		name, 
@@ -14,7 +14,7 @@ export default function RentalCard({ rental }) {
 		description, 
 		neighbourhood, 
 		review_scores_rating, 
-		picture_url 
+		picture_url
 	} = rental
 	
 	// it's just prettier
@@ -36,14 +36,18 @@ export default function RentalCard({ rental }) {
 					<p>
 						<strong>ID:</strong> {id}
 					</p>
+					{country &&
 					<p>
 						<strong>Country:</strong> {country}
 					</p>
+					}
+					{city &&
 					<p>
 						<strong>City:</strong> {city}
 						{neighbourhood ? ' 📍 ' + neighbourhood : null}
 					</p>
-					<p>{truncate(rental.description)}</p>
+					}
+					<p>{description && truncate(rental.description)}</p>
 				</div>
 			</Link>
 
