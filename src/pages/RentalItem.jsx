@@ -6,25 +6,65 @@ import { Button, BackButton, RentalCardScore, RentalCardImage } from '@component
 import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem({ getRentals, loading, rentalsJSON }) {
+export default function RentalItem() {
+	const [rentals, setRentals] = useState([])
 	const [rental, setRental] = useState({})
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
 
-	useEffect(() => {
-		const loadedRental = JSON.parse(localStorage.getItem("rentals"));
-		const allRentals = loadedRental || rentalsJSON;
-		const currentRental = allRentals.find(
-		  (rental) => rental.id.toString() === rentalId
-		);
-		setRental(currentRental);
 
-		console.log('?')
+	const fetchData = () => {
+		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+		setRentals(rentalsInLocalStorage || [])
+
+		if (rentals.length > 0) {
+			console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+		}
+	}
+
+	console.log('useParams().rentalId', rentalId)
+
+	useEffect(() => {
+		fetchData();
+	}, [])
+
+
+
+	// const findIndex = rentals.findIndex(rental => rental.id === rentalId);
+	// console.log('index of current rental', findIndex)
+
+	// const tempRentals = [...rentals]
+	// tempRentals.splice(findIndex, 1)
+	// setRentals(tempRentals)
+
+
+	// const [rentals, setRentals] = useState([])
+
+	// const fetchData = () => {
+	// 	const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+	// 	setRentals(rentalsInLocalStorage || [])
+
+	// 	if (rentals.length > 0) {
+	// 		console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+	// 	}
+	// }
+
+
+
+	useEffect(() => {
+		// const loadedRental = JSON.parse(localStorage.getItem("rentals"));
+		// const allRentals = loadedRental || rentalsJSON;
+		// const currentRental = allRentals.find(
+		//   (rental) => rental.id.toString() === rentalId
+		// );
+		// setRental(currentRental);
+
+		// console.log('?')
 
 		return () => {
-			console.log('currentRental?', currentRental);
+			// console.log('currentRental?', currentRental);
 		}
-	  }, [rentalId]);
+	  }, []);
 	
 	//   console.log(rental);
 
@@ -39,7 +79,16 @@ export default function RentalItem({ getRentals, loading, rentalsJSON }) {
 
 	// console.log(rental)
 
-	const { id, name, country, city, description, neighbourhood, review_scores_rating, picture_url } = rental || {};
+	const { 
+		id, 
+		name, 
+		country, 
+		city, 
+		description, 
+		neighbourhood, 
+		review_scores_rating, 
+		picture_url 
+	} = rental || {};
 
 
 	return (

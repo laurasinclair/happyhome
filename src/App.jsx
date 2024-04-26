@@ -3,7 +3,6 @@ import { NavBar, SideBar, Footer } from '@components'
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.sass'
-import axios from 'axios'
 
 window.appName = 'HappyHome'
 
@@ -16,32 +15,6 @@ function App() {
 		setSidebarActive((prev) => !prev)
 	}
 
-
-	// fetching rentals
-	const [rentalsJSON, setRentals] = useState([])
-	const [loading, setLoading] = useState(true)
-	const [err, setError] = useState('oops')
-
-	useEffect(() => {
-		axios
-			.get('/src/assets/data/rentals.json')
-			.then((resp) => setRentals([...resp.data?.results]))
-			.catch((error) => setError(error))
-			.finally(() => {
-				setLoading(false)
-			})
-	}, [loading])
-	
-
-	// the source of everything
-	const getRentals = () => {
-		if (!loading) {
-			return rentalsJSON
-		}
-	}
-
-	if (loading) return <div>loading...</div>
-
 	return (
 		<>
 			<div id="app">
@@ -50,9 +23,9 @@ function App() {
 
 				<div className="page">
 					<Routes>
-						<Route path="/" element={<Dashboard getRentals={getRentals} loading={loading} />} />
+						<Route path="/" element={<Dashboard />} />
 						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem getRentals={getRentals} loading={loading} rentalsJSON={rentalsJSON} />} />
+						<Route path="/rentals/:rentalId" element={<RentalItem />} />
 						<Route path="*" element={<NotFound />} />
 					</Routes>
 
