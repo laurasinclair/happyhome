@@ -1,9 +1,26 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Hero, RentalCard, CreateItem } from '@components'
 
-export default function Dashboard({ loading }) {
+export default function Dashboard() {
 	const [rentals, setRentals] = useState([])
+	const [loading, setLoading] = useState(true)
+	const [err, setError] = useState('oops')
+
+	useEffect(() => {
+		axios
+			.get('/src/assets/data/rentals.json')
+			.then((resp) =>{
+				const tempRentals = [...resp.data?.results]
+				setRentals(tempRentals)
+			})
+			.catch((error) => setError('oops', error))
+			.finally(() => {
+				setLoading(false)
+			})
+	}, [loading])
+
 
 	const fetchData = () => {
 		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
