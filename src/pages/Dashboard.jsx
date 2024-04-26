@@ -4,39 +4,43 @@ import { Hero, RentalCard, CreateItem } from '@components'
 
 export default function Dashboard({ loading }) {
 	const [rentals, setRentals] = useState([])
-	const [reload, setReload] = useState(false)
 
 	const fetchData = () => {
 		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
 		setRentals(rentalsInLocalStorage || [])
+
+		if (rentals.length > 0) {
+			console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+		}
 	}
 
 	const deleteRental = (rentalId) => {
 		const findIndex = rentals.findIndex(rental => rental.id === rentalId);
-		console.log('index of deleted item:', findIndex)
+		console.log('index of deleted item:', findIndex, `rentals.length is ${rentals.length}`)
 
 		const tempRentals = [...rentals]
 		tempRentals.splice(findIndex, 1)
 		setRentals(tempRentals)
+		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
 	}
 
 	const handleAddRental = (newRental) => {
-		// const updatedRentals = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		// updatedRentals.unshift(newRental)
-		// setRentals([newRental, ...rentals])
-		// localStorage.setItem('rentalsInLocalStorage', JSON.stringify(updatedRentals));
-		// setReload(true)
-
 		const tempRentals = [...rentals]
 		tempRentals.unshift(newRental)
 		setRentals(tempRentals)
+		localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
+		console.log('added item:', newRental.id, `rentals.length is ${rentals.length}`)
+
 	}
 
 	useEffect(() => {
-		setReload(true)
-		console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
+		
 		fetchData();
-	}, [reload])
+
+		return () => {
+
+		}
+	}, [])
 
 	if (loading) return <div> loading... </div>
 
