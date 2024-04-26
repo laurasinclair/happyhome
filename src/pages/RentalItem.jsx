@@ -18,10 +18,15 @@ export default function RentalItem({ getRentals, loading, rentalsJSON }) {
 		  (rental) => rental.id.toString() === rentalId
 		);
 		setRental(currentRental);
-		console.log('currentRental', currentRental);
+
+		console.log('?')
+
+		return () => {
+			console.log('currentRental?', currentRental);
+		}
 	  }, [rentalId]);
 	
-	  console.log(rental);
+	//   console.log(rental);
 
 	// useEffect(() => {
 	// 	const rentalsData = getRentals();
