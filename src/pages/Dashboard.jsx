@@ -4,71 +4,51 @@ import axios from 'axios'
 import { Hero, RentalCard, CreateItem, Fetch } from '@components'
 
 export default function Dashboard() {
-	const [rentals, setRentals] = useState([]);
+	const [rentals, setRentals] = useState([])
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState('')
 
 	useEffect(() => {
-	  fetch('/src/assets/data/rentals.json')
-		.then((resp) => {
-		  return resp.json();
-		})
-		.then((data) => {
-		  setRentals([...data.results]);
-		})
-		.catch((err) => {
-			console.log('Problem fetching data')
-		})
-	}, []);
+		fetch('/src/assets/data/rentals.json')
+			.then((resp) => {
+				return resp.json()
+			})
+			.then((data) => {
+				setRentals(data.results)
+			})
+			.catch((error) => {
+				setError('Problem fetching data.', error)
+			})
+	}, [])
 
 	useEffect(() => {
-		console.log('1. Updated rentals length:', rentals.length);
-		
-		if (rentals.length > 0) {
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-			console.log('Rentals array saved to local storage');
+		console.log('rentals:', rentals.length, 'loading:', loading)
+	}, [rentals])
+
+	useEffect(() => {
+		// console.log('1. Updated rentals length:', rentals.length)
+
+		if (rentals && rentals.length > 0) {
+			setLoading(false)
+
+			// console.log('rentals:', rentals.length, 'loading:', loading)
+
+			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
+			console.log('Rentals array saved to local storage')
 		}
-	}, [rentals]);
-
-	// const [rentals, setRentals] = useState([])
-	// const [rentalsInLocalStorage, setRentalsInLocalStorage] = useState([])
-	// const [loading, setLoading] = useState(true)
-	// const [err, setError] = useState('oops')
-	
-	// <Fetch />
-
-	// useEffect(() => {
-	// 	axios
-	// 		.get('/src/assets/data/rentals.json')
-	// 		.then((resp) => {
-	// 			const temp = [...resp.data.results]
-	// 			setRentals(temp)
-	// 			console.log('1. ❗️ useEffect() - rentals', rentals && rentals.length)
-	// 		})
-	// 		.then(() => {
-	// 			// console.log('2. ❗️ useEffect() - tempRentals', tempRentals && tempRentals.length)
-
-	// 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
-	// 		})
-	// 		.then ((resp) => {
-	// 			console.log('2. ❗️ useEffect() - items in local storage', (JSON.parse(localStorage.getItem('rentalsInLocalStorage')).length))
-	// 		})
-	// 		.catch((error) => setError('oops', error))
-	// 		.finally(() => {
-	// 			setLoading(false)
-	// 		})
-	// }, [])
-
+	}, [rentals])
 
 	const deleteRental = (rentalId) => {
 		try {
-			const findIndex = rentals.findIndex(rental => rental.id === rentalId);
+			const findIndex = rentals.findIndex((rental) => rental.id === rentalId)
 			const tempRentals = [...rentals]
 			tempRentals.splice(findIndex, 1)
 			setRentals(tempRentals)
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
+			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
 			console.log('index of deleted item:', findIndex, `rentals.length is ${rentals.length}`)
 		} catch (error) {
-			console.error('Error deleting rental:', error);
+			console.error('Error deleting rental:', error)
 		}
 	}
 
@@ -77,11 +57,11 @@ export default function Dashboard() {
 			const tempRentals = [...rentals]
 			tempRentals.unshift(newRental)
 			setRentals(tempRentals)
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-			
+			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
+
 			console.log('added item:', newRental.id, `rentals.length is ${rentals.length}`)
 		} catch (error) {
-			console.error('Error adding rental:', error);
+			console.error('Error adding rental:', error)
 		}
 	}
 
@@ -101,17 +81,25 @@ export default function Dashboard() {
 				</Row>
 
 				<Row>
-					<Col>
-						{rentals && rentals.length > 0 ? (
-							rentals.map((rental, index) => {
-								return (
-									<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
-										<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
-									</Col>
-								)})
-							) : <div>Loading...</div> 
-							}
-					</Col>
+					{loading ? (
+						<Col>
+							<div>
+								{
+									error ? 
+									error : 
+									'Loading...'
+								}
+							</div>
+						</Col>
+					) : (
+						rentals.map((rental, index) => {
+							return (
+								<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
+									<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
+								</Col>
+							)
+						})
+					)}
 				</Row>
 			</Container>
 		</>
