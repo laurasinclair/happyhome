@@ -14,6 +14,7 @@ import RentalCard from './RentalCard'
 import CreateItem from './CreateItem'
 import RentalCardScore from './RentalCardScore'
 import RentalCardImage from './RentalCardImage'
+import Fetch from './Fetch'
 
 export {
     Button,
@@ -26,5 +27,6 @@ export {
     RentalCard,
     CreateItem,
     RentalCardScore,
-    RentalCardImage
+    RentalCardImage,
+    Fetch
 }

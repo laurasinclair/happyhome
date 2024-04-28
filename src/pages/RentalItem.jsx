@@ -12,72 +12,34 @@ export default function RentalItem() {
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
 
+	const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
+	console.log('1. items in local storage', rentalsInLocalStorage.length)
 
-	const fetchData = () => {
-		const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-		setRentals(rentalsInLocalStorage || [])
-
-		if (rentals.length > 0) {
-			console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
-		}
-	}
-
-	console.log('useParams().rentalId', rentalId)
+	const tempRentals = [...rentalsInLocalStorage]
+	console.log('2. tempRentals', tempRentals.length)
 
 	useEffect(() => {
-		fetchData();
+		if (tempRentals.length > 0) {
+			setRentals(tempRentals)
+		}
 	}, [])
 
-
-
-	// const findIndex = rentals.findIndex(rental => rental.id === rentalId);
-	// console.log('index of current rental', findIndex)
-
-	// const tempRentals = [...rentals]
-	// tempRentals.splice(findIndex, 1)
-	// setRentals(tempRentals)
-
-
-	// const [rentals, setRentals] = useState([])
-
-	// const fetchData = () => {
-	// 	const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-	// 	setRentals(rentalsInLocalStorage || [])
-
-	// 	if (rentals.length > 0) {
-	// 		console.log(`fetchdata(); - rentals.length is ${rentals.length}`)
-	// 	}
-	// }
-
-
-
 	useEffect(() => {
-		// const loadedRental = JSON.parse(localStorage.getItem("rentals"));
-		// const allRentals = loadedRental || rentalsJSON;
-		// const currentRental = allRentals.find(
-		//   (rental) => rental.id.toString() === rentalId
-		// );
-		// setRental(currentRental);
+		if (rentals.length > 0) {
+			console.log('rentals?', rentals)
 
-		// console.log('?')
+			const theRental = rentals.find((rental) => rental.id === rentalId) 
+			
+			console.log('theRental', theRental)
 
-		return () => {
-			// console.log('currentRental?', currentRental);
+			if (theRental) {
+				setRental(theRental)
+			}
+
+			console.log(theRental)
+			console.log(`4. ❗️ useEffect() - rentals length ${rentals && rentals.length} | ${rental && rental.name}`)
 		}
-	  }, []);
-	
-	//   console.log(rental);
-
-	// useEffect(() => {
-	// 	const rentalsData = getRentals();
-	// 	setRentals(rentalsData)
-	// 	console.log(getRentals().length)
-
-	// 	const findRental = rentalsData.find((rental) => rental.id === rentalId);
-	// 	setRental(findRental)
-	// }, [getRentals, useParams().rentalId])
-
-	// console.log(rental)
+	}, [])
 
 	const { 
 		id, 
@@ -90,7 +52,6 @@ export default function RentalItem() {
 		picture_url 
 	} = rental || {};
 
-
 	return (
 		<>
 			<main className="main">
@@ -100,14 +61,14 @@ export default function RentalItem() {
 							<BackButton />
 						</Col>
 					</Row>
-					<Row>
-						<Col>
-							<Hero category="Rental item" title={name} size="s" />
-						</Col>
-					</Row>
 
-					{rental && (
+					{ rental ? (
 						<>
+							<Row>
+								<Col>
+									<Hero category="Rental item" title={name} size="s" />
+								</Col>
+							</Row>
 							<Row className="mb-5">
 								<Col>
 									<div className={styles.rentalcard_thumbnail}>
@@ -154,7 +115,8 @@ export default function RentalItem() {
 								</Col>
 							</Row>
 						</>
-					)}
+					) : <div>loading...</div>
+					}
 				</Container>
 			</main>
 		</>
