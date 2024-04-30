@@ -7,50 +7,100 @@ import styles from '@components/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalItem() {
-	const [rentals, setRentals] = useState([])
+	const [rentals, setRentals] = useState(() => {
+		const storedRentals = localStorage.getItem('rentalsInLocalStorage')
+		if (storedRentals) {
+			return JSON.parse(storedRentals)
+		}
+		return []
+	})
 	const [rental, setRental] = useState({})
-	const { rentalId } = useParams();
-	const navigate = useNavigate();
+	const { rentalId } = useParams()
+	const navigate = useNavigate()
 
-	const rentalsInLocalStorage = JSON.parse(localStorage.getItem('rentalsInLocalStorage'))
-	console.log('1. items in local storage', rentalsInLocalStorage.length)
+	const [loading, setLoading] = useState(true)
+	const [error, setError] = useState('')
+	const [success, setSuccess] = useState('')
 
-	const tempRentals = [...rentalsInLocalStorage]
-	console.log('2. tempRentals', tempRentals.length)
-
-	useEffect(() => {
-		if (tempRentals.length > 0) {
-			setRentals(tempRentals)
-		}
-	}, [])
 
 	useEffect(() => {
-		if (rentals.length > 0) {
-			console.log('rentals?', rentals)
+		if (rentals === undefined) return
+		setSuccess(`Yeah all the rentals are here ${rentals.length}`)
+	}, [rentals, 'rentalsInLocalStorage'])
 
-			const theRental = rentals.find((rental) => rental.id === rentalId) 
-			
-			console.log('theRental', theRental)
+	// fetch(localStorage.getItem('rentalsInLocalStorage'))
+	// .then((resp) => {
+	// 	resp.json();
+	// })
+	// .then((data) => {
+	// 	console.log('data', data.results)
+	// })
+	// .catch((err) => {
+	// 	console.log(err)
+	// 	setError('Problem fetching data.')
+	// })
+	// get items from local storage
+	// try {
+	// 	setRentals(JSON.parse(localStorage.getItem('rentalsInLocalStorage')))
 
-			if (theRental) {
-				setRental(theRental)
-			}
+	// 	if (rentals && rentals.length > 0) {
+	// 		setSuccess(`1. Items parsed from local storage - ❤️ ${rentals.length} ❤️`)
+	// 	}
+	// 	// console.log('1. items in local storage', rentalsInLocalStorage.length)
+	// }
+	// catch {
+	// 	setError(`1. Items NOT parsed from local storage.`)
+	// 	// console.log('Couldn\'t fetch items')
+	// }
 
-			console.log(theRental)
-			console.log(`4. ❗️ useEffect() - rentals length ${rentals && rentals.length} | ${rental && rental.name}`)
-		}
-	}, [])
+	// useEffect(() => {
+	// 	// trying to find a match between useParams().rentalId and any rental.id
+	// 	try {
+	// 		if (rentals && rentals.length > 0) {
+	// 			setRental(rentals.find((rental) => rental.id === rentalId))
+	// 			setSuccess(`Rental ${rental.id} found, baby.`)
+	// 		}
+	// 	}
+	// 	catch {
+	// 		setError('Couldn\'t find that specific rental')
+	// 	}
+	// }, [])
 
-	const { 
-		id, 
-		name, 
-		country, 
-		city, 
-		description, 
-		neighbourhood, 
-		review_scores_rating, 
-		picture_url 
-	} = rental || {};
+	// const tempRentals = [...rentalsInLocalStorage]
+	// console.log('2. tempRentals', tempRentals.length)
+
+	// useEffect(() => {
+	// 	try {
+	// 		if (rentals.length > 0) {
+	// 			setRental(tempRentals)
+	// 		}
+	// 	} catch {
+	// 		setError('tempRentals.length <= 0')
+	// 	}
+	// }, [])
+
+	// useEffect(() => {
+	// 	try {
+	// if (rentals.length > 0) {
+	// console.log('rentals?', rentals)
+
+	// const theRental = rentals.find((rental) => rental.id === rentalId)
+
+	// console.log('theRental', theRental)
+
+	// 	if (theRental) {
+	// 		setRental(theRental)
+	// 		setLoading(false)
+	// 	}
+	// }
+	// console.log(theRental)
+	// console.log(`4. ❗️ useEffect() - rentals length ${rentals && rentals.length} | ${rental && rental.name}`)
+	// 	} catch {
+	// 		setError('rentals.find((rental) => rental.id === rentalId) did not give us shit')
+	// 	}
+	// }, [])
+
+	const { id, name, country, city, description, neighbourhood, review_scores_rating, picture_url } = rental || {}
 
 	return (
 		<>
@@ -62,7 +112,16 @@ export default function RentalItem() {
 						</Col>
 					</Row>
 
-					{ rental ? (
+					<div>{success}</div>
+					<div>{error}</div>
+
+					{loading ? (
+						<Row>
+							<Col>
+								<div>{error ? error : 'Loading...'}</div>
+							</Col>
+						</Row>
+					) : (
 						<>
 							<Row>
 								<Col>
@@ -115,8 +174,7 @@ export default function RentalItem() {
 								</Col>
 							</Row>
 						</>
-					) : <div>loading...</div>
-					}
+					)}
 				</Container>
 			</main>
 		</>
