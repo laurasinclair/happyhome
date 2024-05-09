@@ -22,19 +22,19 @@ export default function Dashboard() {
 	}, [])
 
 	useEffect(() => {
-		console.log('rentals:', rentals.length, 'loading:', loading)
+		console.table({
+			'rentals:': rentals.length, 
+			'loading:': loading
+		})
 	}, [rentals])
 
 	useEffect(() => {
-		// console.log('1. Updated rentals length:', rentals.length)
 
 		if (rentals && rentals.length > 0) {
 			setLoading(false)
 
-			// console.log('rentals:', rentals.length, 'loading:', loading)
-
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
-			console.log('Rentals array saved to local storage')
+			console.info('Rentals array saved to local storage')
 		}
 	}, [rentals])
 
@@ -46,7 +46,10 @@ export default function Dashboard() {
 			setRentals(tempRentals)
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
-			console.log('index of deleted item:', findIndex, `rentals.length is ${rentals.length}`)
+			console.table({
+				'index of deleted item:': findIndex, 
+				'rentals.length': rentals.length
+			})
 		} catch (error) {
 			console.error('Error deleting rental:', error)
 		}
@@ -59,7 +62,10 @@ export default function Dashboard() {
 			setRentals(tempRentals)
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
-			console.log('added item:', newRental.id, `rentals.length is ${rentals.length}`)
+			console.table({
+				'added item:': newRental.id, 
+				'rentals.length': rentals.length
+			})
 		} catch (error) {
 			console.error('Error adding rental:', error)
 		}
@@ -92,6 +98,7 @@ export default function Dashboard() {
 							</div>
 						</Col>
 					) : (
+						rentals &&
 						rentals.map((rental, index) => {
 							return (
 								<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">

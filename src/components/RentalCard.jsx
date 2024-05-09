@@ -8,25 +8,6 @@ import { Button, RentalCardScore, RentalCardImage } from '@components'
 import styles from './RentalCard.module.sass'
 
 export default function RentalCard({ rental, deleteRental }) {
-	// const [rental, setRental] = useState({})
-
-	console.log(rental)
-
-	// useEffect(() => {
-	// 	if (rental && rental.length > 0) {
-	// 		setRental({ 
-	// 			id, 
-	// 			name, 
-	// 			country, 
-	// 			city, 
-	// 			description, 
-	// 			neighbourhood, 
-	// 			review_scores_rating, 
-	// 			picture_url
-	// 		})
-	// 	}
-	// }, [])
-
 	const { 
 		id, 
 		name, 
@@ -37,6 +18,7 @@ export default function RentalCard({ rental, deleteRental }) {
 		review_scores_rating, 
 		picture_url
 	} = rental
+
 	
 	// it's just prettier
 	function truncate(str) {
