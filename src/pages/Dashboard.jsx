@@ -4,38 +4,46 @@ import axios from 'axios'
 import { Hero, RentalCard, CreateItem, Fetch } from '@components'
 
 export default function Dashboard() {
+	const storedRentals = localStorage.getItem('rentalsInLocalStorage')
+
 	const [rentals, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 
 	useEffect(() => {
-		fetch('/src/assets/data/rentals.json')
-			.then((resp) => {
-				return resp.json()
-			})
-			.then((data) => {
-				setRentals(data.results)
-			})
-			.catch((error) => {
-				setError('Problem fetching data.', error)
-			})
-	}, [])
+		if (storedRentals && storedRentals.length > 0) {
+			try {
+				setRentals(JSON.parse(storedRentals))
+			} catch {
+				setError("Couldn't fetch rentals")
+			}
+		} else {
+			fetch('/src/assets/data/rentals.json')
+				.then((resp) => {
+					return resp.json()
+				})
+				.then((data) => {
+					setRentals(data.results)
+				})
+				.catch((error) => {
+					setError('Problem fetching data.', error)
+				})
+			}
+	}, [storedRentals])
 
 	useEffect(() => {
-		console.table({
-			'rentals:': rentals.length, 
-			'loading:': loading
-		})
-	}, [rentals])
-
-	useEffect(() => {
-
 		if (rentals && rentals.length > 0) {
 			setLoading(false)
 			setError('')
 
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
-			console.info('Rentals array saved to local storage')
+
+			console.table({
+				'rentals:': rentals.length,
+				'loading:': loading,
+				'error': error,
+				'Rentals array saved to local storage': true
+			})
 		}
 	}, [rentals])
 
@@ -48,11 +56,11 @@ export default function Dashboard() {
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
 			console.table({
+				'rentals.length': rentals.length,
 				'index of deleted item:': findIndex, 
-				'rentals.length': rentals.length
 			})
 		} catch (error) {
-			console.error('Error deleting rental:', error)
+			setError('Error deleting rental:', error)
 		}
 	}
 
@@ -64,8 +72,8 @@ export default function Dashboard() {
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
 			console.table({
-				'added item:': newRental.id, 
-				'rentals.length': rentals.length
+				'rentals.length': rentals.length,
+				'added item:': newRental.id
 			})
 		} catch (error) {
 			console.error('Error adding rental:', error)
@@ -88,16 +96,18 @@ export default function Dashboard() {
 				</Row>
 
 				<Row>
-					{loading ? (
-						<Col>
-							<div>
-								{
-									error ? 
-									error : 
-									'Loading...'
-								}
-							</div>
-						</Col>
+				{loading ? (
+						<Row>
+							<Col>
+								<div>Loading...</div>
+							</Col>
+						</Row>
+					) : error ? (
+						<Row>
+							<Col>
+								<div>{error}</div>
+							</Col>
+						</Row>
 					) : (
 						rentals &&
 						rentals.map((rental, index) => {
