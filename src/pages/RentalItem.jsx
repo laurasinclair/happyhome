@@ -22,15 +22,25 @@ export default function RentalItem() {
 
 	// getting all the rentals
 	useEffect(() => {
-		if (storedRentals.length > 0) {
+		if (storedRentals && storedRentals.length > 0) {
 			try {
 				setRentals(JSON.parse(storedRentals))
 			} catch {
 				setError("Couldn't fetch rentals")
 			}
-		}
+		} else {
+			fetch('/src/assets/data/rentals.json')
+				.then((resp) => {
+					return resp.json()
+				})
+				.then((data) => {
+					setRentals(data.results)
+				})
+				.catch((error) => {
+					setError('Problem fetching data.', error)
+				})
+			}
 	}, [storedRentals])
-
 
 
 	// getting that one rental
@@ -48,8 +58,8 @@ export default function RentalItem() {
 
 			console.table({
 				'Number(rentalId)': Number(rentalId),
-				'rentals[0].id': rentals[0].id,
-				findRental: findRental
+				'rentals[0].id': Number(rentals[0].id),
+				'findRental.name': findRental && findRental.name
 			})
 
 			setError('')
@@ -90,7 +100,11 @@ export default function RentalItem() {
 							</Col>
 						</Row>
 					) : error ? (
-						<div>{error}</div>
+						<Row>
+							<Col>
+								<div>{error}</div>
+							</Col>
+						</Row>
 					) : (
 						rental && (
 							<>
