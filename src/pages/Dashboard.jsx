@@ -32,6 +32,7 @@ export default function Dashboard() {
 
 		if (rentals && rentals.length > 0) {
 			setLoading(false)
+			setError('')
 
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 			console.info('Rentals array saved to local storage')
