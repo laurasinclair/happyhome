@@ -6,7 +6,7 @@ export default function CreateItem({ handleAddRental }) {
 	const 	[name, setName] = useState(''),
 			[country, setCountry] = useState(''),
 			[city, setCity] = useState(''),
-			[description, setDescription] = useState(''),
+			[description, setDescription] = useState('This flat is fantastic because...'),
 			[review_scores_rating, setScore] = useState(50),
 			[image, setImage] = useState('')
 
@@ -49,7 +49,7 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="name">Name</label>
 
-								<input name="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} />
+								<input name="name" id="name" type="text" placeholder="Rental name" value={name} onChange={handleNameInput} />
 							</div>
 						</Col>
 
@@ -57,7 +57,7 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="country">Country</label>
 
-								<input name="country" type="text" placeholder="Country" value={country} onChange={handleCountryInput} required />
+								<input name="country" id="country" type="text" placeholder="Country" value={country} onChange={handleCountryInput} required />
 							</div>
 						</Col>
 
@@ -65,21 +65,21 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="city">City</label>
 
-								<input name="city" type="text" placeholder="City" value={city} onChange={handleCityInput} />
+								<input name="city" id="city" type="text" placeholder="City" value={city} onChange={handleCityInput} />
 							</div>
 						</Col>
 						<Col sm="6">
 							<div>
 								<label htmlFor="image">Image url</label>
 
-								<input name="image" type="text" placeholder="Image" value={image} onChange={handleImageInput} required />
+								<input name="image" id="image" type="text" placeholder="Image" value={image} onChange={handleImageInput} required />
 							</div>
 						</Col>
 						<Col sm="12">
 							<div>
 								<label htmlFor="description">Description</label>
 
-								<textarea name="description" type="description" placeholder="This flat is fantastic because..." value={description} onChange={handleDescriptionInput} />
+								<textarea name="description" id="description" type="description" placeholder="This flat is fantastic because..." value={description} onChange={handleDescriptionInput} />
 							</div>
 						</Col>
 						<Col>
@@ -87,7 +87,7 @@ export default function CreateItem({ handleAddRental }) {
 								<label htmlFor="score">Rating</label>
 								<p>{review_scores_rating / 20}</p>
 
-								<input type="range" min="1" max="100" list="markers" value={review_scores_rating} name="score" onChange={handleScoreInput} />
+								<input type="range" id="score" min="1" max="100" list="markers" value={review_scores_rating} name="score" onChange={handleScoreInput} />
 							</div>
 						</Col>
 					</Row>
