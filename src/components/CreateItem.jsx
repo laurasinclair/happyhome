@@ -7,7 +7,7 @@ export default function CreateItem({ handleAddRental }) {
 			[country, setCountry] = useState(''),
 			[city, setCity] = useState(''),
 			[description, setDescription] = useState('This flat is fantastic because...'),
-			[review_scores_rating, setScore] = useState(50),
+			[review_scores_rating, setScore] = useState(80),
 			[image, setImage] = useState('')
 
 	const 	handleNameInput = (e) => setName(e.target.value),
@@ -35,7 +35,7 @@ export default function CreateItem({ handleAddRental }) {
 		setCountry('')
 		setCity('')
 		setDescription('')
-		setScore(50)
+		setScore(80)
 		setImage('')
 	}
 
