@@ -18,7 +18,7 @@ export default function Dashboard() {
 				setError("Couldn't fetch rentals")
 			}
 		} else {
-			fetch('/src/assets/data/rentals.json' || '/data/rentals.json' )
+			fetch('/data/rentals.json')
 				.then((resp) => {
 					return resp.json()
 				})
