@@ -1,5 +1,7 @@
 import { Dashboard, NotFound, About, RentalItem } from '@pages'
 import { NavBar, SideBar, Footer } from '@components'
+import RentalsContextProvider from '@components/RentalsContext'
+
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.sass'
@@ -18,19 +20,21 @@ function App() {
 	return (
 		<>
 			<div id="app">
-				<NavBar toggleSidebar={toggleSidebar} />
-				<SideBar isActive={isSidebarActive} />
+				<RentalsContextProvider>
+					<NavBar toggleSidebar={toggleSidebar} />
+					<SideBar isActive={isSidebarActive} />
 
-				<div className="page">
-					<Routes>
-						<Route path="/" element={<Dashboard />} />
-						<Route path="/about" element={<About />} />
-						<Route path="/rentals/:rentalId" element={<RentalItem />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
+					<div className="page">
+						<Routes>
+							<Route path="/" element={<Dashboard />} />
+							<Route path="/about" element={<About />} />
+							<Route path="/rentals/:rentalId" element={<RentalItem />} />
+							<Route path="*" element={<NotFound />} />
+						</Routes>
 
-					<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
-				</div>
+						<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
+					</div>
+				</RentalsContextProvider>
 			</div>
 		</>
 	)

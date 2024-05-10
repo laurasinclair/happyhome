@@ -1,15 +1,16 @@
 import { Hero } from '@components'
+import { useRentalsContext } from '@components/RentalsContext'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'
 import { Button, BackButton, RentalCardScore, RentalCardImage } from '@components'
-import styles from '@components/RentalCard.module.sass'
+import styles from '@components/styles/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalItem() {
-	const storedRentals = localStorage.getItem('rentalsInLocalStorage')
+	// const storedRentals = localStorage.getItem('rentalsInLocalStorage')
 
-	const [rentals, setRentals] = useState([])
+	// const [rentals, setRentals] = useState([])
 	const [rental, setRental] = useState({})
 	const { rentalId } = useParams()
 
@@ -17,36 +18,13 @@ export default function RentalItem() {
 
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
-	
-
-
-	// getting all the rentals
-	useEffect(() => {
-		if (storedRentals && storedRentals.length > 0) {
-			try {
-				setRentals(JSON.parse(storedRentals))
-			} catch {
-				setError("Couldn't fetch rentals")
-			}
-		} else {
-			fetch('/src/assets/data/rentals.json')
-				.then((resp) => {
-					return resp.json()
-				})
-				.then((data) => {
-					setRentals(data.results)
-				})
-				.catch((error) => {
-					setError('Problem fetching data.', error)
-				})
-			}
-	}, [storedRentals])
+	const { rentals, setRentals } = useRentalsContext()
 
 
 	// getting that one rental
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
-			console.log(rentals[0].id, Number(rentalId))
+			// console.log(rentals[0].id, Number(rentalId))
 
 			const findRental = rentals.find((rental) => {
 				return rental.id == Number(rentalId)
@@ -56,32 +34,50 @@ export default function RentalItem() {
 				setRental(findRental)
 			}
 
-			console.table({
-				'Number(rentalId)': Number(rentalId),
-				'rentals[0].id': Number(rentals[0].id),
-				'findRental.name': findRental && findRental.name
-			})
-
-			setError('')
+			// console.table({
+			// 	'Number(rentalId)': Number(rentalId),
+			// 	'rentals[0].id': Number(rentals[0].id),
+			// 	'findRental.name': findRental && findRental.name
+			// })
 			setLoading(false)
+			setError('')
 		} else {
 			setError('No data to display')
 		}
-	}, [storedRentals, rentals])
+	}, [rentals])
 
 
-	// info about flat
-	useEffect(() => {
-		if (rental) {
-			console.table({
-				rentals: rentals.length,
-				'useParams().rentalId': rentalId,
-				rental: rental.name,
-				'rental.id': rental && rental.id + '',
-				'rentals[0]': rentals[0] && rentals[0].name
-			})
+	// // info about flat
+	// useEffect(() => {
+	// 	if (rental) {
+	// 		console.table({
+	// 			rentals: rentals.length,
+	// 			'useParams().rentalId': rentalId,
+	// 			rental: rental.name,
+	// 			'rental.id': rental && rental.id + '',
+	// 			'rentals[0]': rentals[0] && rentals[0].name
+	// 		})
+	// 	}
+	// }, [rentals, rental])
+
+
+	const deleteRental = (rentalId) => {
+		try {
+			const findIndex = rentals.findIndex((rental) => rental.id === rentalId)
+			const tempRentals = [...rentals]
+			tempRentals.splice(findIndex, 1)
+			setRentals(tempRentals)
+			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(tempRentals))
+
+			// console.table({
+			// 	'rentals.length': rentals.length,
+			// 	'index of deleted item:': findIndex,
+			// })
+
+		} catch (error) {
+			setError('Error deleting rental:', error)
 		}
-	}, [rentals, rental])
+	}
 
 	return (
 		<>
@@ -152,7 +148,9 @@ export default function RentalItem() {
 											iconRight={<Trash />}
 											onClick={(e) => {
 												e.preventDefault()
-												console.info('delete button clicked')
+												// console.clear()
+												// console.info('delete button clicked')
+												deleteRental(rental.id)
 												navigate('/')
 											}}
 										/>

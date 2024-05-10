@@ -1,6 +1,6 @@
 import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons'
 import { NavLink } from 'react-router-dom'
-import styles from './SideBar.module.sass'
+import styles from './styles/SideBar.module.sass'
 import classNames from 'classnames';
 
 export default function SideBar({isActive}) {

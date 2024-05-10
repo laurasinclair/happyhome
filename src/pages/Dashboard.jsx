@@ -2,50 +2,20 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Hero, RentalCard, CreateItem, Fetch } from '@components'
+import { useRentalsContext } from '../components/RentalsContext'
 
 export default function Dashboard() {
-	const storedRentals = localStorage.getItem('rentalsInLocalStorage')
-
-	const [rentals, setRentals] = useState([])
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
-
-	useEffect(() => {
-		if (storedRentals && storedRentals.length > 0) {
-			try {
-				setRentals(JSON.parse(storedRentals))
-			} catch {
-				setError("Couldn't fetch rentals")
-			}
-		} else {
-			fetch('/data/rentals.json')
-				.then((resp) => {
-					return resp.json()
-				})
-				.then((data) => {
-					setRentals(data.results)
-				})
-				.catch((error) => {
-					setError('Problem fetching data.', error)
-				})
-			}
-	}, [storedRentals])
+	const { rentals, setRentals } = useRentalsContext()
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false)
 			setError('')
-
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
-
-			console.table({
-				'rentals:': rentals.length,
-				'loading:': loading,
-				'error': error,
-				'Rentals array saved to local storage': true
-			})
 		}
 	}, [rentals])
+
 
 	const deleteRental = (rentalId) => {
 		try {
