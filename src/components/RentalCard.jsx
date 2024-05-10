@@ -5,7 +5,7 @@ import { Trash, Pen } from 'react-bootstrap-icons'
 
 import { Button, RentalCardScore, RentalCardImage } from '@components'
 
-import styles from './RentalCard.module.sass'
+import styles from './styles/RentalCard.module.sass'
 
 export default function RentalCard({ rental, deleteRental }) {
 	const { 

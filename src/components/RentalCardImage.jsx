@@ -1,4 +1,4 @@
-import styles from './RentalCard.module.sass'
+import styles from './styles/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import placeholder from '@img/placeholder_image.jpg'
 

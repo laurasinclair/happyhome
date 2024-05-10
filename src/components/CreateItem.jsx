@@ -1,4 +1,4 @@
-import styles from './CreateItem.module.sass'
+import styles from './styles/CreateItem.module.sass'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useState } from 'react'
 
