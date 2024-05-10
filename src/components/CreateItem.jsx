@@ -6,7 +6,7 @@ export default function CreateItem({ handleAddRental }) {
 	const 	[name, setName] = useState(''),
 			[country, setCountry] = useState(''),
 			[city, setCity] = useState(''),
-			[description, setDescription] = useState('This flat is fantastic because...'),
+			[description, setDescription] = useState(''),
 			[review_scores_rating, setScore] = useState(80),
 			[image, setImage] = useState('')
 

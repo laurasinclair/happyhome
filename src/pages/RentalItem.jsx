@@ -113,7 +113,7 @@ export default function RentalItem() {
 									<Col>
 										<div className={styles.rentalcard_thumbnail}>
 											<RentalCardScore review_scores_rating={rental.review_scores_rating || 0} />
-											<RentalCardImage image={rental.picture_url} rentalName={rental.name ? rental.name : 'Name unknown'} />
+											<RentalCardImage image={rental.image} rentalName={rental.name ? rental.name : 'Name unknown'} />
 										</div>
 									</Col>
 									<Col>
