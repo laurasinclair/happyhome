@@ -65,19 +65,15 @@ export default function Dashboard() {
 					</Col>
 				</Row>
 
-				<Row>
+				<Row className="gx4 gx-xl-5">
 				{loading ? (
-						<Row>
-							<Col>
-								<div>Loading...</div>
-							</Col>
-						</Row>
+					<Col>
+						<div>Loading...</div>
+					</Col>
 					) : error ? (
-						<Row>
-							<Col>
-								<div>{error}</div>
-							</Col>
-						</Row>
+						<Col>
+							<div>{error}</div>
+						</Col>
 					) : (
 						rentals &&
 						rentals.map((rental, index) => {
