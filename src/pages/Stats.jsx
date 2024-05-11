@@ -30,7 +30,6 @@ export default function Stats() {
 		return acc
 	}, {})
 
-
 	return (
 		<>
 			<Container fluid>
@@ -47,21 +46,25 @@ export default function Stats() {
 						rentals && (
 							<>
 								<Col>
-									<div>{rentals.length} rentals</div>
+									<div className="bg-white">{rentals.length} rentals</div>
 								</Col>
 								<Col>
-									{Object.entries(rentalsPerCountry).map(([country, count]) => (
-										<div key={country}>
-											{country}: {count}
-										</div>
-									))}
+									<div className="bg-white">
+										{Object.entries(rentalsPerCountry).map(([country, count], index) => (
+											<div key={index}>
+												{country}: {count}
+											</div>
+										))}
+									</div>
 								</Col>
 								<Col>
-									{Object.entries(rentalsPerCity).map(([city, count]) => (
-										<div key={city}>
-											{city}: {count}
-										</div>
-									))}
+									<div className="bg-white">
+										{Object.entries(rentalsPerCity).map(([city, count]) => (
+											<div key={city}>
+												{city}: {count}
+											</div>
+										))}
+									</div>
 								</Col>
 							</>
 						)
