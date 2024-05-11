@@ -29,7 +29,7 @@ function App() {
 							<Route path="/" element={<Dashboard />} />
 							<Route path="/about" element={<About />} />
 							<Route path="/rentals/:rentalId" element={<RentalItem />} />
-							<Route path="*" element={<NotFound />} />
+							<Route path="*" element={<Dashboard />} />
 						</Routes>
 
 						<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
