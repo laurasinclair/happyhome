@@ -2,6 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Hero, RentalCard, CreateItem, Fetch } from '@components'
+import { Stats } from '@pages'
 import { useRentalsContext } from '../components/RentalsContext'
 
 export default function Dashboard() {
@@ -58,12 +59,14 @@ export default function Dashboard() {
 						<Hero title="Admin dashboard" size="m" />
 					</Col>
 				</Row>
+				<Stats/>
 
 				<Row>
 					<Col>
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
 				</Row>
+
 
 				<Row className="gx4 gx-xl-5">
 				{loading ? (
