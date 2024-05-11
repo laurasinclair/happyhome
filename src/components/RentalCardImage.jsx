@@ -2,22 +2,27 @@ import styles from './styles/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 import placeholder from '@img/placeholder_image.jpg'
 
-export default function RentalCardImage({ rentalName, image }) {
+export default function RentalCardImage({ rentalName, picture_url }) {
 	const [imageUrl, setImageUrl] = useState(placeholder)
 
+	console.log(picture_url)
+
 	useEffect(() => {
-		if (image && image.filename) {
-			setImageUrl(`https://a0.muscache.com/im/pictures/${image.filename}`)
-		} else if (image) {
-			setImageUrl(image)
+		if (picture_url && picture_url.thumbnail) {
+			setImageUrl(`https://a0.muscache.com/im/pictures/${picture_url.filename}`)
+		} else if (picture_url && !picture_url.thumbnail) {
+			setImageUrl(picture_url)
 		}
-	}, [image])
+	}, [picture_url])
 
 	return (
-		<>
+		<> 
 			<img
 				src={imageUrl}
 				alt={rentalName}
+				onError={() => {
+					if (imageUrl !== placeholder) setImageUrl(placeholder)
+				}}
 			/>
 		</>
 	)

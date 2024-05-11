@@ -16,7 +16,7 @@ export default function RentalCard({ rental, deleteRental }) {
 		description, 
 		neighbourhood, 
 		review_scores_rating, 
-		image
+		picture_url
 	} = rental
 
 	
@@ -30,7 +30,7 @@ export default function RentalCard({ rental, deleteRental }) {
 			<div className={styles.rentalcard_thumbnail}>
 				<Link to={`/rentals/${id}`}>
 					<RentalCardScore review_scores_rating={review_scores_rating} />
-					<RentalCardImage image={image} rentalName={name} />
+					<RentalCardImage picture_url={picture_url} rentalName={name} />
 				</Link>
 			</div>
 			<Link to={`/rentals/${id}`}>

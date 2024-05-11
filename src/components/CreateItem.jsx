@@ -8,14 +8,14 @@ export default function CreateItem({ handleAddRental }) {
 			[city, setCity] = useState(''),
 			[description, setDescription] = useState(''),
 			[review_scores_rating, setScore] = useState(80),
-			[image, setImage] = useState('')
+			[pictureUrl, setPictureUrl] = useState('')
 
 	const 	handleNameInput = (e) => setName(e.target.value),
 			handleCountryInput = (e) => setCountry(e.target.value),
 			handleCityInput = (e) => setCity(e.target.value),
 			handleDescriptionInput = (e) => setDescription(e.target.value),
 			handleScoreInput = (e) => setScore(e.target.value),
-			handleImageInput = (e) => setImage(e.target.value)
+			handleImageInput = (e) => setPictureUrl(e.target.value)
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -28,7 +28,7 @@ export default function CreateItem({ handleAddRental }) {
 			description: (description || 'Description not provided :('), 
 			id: newId, 
 			review_scores_rating, 
-			image: image
+			picture_url: pictureUrl
 		})
 
 		setName('')
@@ -36,7 +36,7 @@ export default function CreateItem({ handleAddRental }) {
 		setCity('')
 		setDescription('')
 		setScore(80)
-		setImage('')
+		setPictureUrl('')
 	}
 
 	return (
@@ -72,7 +72,7 @@ export default function CreateItem({ handleAddRental }) {
 							<div>
 								<label htmlFor="image">Image url</label>
 
-								<input name="image" id="image" type="text" placeholder="Image" value={image} onChange={handleImageInput} required />
+								<input name="image" id="image" type="text" placeholder="Image" value={pictureUrl} onChange={handleImageInput} required />
 							</div>
 						</Col>
 						<Col sm="12">
