@@ -25,13 +25,15 @@ function App() {
 					<SideBar isActive={isSidebarActive} />
 
 					<div className="page">
-						<Routes>
-							<Route path="/" element={<Dashboard />} />
-							<Route path="/about" element={<About />} />
-							<Route path="/stats" element={<Stats />} />
-							<Route path="/rentals/:rentalId" element={<RentalItem />} />
-							<Route path="*" element={<NotFound />} />
-						</Routes>
+						<div className="main">
+							<Routes>
+								<Route path="/" element={<Dashboard />} />
+								<Route path="/about" element={<About />} />
+								<Route path="/stats" element={<Stats />} />
+								<Route path="/rentals/:rentalId" element={<RentalItem />} />
+								<Route path="*" element={<NotFound />} />
+							</Routes>
+						</div>
 
 						<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
 					</div>
