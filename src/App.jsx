@@ -1,4 +1,4 @@
-import { Dashboard, NotFound, About, RentalItem } from '@pages'
+import { Dashboard, NotFound, About, RentalItem, Stats } from '@pages'
 import { NavBar, SideBar, Footer } from '@components'
 import RentalsContextProvider from '@components/RentalsContext'
 
@@ -28,8 +28,9 @@ function App() {
 						<Routes>
 							<Route path="/" element={<Dashboard />} />
 							<Route path="/about" element={<About />} />
+							<Route path="/stats" element={<Stats />} />
 							<Route path="/rentals/:rentalId" element={<RentalItem />} />
-							<Route path="*" element={<Dashboard />} />
+							<Route path="*" element={<NotFound />} />
 						</Routes>
 
 						<Footer repositoryLink="https://github.com/laurasinclair/happyhome" repositoryLinkDesc="HappyHome | Repository link" />
