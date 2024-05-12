@@ -170,14 +170,29 @@ export default function Stats() {
 				) : (
 					rentals && (
 						<>
-							<Col md="6" lg="4">
+							<Col sm="6" lg="4">
 								<div className={classNames(styles.statsBlock, 'bg-white')}>
 									<h3 className="mb-4">{rentals.length} rentals</h3>
 
-									<div>{rentals && rentals.map((rental, index) => <House fill="#E7D3D5" key={rental.name+index} width="8%" />)}</div>
+									<div>
+										{rentals &&
+											rentals.map((rental, index) => (
+												<House
+													fill={
+														index % 3 === 0
+															? '#253EC4'
+															: index % 3 === 1
+															? '#E8D3D5'
+															: '#DF927A'
+													}
+													key={rental.name + index}
+													width="9%"
+												/>
+											))}
+									</div>
 								</div>
 							</Col>
-							<Col md="6" lg="4">
+							<Col sm="6" lg="4">
 								<div className={classNames(styles.statsBlock, 'bg-white')}>
 									<h3 className="mb-4">Rentals per country</h3>
 									<div>
@@ -193,7 +208,7 @@ export default function Stats() {
 									</div>
 								</div>
 							</Col>
-							<Col md="6" lg="4">
+							<Col sm="6" lg="4">
 								<div className={classNames(styles.statsBlock, 'bg-white')}>
 									<h3 className="mb-4">Rentals per city</h3>
 									<div>
