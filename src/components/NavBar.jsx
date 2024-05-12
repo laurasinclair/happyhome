@@ -1,26 +1,31 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './styles/NavBar.module.sass'
 import { Logo, Button } from '@components'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function NavBar({ toggleSidebar }) {
-	const [stickyClass, setStickyClass] = useState('relative')
+	const [stickyClass, setStickyClass] = useState('')
+
+	const prevScrollY = useRef(0);
 
 	useEffect(() => {
-		window.addEventListener('scroll', stickNavbar)
+        const stickNavbar = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > prevScrollY.current + 20) {
+                setStickyClass(styles.navbar_sticky);
+            } else if (currentScrollY < prevScrollY.current - 20) {
+                setStickyClass('');
+            }
+            prevScrollY.current = currentScrollY;
+        };
 
-		return () => {
-			window.removeEventListener('scroll', stickNavbar)
-		}
-	}, [])
+        window.addEventListener('scroll', stickNavbar);
 
-	const stickNavbar = () => {
-		if (window !== undefined) {
-			let windowHeight = window.scrollY
-			windowHeight > 100 ? setStickyClass(styles.navbar_sticky) : setStickyClass('')
-		}
-	}
+        return () => {
+            window.removeEventListener('scroll', stickNavbar);
+        };
+    }, []);
 
 	return (
 		<nav className={styles.navbar + ' ' + stickyClass}>
