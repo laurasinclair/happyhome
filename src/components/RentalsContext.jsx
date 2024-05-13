@@ -39,12 +39,12 @@ export default function RentalsContextProvider({ children }) {
 
 			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals))
 
-			console.table({
-				'rentals:': rentals.length,
-				// 'loading:': loading,
-				// 'error': error,
-				// 'Rentals array saved to local storage': true
-			})
+			// console.table({
+			// 	'rentals:': rentals.length,
+			// 	// 'loading:': loading,
+			// 	// 'error': error,
+			// 	// 'Rentals array saved to local storage': true
+			// })
 		}
 	}, [rentals])
 

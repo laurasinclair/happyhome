@@ -11,14 +11,18 @@ import SideBar from './SideBar'
 import Footer from './Footer'
 
 // Specific
+import Search from './Search'
 import RentalCard from './RentalCard'
 import CreateItem from './CreateItem'
 import RentalCardScore from './RentalCardScore'
 import RentalCardImage from './RentalCardImage'
 import Fetch from './Fetch'
+import Filter from './Filter'
 
 export {
     RentalsContext,
+    Filter,
+    Search,
     Button,
     Logo,
     BackButton,

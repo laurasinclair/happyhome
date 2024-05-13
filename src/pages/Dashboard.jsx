@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Hero, RentalCard, CreateItem, Fetch } from '@components'
+import { Hero, RentalCard, CreateItem, Filter } from '@components'
 import { Stats } from '@pages'
 import { useRentalsContext } from '../components/RentalsContext'
 
@@ -10,13 +10,16 @@ export default function Dashboard() {
 	const [error, setError] = useState('')
 	const { rentals, setRentals } = useRentalsContext()
 
+	// const [q, setQ] = useState('')
+	// const [searchParam] = useState(['capital', 'name', 'numericCode'])
+	// const [filterParam, setFilterParam] = useState(['All'])
+
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false)
 			setError('')
 		}
 	}, [rentals])
-
 
 	const deleteRental = (rentalId) => {
 		try {
@@ -28,7 +31,7 @@ export default function Dashboard() {
 
 			console.table({
 				'rentals.length': rentals.length,
-				'index of deleted item:': findIndex, 
+				'index of deleted item:': findIndex,
 			})
 		} catch (error) {
 			setError('Error deleting rental:', error)
@@ -44,11 +47,47 @@ export default function Dashboard() {
 
 			console.table({
 				'rentals.length': rentals.length,
-				'added item:': newRental.id
+				'added item:': newRental.id,
 			})
 		} catch (error) {
 			console.error('Error adding rental:', error)
 		}
+	}
+
+	function search(rentals) {
+		return rentals.filter((rental) => {
+			if (rental.country == filterParam) {
+				return searchParam.some((newRental) => {
+					return rental[newRental].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+				})
+			} else if (filterParam == 'All') {
+				return searchParam.some((newRental) => {
+					return rental[newRental].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
+				})
+			}
+		})
+	}
+
+	// console.log(filterParam)
+
+	function filterPerCountry (e) {
+		console.log(e)
+
+		rentals.filter((rental) => {
+			if (rental.country === e) {
+				console.log(rental)
+				
+			}
+
+			
+		}, [])
+
+		// const rentalsPerCountry = rentals.reduce((acc, rental) => {
+		// 	if (rental && rental.country) {
+		// 		acc[rental.country] = (acc[rental.country] || 0) + 1
+		// 	}
+		// 	return acc
+		// }, {})
 	}
 
 	return (
@@ -59,20 +98,50 @@ export default function Dashboard() {
 						<Hero title="Admin dashboard" size="m" />
 					</Col>
 				</Row>
-				<Stats/>
 
+				<button onClick={() => filterPerCountry('France')}>Filter</button>
+
+				{/* {search(rentals).map((rental, index) => (
+					<>
+						<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
+							<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
+						</Col>
+					</>
+				))} */}
+
+				{/* <Filter /> */}
+
+				<Stats/>
+				
 				<Row>
 					<Col>
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
 				</Row>
 
+				{/* <div className="select">
+					<select
+						onChange={(e) => {
+							setFilterParam(e.target.value)
+						}}
+						className="custom-select"
+						aria-label="Filter rentals by region">
+						<option value="All">Filter By Region</option>
+						<option value="France">France</option>
+						<option value="Oceania">Oceania</option>
+					</select>
+					<span className="focus"></span>
+				</div> */}
+
+				{/* <label htmlFor="search-form">
+					<input type="search" name="search-form" id="search-form" className="search-input" placeholder="Search for..." value={q} onChange={(e) => setQ(e.target.value)} />
+				</label> */}
 
 				<Row className="gx4 gx-xl-5">
-				{loading ? (
-					<Col>
-						<div>Loading...</div>
-					</Col>
+					{loading ? (
+						<Col>
+							<div>Loading...</div>
+						</Col>
 					) : error ? (
 						<Col>
 							<div>{error}</div>
@@ -81,9 +150,11 @@ export default function Dashboard() {
 						rentals &&
 						rentals.map((rental, index) => {
 							return (
-								<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
-									<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
-								</Col>
+								<>
+									<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
+										<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
+									</Col>
+								</>
 							)
 						})
 					)}
