@@ -1,7 +1,8 @@
 # HappyHome
 
 ## Description
-This is admin dashboard for an apartment rental platform, where the admin can see and manage the apartments shown on the platform.
+HappyHome is an admin dashboard for an apartment rental platform, where the admin can see and manage the apartments shown on the platform.
+Developed with React.js, Bootstrap, and Sass, it offers an intuitive, accessible, and responsive interface. Utilizing local storage, it ensures efficient performance, enabling admins to easily manage apartment listings.
 
 ## Links
 
