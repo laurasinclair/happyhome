@@ -6,7 +6,7 @@ import './index.scss'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/projects/happyhome">
       <App />
     </Router>
   </React.StrictMode>

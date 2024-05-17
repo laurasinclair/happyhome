@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+
+[[redirects]]
+  from = "projects/happyhome/*"
+  to = "projects/happyhome/index.html"
+  status = 200
