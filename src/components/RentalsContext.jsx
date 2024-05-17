@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
+const uri = `mongodb://lsinclair:${import.meta.env.MONGODB_PWD}@happyhome.2jm7tzc.mongodb.net/?retryWrites=true&w=majority&appName=happyhome`
+
 const RentalsContext = createContext({})
 
 export const useRentalsContext = () => useContext(RentalsContext)
@@ -19,7 +21,7 @@ export default function RentalsContextProvider({ children }) {
 				setError("Couldn't fetch rentals")
 			}
 		} else {
-			fetch('/data/rentals.json')
+			fetch(uri)
 				.then((resp) => {
 					return resp.json()
 				})
@@ -30,6 +32,19 @@ export default function RentalsContextProvider({ children }) {
 					setError('Problem fetching data.', error)
 				})
 			}
+
+
+			// fetch('/data/rentals.json')
+			// 	.then((resp) => {
+			// 		return resp.json()
+			// 	})
+			// 	.then((data) => {
+			// 		setRentals(data.results)
+			// 	})
+			// 	.catch((error) => {
+			// 		setError('Problem fetching data.', error)
+			// 	})
+			// }
 	}, [storedRentals])
 
 	useEffect(() => {
