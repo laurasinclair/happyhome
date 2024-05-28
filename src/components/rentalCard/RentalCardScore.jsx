@@ -1,5 +1,5 @@
 import { StarFill } from 'react-bootstrap-icons'
-import styles from './styles/RentalCard.module.sass'
+import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalCardScore({ review_scores_rating }) {
