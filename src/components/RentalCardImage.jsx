@@ -5,8 +5,6 @@ import placeholder from '@img/placeholder_image.jpg'
 export default function RentalCardImage({ rentalName, picture_url }) {
 	const [imageUrl, setImageUrl] = useState(placeholder)
 
-	// console.log(picture_url)
-
 	useEffect(() => {
 		if (picture_url && picture_url.thumbnail) {
 			setImageUrl(`https://a0.muscache.com/im/pictures/${picture_url.filename}`)

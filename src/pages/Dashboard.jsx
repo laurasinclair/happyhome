@@ -1,18 +1,13 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import { Hero, RentalCard, CreateItem, Filter } from '@components'
 import { Stats } from '@pages'
-import { useRentalsContext } from '../components/RentalsContext'
+import { useRentalsContext } from '@context'
 
 export default function Dashboard() {
 	const [loading, setLoading] = useState(true)
 	const [error, setError] = useState('')
 	const { rentals, setRentals } = useRentalsContext()
-
-	// const [q, setQ] = useState('')
-	// const [searchParam] = useState(['capital', 'name', 'numericCode'])
-	// const [filterParam, setFilterParam] = useState(['All'])
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
@@ -68,8 +63,6 @@ export default function Dashboard() {
 		})
 	}
 
-	// console.log(filterParam)
-
 	function filterPerCountry (e) {
 		console.log(e)
 
@@ -78,16 +71,7 @@ export default function Dashboard() {
 				console.log(rental)
 				
 			}
-
-			
 		}, [])
-
-		// const rentalsPerCountry = rentals.reduce((acc, rental) => {
-		// 	if (rental && rental.country) {
-		// 		acc[rental.country] = (acc[rental.country] || 0) + 1
-		// 	}
-		// 	return acc
-		// }, {})
 	}
 
 	return (
@@ -101,16 +85,6 @@ export default function Dashboard() {
 
 				<button onClick={() => filterPerCountry('France')}>Filter</button>
 
-				{/* {search(rentals).map((rental, index) => (
-					<>
-						<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
-							<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
-						</Col>
-					</>
-				))} */}
-
-				{/* <Filter /> */}
-
 				<Stats/>
 				
 				<Row>
@@ -118,24 +92,6 @@ export default function Dashboard() {
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
 				</Row>
-
-				{/* <div className="select">
-					<select
-						onChange={(e) => {
-							setFilterParam(e.target.value)
-						}}
-						className="custom-select"
-						aria-label="Filter rentals by region">
-						<option value="All">Filter By Region</option>
-						<option value="France">France</option>
-						<option value="Oceania">Oceania</option>
-					</select>
-					<span className="focus"></span>
-				</div> */}
-
-				{/* <label htmlFor="search-form">
-					<input type="search" name="search-form" id="search-form" className="search-input" placeholder="Search for..." value={q} onChange={(e) => setQ(e.target.value)} />
-				</label> */}
 
 				<Row className="gx4 gx-xl-5">
 					{loading ? (
