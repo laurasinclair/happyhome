@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import styles from './styles/NavBar.module.sass'
+import styles from './NavBar.module.sass'
 import { Logo, Button } from '@components'
 import React, { useState, useEffect, useRef } from 'react'
 import { NavLink } from 'react-router-dom'

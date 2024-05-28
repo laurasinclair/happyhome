@@ -1,6 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import { Hero, RentalCard, CreateItem, Filter } from '@components'
+import { RentalCard, CreateItem, Filter } from '@components'
+import { Hero } from '@components/layout'
 import { Stats } from '@pages'
 import { useRentalsContext } from '@context'
 

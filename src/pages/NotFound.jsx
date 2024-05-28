@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './NotFound.module.sass'
-import { Hero } from '@components';
+import { Hero } from '@components/layout'
 
 export default function NotFound () {
 	return (
