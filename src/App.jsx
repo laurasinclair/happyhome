@@ -5,6 +5,7 @@ import RentalsContextProvider from '@components/RentalsContext'
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.sass'
+import { getData } from '@helpers'
 
 window.appName = 'HappyHome'
 
