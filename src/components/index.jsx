@@ -9,7 +9,6 @@ import RentalCard from './rentalCard/RentalCard'
 import CreateItem from './CreateItem'
 import RentalCardScore from './rentalCard/RentalCardScore'
 import RentalCardImage from './rentalCard/RentalCardImage'
-import Fetch from './Fetch'
 import Filter from './Filter'
 
 export {
@@ -22,5 +21,4 @@ export {
     CreateItem,
     RentalCardScore,
     RentalCardImage,
-    Fetch
 }
