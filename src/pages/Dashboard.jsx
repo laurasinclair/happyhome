@@ -49,31 +49,6 @@ export default function Dashboard() {
 		}
 	}
 
-	function search(rentals) {
-		return rentals.filter((rental) => {
-			if (rental.country == filterParam) {
-				return searchParam.some((newRental) => {
-					return rental[newRental].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-				})
-			} else if (filterParam == 'All') {
-				return searchParam.some((newRental) => {
-					return rental[newRental].toString().toLowerCase().indexOf(q.toLowerCase()) > -1
-				})
-			}
-		})
-	}
-
-	function filterPerCountry (e) {
-		console.log(e)
-
-		rentals.filter((rental) => {
-			if (rental.country === e) {
-				console.log(rental)
-				
-			}
-		}, [])
-	}
-
 	return (
 		<>
 			<Container fluid>
@@ -82,8 +57,6 @@ export default function Dashboard() {
 						<Hero title="Admin dashboard" size="m" />
 					</Col>
 				</Row>
-
-				<button onClick={() => filterPerCountry('France')}>Filter</button>
 
 				<Stats/>
 				
