@@ -1,4 +1,4 @@
-import { Hero } from '@components'
+import { Hero } from '@components/layout'
 import { useRentalsContext } from '@context'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'

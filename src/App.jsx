@@ -1,5 +1,5 @@
 import { Dashboard, NotFound, About, RentalItem, Stats } from '@pages'
-import { NavBar, SideBar, Footer } from '@components'
+import { NavBar, SideBar, Footer } from '@components/layout'
 import { RentalsContextProvider } from '@context'
 
 import { Routes, Route } from 'react-router-dom'

@@ -1,20 +1,17 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Logo } from '@components';
-import styles from './styles/Hero.module.sass';
+import styles from './Hero.module.sass';
 import classNames from 'classnames';
 
 export default function Hero({ size = 'm', title, category, leadText, hasLogo }) {
-    // Define the size classes
     const sizeClasses = {
         s: styles['hero-small'],
         m: styles['hero-medium'],
         l: styles['hero-large'],
     };
 
-    // Get the appropriate hero size class
     const heroSizeClass = sizeClasses[size] || sizeClasses.s;
 
-    // Create the hero's container class
     const heroContainerClass = classNames(styles.hero, heroSizeClass);
 
     return (

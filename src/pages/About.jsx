@@ -1,6 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
-import { Hero } from '@components'
-import { useState, useEffect } from 'react'
+import { Hero } from '@components/layout'
 
 export default function About(props) {
 	return (
