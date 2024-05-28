@@ -1,10 +1,11 @@
 import { Hero } from '@components/layout'
 import { useRentalsContext } from '@context'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'
-import { Button, BackButton, RentalCardScore, RentalCardImage } from '@components'
-import styles from '@components/styles/RentalCard.module.sass'
+import { Button, BackButton } from '@components'
+import { RentalCardScore, RentalCardImage } from '@components/rentalCard/'
+import styles from '@components/rentalCard/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalItem() {

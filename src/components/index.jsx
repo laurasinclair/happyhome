@@ -5,10 +5,10 @@ import BackButton from './BackButton'
 
 // Specific
 import Search from './Search'
-import RentalCard from './RentalCard'
+import RentalCard from './rentalCard/RentalCard'
 import CreateItem from './CreateItem'
-import RentalCardScore from './RentalCardScore'
-import RentalCardImage from './RentalCardImage'
+import RentalCardScore from './rentalCard/RentalCardScore'
+import RentalCardImage from './rentalCard/RentalCardImage'
 import Fetch from './Fetch'
 import Filter from './Filter'
 

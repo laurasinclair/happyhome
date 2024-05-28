@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'
-
 import { Button, RentalCardScore, RentalCardImage } from '@components'
-
-import styles from './styles/RentalCard.module.sass'
+import styles from './RentalCard.module.sass'
 
 export default function RentalCard({ rental, deleteRental }) {
 	const { 
