@@ -17,7 +17,7 @@ export default function RentalsContextProvider({ children }) {
 	}, [])
 
 	useEffect(() => {
-		if (storedRentals && storedRentals.length > 0) {
+		if (storedRentals && storedRentals.length > 0 && storedRentals !== undefined) {
 			try {
 				setRentals(storedRentals);
 			} catch {
@@ -26,8 +26,6 @@ export default function RentalsContextProvider({ children }) {
 		} else {
 			getRentalsData();
 		}
-
-		// console.log(rentals)
 	}, [storedRentals]);
 
 	const getRentalsData = async () => {
