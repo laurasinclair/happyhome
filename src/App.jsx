@@ -1,11 +1,10 @@
 import { Dashboard, NotFound, About, RentalItem, Stats } from '@pages'
 import { NavBar, SideBar, Footer } from '@components'
-import RentalsContextProvider from '@components/RentalsContext'
+import { RentalsContextProvider } from '@context'
 
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import './App.sass'
-import { getData } from '@helpers'
 
 window.appName = 'HappyHome'
 

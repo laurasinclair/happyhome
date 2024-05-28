@@ -1,6 +1,6 @@
 import { Container, Row, Col } from 'react-bootstrap'
 import React, { useState, useEffect } from 'react'
-import { useRentalsContext } from '../components/RentalsContext'
+import { useRentalsContext } from '@context'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import logo from '/src/assets/images/logo_happyhome_dark.svg'

@@ -1,4 +1,4 @@
-import { useRentalsContext } from '@components/RentalsContext'
+import { useRentalsContext } from '@context'
 
 export default function Filter() {
 	const { rentals, setRentals } = useRentalsContext()

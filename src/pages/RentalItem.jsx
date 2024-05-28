@@ -1,5 +1,5 @@
 import { Hero } from '@components'
-import { useRentalsContext } from '@components/RentalsContext'
+import { useRentalsContext } from '@context'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'

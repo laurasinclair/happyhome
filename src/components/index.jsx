@@ -1,5 +1,4 @@
 // Basics
-import RentalsContext from './RentalsContext'
 import Button from './Button'
 import Logo from './Logo'
 import BackButton from './BackButton'
@@ -20,7 +19,6 @@ import Fetch from './Fetch'
 import Filter from './Filter'
 
 export {
-    RentalsContext,
     Filter,
     Search,
     Button,
