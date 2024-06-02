@@ -8,24 +8,22 @@
     justify-content: space-between
     align-items: center
     flex-direction: row
-    &_score
-        font-size: 1.3rem
-        background-color: var(--white)
-        border-radius: 10px
-        svg
-            margin-right: 2px
-        span
-            font-weight: 900
-            font-size: 1.6rem
-        &_bad
-            background-color: #ffb0b6
-        &_okay
-            background-color: #fff0c1
-        &_good
-            background-color: #9ef5b9
     &_body
         display: flex
         justify-content: space-between
         flex: 1
     &_footer
         //
+
+.rating
+    display: flex
+    flex-direction: row
+    align-items: center
+    &_icon
+        margin-right: 12px
+    &_bad
+        color: #ffb0b6
+    &_okay
+        color: #fff0c1
+    &_good
+        color: #9ef5b9

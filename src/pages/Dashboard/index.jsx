@@ -1,10 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { Funnel, SortDown } from 'react-bootstrap-icons';
+import { Funnel, SortDown, Pen, Trash } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
-import { RentalCard, CreateItem, Filter, Button } from '@components';
+import { RentalCardScore, Filter, Button } from '@components';
 import { Hero } from '@components/layout';
-import { Stats } from '@pages';
 import { useRentalsContext } from '@context';
+import styles from './Dashboard.module.sass';
+import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
 export default function Dashboard() {
 	const [loading, setLoading] = useState(true);
@@ -69,19 +71,18 @@ export default function Dashboard() {
 					<Col className='d-flex justify-content-between align-items-center mb-4'>
 						<Button>Add rental</Button>
 
-						<div className='d-flex justify-content-between align-items-center mb-4'>
+						<div className='d-flex justify-content-between align-items-center'>
 							<input
 								type='text'
 								name='Search'
 								id=''
 								placeholder='Search'
-								className='m-1'
 							/>
 
-							<Button>
+							<Button className="ms-3">
 								<Funnel size='20' />
 							</Button>
-							<Button>
+							<Button className="ms-1">
 								<SortDown size='20' />
 							</Button>
 						</div>
@@ -89,32 +90,131 @@ export default function Dashboard() {
 				</Row>
 
 				<Row className='gx4 gx-xl-5'>
-					{loading ? (
-						<Col>
-							<div>Loading...</div>
-						</Col>
-					) : error ? (
-						<Col>
-							<div>{error}</div>
-						</Col>
-					) : (
-						rentals &&
-						rentals.map((rental, index) => {
-							return (
-								<>
-									<Col
-										sm='12'
-										key={rental && rental.id}>
-										<RentalCard
-											rental={rental}
-											index={index}
-											deleteRental={deleteRental}
-										/>
-									</Col>
-								</>
-							);
-						})
-					)}
+					<Col>
+						<div className={styles.dashboard_grid}>
+							<div className={classNames(styles.dashboard_grid_header, styles.dashboard_grid_row)}>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_id
+									)}>
+									ID
+								</div>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_name
+									)}>
+									Name
+								</div>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_city
+									)}>
+									City
+								</div>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_country
+									)}>
+									Country
+								</div>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_score
+									)}>
+									Score
+								</div>
+								<div
+									className={classNames(
+										styles.dashboard_grid_col,
+										styles.dashboard_grid_actions
+									)}>
+									Actions
+								</div>
+							</div>
+							<div className={styles.dashboard_grid_body}>
+								{loading ? (
+									<div>Loading...</div>
+								) : error ? (
+									<div>{error}</div>
+								) : (
+									rentals &&
+									rentals.map((rental, index) => {
+										return (
+											<>
+												<div className={styles.dashboard_grid_row}>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_id
+														)}>
+														{rental.id}
+													</div>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_name
+														)}>
+														{rental.name}
+													</div>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_city
+														)}>
+														{rental.city}
+													</div>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_country
+														)}>
+														{rental.country}
+													</div>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_score
+														)}>
+														<RentalCardScore
+															review_scores_rating={rental.review_scores_rating}
+														/>
+													</div>
+													<div
+														className={classNames(
+															styles.dashboard_grid_col,
+															styles.dashboard_grid_space
+														)}>
+														<Button
+															type='primary'
+															className={styles.dashboard_grid_btn}
+															to={`rentals/${rental.id}`}>
+															<Pen size='18' />
+														</Button>
+
+														<Button
+															text='Delete'
+															type='secondary'
+															onClick={(e) => {
+																e.preventDefault();
+																deleteRental(id);
+															}}
+															className={styles.dashboard_grid_btn}>
+															<Trash size='18' />
+														</Button>
+													</div>
+												</div>
+											</>
+										);
+									})
+								)}
+							</div>
+						</div>
+					</Col>
 				</Row>
 			</Container>
 		</>

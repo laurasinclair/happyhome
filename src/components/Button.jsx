@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import styles from './styles/Button.module.sass';
 import classNames from 'classnames';
 
-export default function Button({ link, children, type = 'primary', fullWidth = false, iconRight, iconLeft, onClick }) {
+export default function Button({ to, children, type = 'primary', fullWidth = false, iconRight, iconLeft, onClick, className }) {
     const typeStyles = {
         primary: styles['btn-primary'],
         secondary: styles['btn-secondary'],
@@ -20,7 +20,7 @@ export default function Button({ link, children, type = 'primary', fullWidth = f
     );
 
     return (
-        <Link to={link} className={buttonClasses} onClick={onClick}>
+        <Link to={to} className={classNames(buttonClasses, className)} onClick={onClick}>
             {iconLeft}
             {children}
             {iconRight}
