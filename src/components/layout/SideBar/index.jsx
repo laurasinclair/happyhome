@@ -1,4 +1,4 @@
-import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons';
+import { Table, HouseDoor, InfoCircle } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '@components';
 import styles from './SideBar.module.sass';
@@ -9,21 +9,23 @@ export default function SideBar({ isActive, toggleSidebar }) {
 	const sidebarLinks = [
 		{
 			id: 0,
-			icon: HouseDoorFill,
-			linkText: 'Home',
+			icon: Table,
+			linkText: 'Dashboard',
 			url: '/',
 		},
 		{
 			id: 2,
-			icon: InfoCircleFill,
-			linkText: 'About',
-			url: '/about',
+			icon: HouseDoor,
+			iconSize: 22,
+			linkText: 'Rentals',
+			url: '/',
 		},
 		{
-			id: 3,
-			icon: InfoCircleFill,
-			linkText: 'Contact',
-			url: '/contact',
+			id: 2,
+			icon: InfoCircle,
+			iconSize: 21,
+			linkText: 'About',
+			url: '/about',
 		},
 	];
 
@@ -34,7 +36,9 @@ export default function SideBar({ isActive, toggleSidebar }) {
 					key={item.id}
 					className={styles.sidebar_link}>
 					<NavLink to={item.url}>
-						<item.icon size='24' />
+						<div className={styles.sidebar_link_icon}>
+							<item.icon size={item.iconSize} />
+						</div>
 						<span>{item.linkText}</span>
 					</NavLink>
 				</li>
@@ -45,12 +49,12 @@ export default function SideBar({ isActive, toggleSidebar }) {
 	return (
 		<>
 			<div
-				className={classNames(styles.sidebar, {[styles.toggled]: isActive })}>
+				className={classNames(styles.sidebar, { [styles.toggled]: isActive })}>
 				<div>
 					<NavLink to='/'>
 						<Logo
 							size='xs'
-							className={classNames(styles.logo, "mb-5")}
+							className={classNames(styles.logo, 'mb-5')}
 						/>
 					</NavLink>
 
