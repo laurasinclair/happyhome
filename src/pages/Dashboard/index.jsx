@@ -59,13 +59,13 @@ export default function Dashboard() {
 					</Col>
 				</Row>
 
-				<Stats/>
+				{/* <Stats/> */}
 				
-				<Row>
+				{/* <Row>
 					<Col>
 						<CreateItem handleAddRental={handleAddRental} />
 					</Col>
-				</Row>
+				</Row> */}
 
 				<Row className="gx4 gx-xl-5">
 					{loading ? (
@@ -81,7 +81,7 @@ export default function Dashboard() {
 						rentals.map((rental, index) => {
 							return (
 								<>
-									<Col md="6" xl="4" key={rental && rental.id} className="list_item d-flex align-items-stretch">
+									<Col sm="12" key={rental && rental.id}>
 										<RentalCard rental={rental} index={index} deleteRental={deleteRental} />
 									</Col>
 								</>
