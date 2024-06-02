@@ -1,7 +1,7 @@
 import logo from '@img/logo_happyhome.svg'
 import styles from './styles/Logo.module.sass'
 
-export default function Logo ({ size, hasText }) {
+export default function Logo ({ size, hasText, className }) {
 	const sizes = {
 		"xs": "logo-extrasmall",
 		"s": "logo-small",
@@ -12,7 +12,7 @@ export default function Logo ({ size, hasText }) {
 
 	return (
 		<>
-		<div className={`${styles.logo} ${hasText && styles.logo_hastext} ${styles[logoSize]}`}>
+		<div className={`${styles.logo} ${hasText && styles.logo_hastext} ${className} ${styles[logoSize]}`}>
 			<img src={logo} alt={window.appName} />
 			{hasText && <p>{window.appName}</p>}
 		</div>
