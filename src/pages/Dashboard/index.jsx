@@ -66,19 +66,24 @@ export default function Dashboard() {
 				{/* <Stats/> */}
 
 				<Row>
-					<Col className="d-flex justify-content-between align-items-center mb-4">
+					<Col className='d-flex justify-content-between align-items-center mb-4'>
 						<Button>Add rental</Button>
 
-						<div>
+						<div className='d-flex justify-content-between align-items-center mb-4'>
 							<input
 								type='text'
 								name='Search'
 								id=''
 								placeholder='Search'
+								className='m-1'
 							/>
 
-						<Button><Funnel size="20" /></Button>
-						<Button><SortDown size="20" /></Button>
+							<Button>
+								<Funnel size='20' />
+							</Button>
+							<Button>
+								<SortDown size='20' />
+							</Button>
 						</div>
 					</Col>
 				</Row>
