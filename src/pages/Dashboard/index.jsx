@@ -79,10 +79,10 @@ export default function Dashboard() {
 								placeholder='Search'
 							/>
 
-							<Button className="ms-3">
+							<Button className='ms-3'>
 								<Funnel size='20' />
 							</Button>
-							<Button className="ms-1">
+							<Button className='ms-1'>
 								<SortDown size='20' />
 							</Button>
 						</div>
@@ -92,7 +92,11 @@ export default function Dashboard() {
 				<Row className='gx4 gx-xl-5'>
 					<Col>
 						<div className={styles.dashboard_grid}>
-							<div className={classNames(styles.dashboard_grid_header, styles.dashboard_grid_row)}>
+							<div
+								className={classNames(
+									styles.dashboard_grid_header,
+									styles.dashboard_grid_row
+								)}>
 								<div
 									className={classNames(
 										styles.dashboard_grid_col,
@@ -152,37 +156,37 @@ export default function Dashboard() {
 															styles.dashboard_grid_col,
 															styles.dashboard_grid_id
 														)}>
-														{rental.id}
+														<Link to={`rentals/${rental.id}`}>{rental.id}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.dashboard_grid_col,
 															styles.dashboard_grid_name
 														)}>
-														{rental.name}
+														<Link to={`rentals/${rental.id}`}>{rental.name}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.dashboard_grid_col,
 															styles.dashboard_grid_city
 														)}>
-														{rental.city}
+														<Link to={`rentals/${rental.id}`}>{rental.city}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.dashboard_grid_col,
 															styles.dashboard_grid_country
 														)}>
-														{rental.country}
+														<Link to={`rentals/${rental.id}`}>{rental.country}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.dashboard_grid_col,
 															styles.dashboard_grid_score
 														)}>
-														<RentalCardScore
+														<Link to={`rentals/${rental.id}`}><RentalCardScore
 															review_scores_rating={rental.review_scores_rating}
-														/>
+														/></Link>
 													</div>
 													<div
 														className={classNames(
