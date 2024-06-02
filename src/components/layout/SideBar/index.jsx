@@ -1,0 +1,87 @@
+import { HouseDoorFill, InfoCircleFill } from 'react-bootstrap-icons';
+import { NavLink } from 'react-router-dom';
+import { Logo } from '@components';
+import styles from './SideBar.module.sass';
+import { useRef } from 'react';
+import classNames from 'classnames';
+
+export default function SideBar({ isActive, toggleSidebar }) {
+	const sidebarLinks = [
+		{
+			id: 0,
+			icon: HouseDoorFill,
+			linkText: 'Home',
+			url: '/',
+		},
+		{
+			id: 2,
+			icon: InfoCircleFill,
+			linkText: 'About',
+			url: '/about',
+		},
+		{
+			id: 3,
+			icon: InfoCircleFill,
+			linkText: 'Contact',
+			url: '/contact',
+		},
+	];
+
+	const LinksList = () => (
+		<ul>
+			{sidebarLinks.map((item) => (
+				<li
+					key={item.id}
+					className={styles.sidebar_link}>
+					<NavLink to={item.url}>
+						<item.icon size='24' />
+						<span>{item.linkText}</span>
+					</NavLink>
+				</li>
+			))}
+		</ul>
+	);
+
+	return (
+		<>
+			<div
+				className={classNames(styles.sidebar, {[styles.toggled]: isActive })}>
+				<div>
+					<NavLink to='/'>
+						<Logo
+							size='xs'
+							className={classNames(styles.logo, "mb-5")}
+						/>
+					</NavLink>
+
+					<LinksList />
+				</div>
+
+				<a
+					href='#'
+					onClick={toggleSidebar}
+					className={styles.menu}>
+					<svg
+						width='30'
+						height='30'
+						viewBox='0 0 46 40'
+						fill='none'
+						xmlns='http://www.w3.org/2000/svg'>
+						<path
+							d='M37.375 20C37.375 21.38 36.087 22.5 34.5 22.5H11.5C9.913 22.5 8.625 21.38 8.625 20C8.625 18.62 9.913 17.5 11.5 17.5H34.5C36.087 17.5 37.375 18.62 37.375 20Z'
+							fill='white'
+						/>
+						<path
+							d='M37.375 10C37.375 11.38 36.087 12.5 34.5 12.5H11.5C9.913 12.5 8.625 11.38 8.625 10C8.625 8.62 9.913 7.5 11.5 7.5H34.5C36.087 7.5 37.375 8.62 37.375 10Z'
+							fill='white'
+						/>
+						<path
+							d='M37.375 30C37.375 31.38 36.087 32.5 34.5 32.5H11.5C9.913 32.5 8.625 31.38 8.625 30C8.625 28.62 9.913 27.5 11.5 27.5H34.5C36.087 27.5 37.375 28.62 37.375 30Z'
+							fill='white'
+						/>
+					</svg>
+				</a>
+			</div>
+		</>
+	);
+}

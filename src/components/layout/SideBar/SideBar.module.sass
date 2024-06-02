@@ -1,0 +1,41 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+
+.sidebar
+	grid-area: sidebar
+	background-color: var(--primary-dark)
+	color: var(--white)
+	overflow: hidden
+	padding: 8px
+	display: flex
+	justify-content: space-between
+	flex-direction: column
+	transition: 0.1s all ease-in-out
+	
+	&.toggled
+		span
+			opacity: 1
+			width: fit-content
+			margin-left: 14px
+			margin-right: 14px
+	&_link		
+		a
+			display: block
+			display: flex
+			align-items: center
+			padding: 12px
+			color: var(--white)
+			border-radius: 10px
+			transition: all .2s ease-in-out
+			&:hover,
+			&:focus
+				background-color: var(--dark)
+				color: var(--white)
+			span
+				opacity: 0
+				width: 0
+
+.logo,
+.menu
+	padding: 4px
+	display: flex
+	align-items: center

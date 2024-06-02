@@ -70,9 +70,8 @@ img
 	flex-direction: column
 	@include media-breakpoint-up(sm)
 		display: grid
-		grid-template-columns: auto 1fr // sidebar width will change depending on whether it's toggled or not. left side will take up all the remaining space.
-		grid-template-rows: auto 1fr // same here
-		grid-template-areas: "navbar navbar" "sidebar main"
+		grid-template-columns: auto 1fr // sidebar width will change depending on whether it's toggled or not. right side will take up all the remaining space.
+		grid-template-areas: "sidebar main"
 
 nav, section, footer
 	padding: 2em 1em
