@@ -3,9 +3,8 @@ import { useRentalsContext } from '@context'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Trash, Pen } from 'react-bootstrap-icons'
-import { Button, BackButton } from '@components'
-import { RentalCardScore, RentalCardImage } from '@components/RentalCard/'
-import styles from '@components/RentalCard/RentalCard.module.sass'
+import { Button, BackButton, RentalCardScore, RentalCardImage } from '@components'
+import styles from '@components/rentals/RentalCard/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
 export default function RentalItem() {

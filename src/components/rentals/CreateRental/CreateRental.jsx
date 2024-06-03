@@ -1,8 +1,8 @@
-import styles from './styles/CreateItem.module.sass'
+import styles from './CreateRental.module.sass'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useState } from 'react'
 
-export default function CreateItem({ handleAddRental }) {
+export default function CreateRental({ handleAddRental }) {
 	const 	[name, setName] = useState(''),
 			[country, setCountry] = useState(''),
 			[city, setCity] = useState(''),
@@ -41,7 +41,7 @@ export default function CreateItem({ handleAddRental }) {
 
 	return (
 		<>
-			<section className={styles.createitem}>
+			<section className={styles.CreateRental}>
                 <h3>Add a new flat</h3>
 				<form>
 					<Row className="mb-3">

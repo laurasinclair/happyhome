@@ -1,4 +1,4 @@
-import { Dashboard, NotFound, About, RentalItem, Stats } from '@pages'
+import { RentalsList, NotFound, About, RentalItem, Dashboard } from '@pages'
 import { SideBar, Footer } from '@components/layout'
 import { RentalsContextProvider } from '@context'
 
@@ -27,8 +27,8 @@ function App() {
 						<div className="main">
 							<Routes>
 								<Route path="/" element={<Dashboard />} />
+								<Route path="/rentals" element={<RentalsList />} />
 								<Route path="/about" element={<About />} />
-								<Route path="/stats" element={<Stats />} />
 								<Route path="/rentals/:rentalId" element={<RentalItem />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>

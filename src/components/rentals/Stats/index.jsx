@@ -4,7 +4,7 @@ import { useRentalsContext } from '@context'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import logo from '/src/assets/images/logo_happyhome_dark.svg'
-import styles from './styles/Stats.module.sass'
+import styles from './Stats.module.sass'
 import classNames from 'classnames'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
