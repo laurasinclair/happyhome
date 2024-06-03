@@ -1,10 +1,41 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+@import '/src/styles/_variables.sass'
+
 .stats
 	margin: 100px 0
-	&Block
+	&_block
 		// height: 100%
 		display: flex
-		height: 480px
-		
+		border-radius: 4px
+		margin-bottom: 24px
+		height: calc(100% - 24px)
+		background-color: $white
+		padding: 20px 30px
+		@include media-breakpoint-up(lg)
+			padding: 40px 40px
 		flex-direction: column
 		align-items: stretch
 		padding-bottom: 0
+
+		&_label
+			display: flex
+			align-items: center
+			flex: 1
+			h3
+				margin-right: 100px
+				font-size: 2rem
+				padding: 20px 0
+				@include media-breakpoint-up(lg)
+					padding: 0
+					font-size: 2.8rem
+				color: $primary-light-2
+				span
+					color: $primary
+		&_chart
+			canvas
+				margin-bottom: 20px
+			&_countries,
+			&_cities
+				display: flex
+				align-items: center
+				justify-content: center

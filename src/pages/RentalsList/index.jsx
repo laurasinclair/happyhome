@@ -65,8 +65,6 @@ export default function RentalsList() {
 					</Col>
 				</Row>
 
-				{/* <Stats/> */}
-
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center mb-4'>
 						<Button>Add rental</Button>
