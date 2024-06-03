@@ -10,6 +10,7 @@ import CreateItem from './CreateItem'
 import RentalCardScore from './RentalCard/RentalCardScore'
 import RentalCardImage from './RentalCard/RentalCardImage'
 import Filter from './Filter'
+import Loading from './Loading'
 
 export {
     Filter,
@@ -21,4 +22,5 @@ export {
     CreateItem,
     RentalCardScore,
     RentalCardImage,
+    Loading
 }

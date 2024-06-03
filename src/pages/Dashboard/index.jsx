@@ -1,7 +1,7 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Funnel, SortDown, Pen, Trash } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
-import { RentalCardScore, Filter, Button } from '@components';
+import { RentalCardScore, Filter, Button, Loading } from '@components';
 import { Hero } from '@components/layout';
 import { useRentalsContext } from '@context';
 import styles from './Dashboard.module.sass';
@@ -142,7 +142,7 @@ export default function Dashboard() {
 							</div>
 							<div className={styles.dashboard_grid_body}>
 								{loading ? (
-									<div>Loading...</div>
+									<Loading />
 								) : error ? (
 									<div>{error}</div>
 								) : (
