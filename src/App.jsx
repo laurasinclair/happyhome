@@ -1,10 +1,9 @@
-import { RentalsList, NotFound, About, RentalItem, Dashboard } from '@pages'
+import { Dashboard, RentalsList, Rental, About, NotFound } from '@pages'
 import { SideBar, Footer } from '@components/layout'
 import { RentalsContextProvider } from '@context'
 
 import { Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import './App.sass'
 
 window.appName = 'HappyHome'
 
@@ -29,7 +28,7 @@ function App() {
 								<Route path="/" element={<Dashboard />} />
 								<Route path="/rentals" element={<RentalsList />} />
 								<Route path="/about" element={<About />} />
-								<Route path="/rentals/:rentalId" element={<RentalItem />} />
+								<Route path="/rentals/:rentalId" element={<Rental />} />
 								<Route path="*" element={<NotFound />} />
 							</Routes>
 						</div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Loading.module.sass';
+import styles from './index.module.sass';
 import loader from '@img/loader.svg'
 import classNames from 'classnames'
 

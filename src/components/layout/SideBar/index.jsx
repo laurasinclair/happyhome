@@ -1,7 +1,7 @@
 import { Table, HouseDoor, InfoCircle } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '@components';
-import styles from './SideBar.module.sass';
+import styles from './index.module.sass';
 import { useRef } from 'react';
 import classNames from 'classnames';
 

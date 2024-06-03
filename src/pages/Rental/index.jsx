@@ -7,7 +7,7 @@ import { Button, BackButton, RentalCardScore, RentalCardImage } from '@component
 import styles from '@components/rentals/RentalCard/RentalCard.module.sass'
 import { useState, useEffect } from 'react'
 
-export default function RentalItem() {
+export default function Rental() {
 	const [rental, setRental] = useState({})
 	const { rentalId } = useParams()
 

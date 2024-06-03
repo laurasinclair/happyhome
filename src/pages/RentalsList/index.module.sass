@@ -1,4 +1,5 @@
 @import 'bootstrap/scss/bootstrap-grid.scss'
+@import '/src/styles/_variables.sass'
 
 .RentalsList
 	&_grid
@@ -8,7 +9,7 @@
 		overflow: hidden
 		width: 100%
 		&_row
-			background-color: #fff
+			background-color: $white
 			display: grid
 			grid-template-columns: [dashboard_grid_id] 85px [dashboard_grid_name] auto [dashboard_grid_city] 15% [dashboard_grid_country] 10% [dashboard_grid_score] 10% [dashboard_grid_actions] 10%
 			&:hover
@@ -53,7 +54,7 @@
 				position: absolute
 				top: 0
 				right: 0
-				background: linear-gradient(270deg, white 0%, white 20%, #ffffff00 100%)
+				background: linear-gradient(270deg, $white 0%, $white 20%, $white 100%)
 		&_btn
 			height: fit-content !important
 			width: fit-content !important
@@ -62,7 +63,7 @@
 			@include media-breakpoint-up(md)
 				padding: 12px 12px
 			border: 0
-			color: #fff
+			color: $white
 			margin-left: 2px
 			margin-right: 2px
 			&:nth-of-type(2)
@@ -70,5 +71,5 @@
 			&:hover,
 			&:focus
 				border: 0
-				color: #fff
+				color: $white
 		

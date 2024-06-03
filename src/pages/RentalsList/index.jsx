@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { RentalCardScore, Button, Loading } from '@components';
 import { Hero } from '@components/layout';
 import { useRentalsContext } from '@context';
-import styles from './RentalsList.module.sass';
+import styles from './index.module.sass';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 

@@ -4,7 +4,7 @@ import { useRentalsContext } from '@context'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { Doughnut } from 'react-chartjs-2'
 import logo from '/src/assets/images/logo_happyhome_dark.svg'
-import styles from './Stats.module.sass'
+import styles from './index.module.sass'
 import classNames from 'classnames'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
@@ -66,8 +66,8 @@ export default function Stats() {
 				backgroundColor: '#000',
 				// borderColor: '#000',
 				borderWidth: 0,
-				titleColor: '#fff',
-				bodyColor: '#fff',
+				titleColor: '$white',
+				bodyColor: '$white',
 				padding: 18,
 				labelMargin: 100,
 				caretSize: 0,

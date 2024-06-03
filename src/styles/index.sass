@@ -1,0 +1,176 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+@import '_font-circular-std'
+@import '_variables'
+@import '_typography'
+@import '_layout'
+@import '_form-fields'
+
+*
+	margin: 0
+	padding: 0
+	box-sizing: border-box
+
+:root
+	--white: $white
+	--pink: $pink
+	--red: $red
+	--green: $green
+	--yellow: $yellow
+	--indigo: $indigo
+
+	--success: var(--green)
+	--warning: var(--yellow)
+	--error: var(--red)
+
+	--primary: var(--indigo)
+
+	font-family: $font-family-sans-serif
+	line-height: 1.5
+	font-weight: 400
+	font-size: 16px
+	color: $primary-dark-2
+	background-color: $white
+ 	
+	font-synthesis: none
+	text-rendering: optimizeLegibility
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+
+::-moz-selection
+	color: $white
+	background: $pink
+
+::-webkit-selection
+	color: $white
+	background: $pink
+
+::selection
+	color: $white
+	background: $pink
+
+.debug
+	outline: 1px solid red
+	outline-offset: 1px
+
+body
+	margin: 0
+	padding: 0
+	// min-height: 100vh
+	max-width: 100%
+	background-color: $primary-light-3
+	color: $primary
+
+a
+	font-weight: 500
+	color: $primary
+	text-decoration: none
+	font-weight: 600
+	&.wavy
+		text-decoration: 2.5px underline wavy lighten($primary-light-1, 10%)
+		&:hover,
+		&:focus
+			transition: all .2s ease-in-out
+			outline: none
+			text-decoration: 2.5px underline wavy $pink
+	&.highlight
+		background-image: url('/src/assets/images/line.jpg')
+		background-repeat: repeat-x
+		background-position: 0 21px
+		height: 100px
+		display: inline-flex
+
+img
+	max-width: 100%
+
+nav, section, footer
+	padding: 2em 1em
+
+ul
+	list-style-type: none
+	margin: 0 0 30px 0
+	padding: 0
+	&.list-arrow
+		li
+			display: flex
+			align-items: center
+			&:before
+				background-image: url(/src/assets/images/icon_arrow-right.svg)
+				background-size: contain
+				background-repeat: no-repeat
+				background-position: center center
+				content: ''
+				height: 14px
+				width: 14px
+				display: inline-block
+				margin-right: 8px
+
+.btn
+	padding: 10px 20px
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: fit-content
+	margin-top: 4px
+	font-size: 1rem
+	font-family: $font-family-sans-serif
+	font-weight: 600
+	margin-bottom: 4px
+	border-radius: 4px
+	&-primary
+		@extend .btn
+		background-color: $primary
+		color: $white
+		border: 2px solid $primary
+		&:hover,
+		&:focus,
+		&:active
+			background-color: $primary-dark-1
+			color: $white
+			border: 2px solid $primary-dark-1
+		&-outline
+			@extend .btn
+			background-color: transparent
+			color: $primary
+			border: 2px solid $primary
+			&:hover,
+			&:focus,
+			&:active
+				background-color: $primary
+				color: $white
+				border: 2px solid $primary
+	&-secondary
+		@extend .btn
+		background-color: $primary-light-1
+		color: $primary-dark-1
+		border: 2px solid $primary-light-1
+		&:hover,
+		&:focus,
+		&:active
+			background-color: $primary
+			color: $primary-dark-1
+			border: 2px solid $primary
+		&-outline
+			@extend .btn
+			background-color: transparent
+			color: $primary
+			border: 2px solid $primary
+			&:hover,
+			&:focus,
+			&:active
+				background-color: $primary-dark-1
+				color: $white
+				border: 2px solid $primary-dark-1
+	&.full-width
+		width: 100%
+	&.icon
+		svg
+			width: 22px
+			height: 22px
+		&-left
+			@extend .icon
+			svg
+				margin-right: 8px
+		&-right
+			@extend .icon
+			svg
+				margin-left: 8px

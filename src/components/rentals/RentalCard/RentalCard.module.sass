@@ -1,8 +1,9 @@
 @import 'bootstrap/scss/bootstrap-grid.scss'
+@import '/src/styles/_variables.sass'
 
 .rentalcard
     width: 100%
-    background-color: var(--white)
+    background-color: $white
     overflow: hidden
     display: flex
     justify-content: space-between
@@ -22,8 +23,8 @@
     &_icon
         margin-right: 12px
     &_bad
-        color: #ffb0b6
+        color: $error
     &_okay
-        color: #fff0c1
+        color: $white
     &_good
-        color: #9ef5b9
+        color: $success

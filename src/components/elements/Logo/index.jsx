@@ -1,5 +1,5 @@
 import logo from '@img/logo_happyhome.svg'
-import styles from './Logo.module.sass'
+import styles from './index.module.sass'
 
 export default function Logo ({ size, hasText, className }) {
 	const sizes = {

@@ -1,0 +1,70 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+@import '/src/styles/_variables.sass'
+
+.btn
+	padding: 10px 20px
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: fit-content
+	margin-top: 4px
+	margin-bottom: 4px
+	border-radius: 4px
+	&-primary
+		@extend .btn
+		background-color: $primary
+		color: $white
+		border: 2px solid $primary
+		&:hover,
+		&:focus,
+		&:active
+			background-color: $primary-dark-1
+			color: $white
+			border: 2px solid $primary-dark-1
+		&-outline
+			@extend .btn
+			background-color: transparent
+			color: $primary
+			border: 2px solid $primary
+			&:hover,
+			&:focus,
+			&:active
+				background-color: $primary
+				color: $white
+				border: 2px solid $primary
+	&-secondary
+		@extend .btn
+		background-color: $primary-light-1
+		color: $primary-dark-1
+		border: 2px solid $primary-light-1
+		&:hover,
+		&:focus,
+		&:active
+			background-color: $primary-light-3
+			color: $primary-dark-1
+			border: 2px solid $primary-light-3
+		&-outline
+			@extend .btn
+			background-color: transparent
+			color: $primary-light-3
+			border: 2px solid $primary-light-3
+			&:hover,
+			&:focus,
+			&:active
+				background-color: $primary-light-3
+				color: $white
+				border: 2px solid $primary-light-3
+	&.full-width
+		width: 100%
+	&.icon
+		svg
+			width: 22px
+			height: 22px
+		&-left
+			@extend .icon
+			svg
+				margin-right: 8px
+		&-right
+			@extend .icon
+			svg
+				margin-left: 8px

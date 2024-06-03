@@ -1,8 +1,8 @@
 import Dashboard from './Dashboard'
 import RentalsList from './RentalsList'
-import About from './About'
+import About from './About/'
 import NotFound from './NotFound'
-import RentalItem from './RentalItem'
+import Rental from './Rental'
 import Stats from '../components/rentals/Stats'
 
 export {
@@ -10,6 +10,6 @@ export {
     RentalsList,
     About,
     NotFound,
-    RentalItem,
+    Rental,
     Stats
 }
