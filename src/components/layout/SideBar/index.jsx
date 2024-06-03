@@ -18,7 +18,7 @@ export default function SideBar({ isActive, toggleSidebar }) {
 			icon: HouseDoor,
 			iconSize: 22,
 			linkText: 'Rentals',
-			url: '/',
+			url: '/rentals',
 		},
 		{
 			id: 2,

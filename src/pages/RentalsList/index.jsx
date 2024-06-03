@@ -59,7 +59,7 @@ export default function RentalsList() {
 				<Row>
 					<Col>
 						<Hero
-							title='Admin RentalsList'
+							title='Properties list'
 							size='m'
 						/>
 					</Col>
