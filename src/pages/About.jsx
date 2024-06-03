@@ -13,8 +13,6 @@ export default function About(props) {
 
 				<Row>
 					<Col className="px-4">
-						<p>This project was developed as part of a bootcamp group project.</p>
-
 						<div className="mb-4">
 							<p>
 								The dashboard is designed to provide a user-friendly interface for managing rental properties, tenants, and other administrative tasks. It includes features such as:
@@ -22,7 +20,7 @@ export default function About(props) {
 							<ul className="list-arrow">
 								<li>Viewing and updating property listings</li>
 								<li>Viewing and processing rental payments </li>
-								<li>Managing tenant information</li>
+								<li>Managing rental information</li>
 							</ul>
 						</div>
 
@@ -30,10 +28,9 @@ export default function About(props) {
 							<h3>Technologies used</h3>
 							<ul className="list-arrow">
 								<li>React</li>
-								<li>Sass/CSS: Bootstrap for grid + layout helpers, otherwise custom</li>
+								<li>Sass/CSS: Bootstrap for grid + layout helpers, otherwise custom.</li>
 								<li>Vite </li>
 								<li>Netlify</li>
-								<li>JSON dataset: provided by the bootcamp, serves as the data source for the application.</li>
 							</ul>
 						</div>
 
