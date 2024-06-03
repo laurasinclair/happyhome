@@ -40,7 +40,7 @@ const House = (props) => (
 
 export default function Stats() {
 	// https://www.chartjs.org/docs/latest/configuration
-	
+
 	ChartJS.defaults.font.size = 16;
 	ChartJS.defaults.color = '#111DA4';
 	ChartJS.defaults.font.family = 'CircularStd, Arial, Helvetica, sans-serif';
@@ -242,10 +242,11 @@ export default function Stats() {
 										</Col>
 										<Col
 											md='12'
-											className={classNames(styles.stats_block_chart, styles.stats_block_chart_countries)}>
-											<Doughnut
-												data={countriesData}
-											/>
+											className={classNames(
+												styles.stats_block_chart,
+												styles.stats_block_chart_countries
+											)}>
+											<Doughnut data={countriesData} />
 										</Col>
 									</Row>
 								</div>
@@ -263,10 +264,11 @@ export default function Stats() {
 										</Col>
 										<Col
 											md='12'
-											className={classNames(styles.stats_block_chart, styles.stats_block_chart_cities)}>
-											<Doughnut
-												data={citiesData}
-											/>
+											className={classNames(
+												styles.stats_block_chart,
+												styles.stats_block_chart_cities
+											)}>
+											<Doughnut data={citiesData} />
 										</Col>
 									</Row>
 								</div>

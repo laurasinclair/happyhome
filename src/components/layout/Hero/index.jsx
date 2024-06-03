@@ -22,7 +22,7 @@ export default function Hero({ size = 'm', title, category, leadText, hasLogo })
                         {category && <h3 className={styles['mb-3']}>{category}</h3>}
                         {hasLogo && <Logo size='s' hasText />}
                         <h1 className={styles['mt-2']}>{title}</h1>
-                        {leadText && <p>{leadText}</p>}
+                        {leadText && <p className="lead">{leadText}</p>}
                     </Col>
                 </Row>
             </Container>
