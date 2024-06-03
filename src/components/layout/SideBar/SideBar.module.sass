@@ -2,19 +2,25 @@
 
 .sidebar
 	grid-area: sidebar
-	background-color: var(--primary-dark)
-	color: var(--white)
-	overflow: hidden
-	padding: 8px
+	
 	display: flex
 	justify-content: space-between
 	flex-direction: column
-	transition: 0.1s all ease-in-out
+
+	overflow: hidden
+	padding: 8px
 	width: 100%
+	position: sticky
+	top: 0
+	z-index: 999
+
+	background-color: var(--primary-dark)
+	color: var(--white)
+	transition: 0.1s all ease-in-out
+	
 	@include media-breakpoint-up(md)
 		height: 100vh
 		width: fit-content
-	position: static
 	
 	&.toggled
 		span
@@ -47,6 +53,8 @@
 
 .logo,
 .menu
-	padding: 4px
+	padding: 12px
+	width: 26px
 	display: flex
+	width: fit-content
 	align-items: center
