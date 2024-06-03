@@ -30,13 +30,13 @@ export default function SideBar({ isActive, toggleSidebar }) {
 	];
 
 	const LinksList = () => (
-		<ul>
+		<ul className={styles.sidebar_links}>
 			{sidebarLinks.map((item) => (
 				<li
 					key={item.id}
-					className={styles.sidebar_link}>
+					className={styles.sidebar_links_link}>
 					<NavLink to={item.url}>
-						<div className={styles.sidebar_link_icon}>
+						<div className={styles.sidebar_links_link_icon}>
 							<item.icon size={item.iconSize} />
 						</div>
 						<span>{item.linkText}</span>
@@ -54,7 +54,7 @@ export default function SideBar({ isActive, toggleSidebar }) {
 					<NavLink to='/'>
 						<Logo
 							size='xs'
-							className={classNames(styles.logo, 'mb-5')}
+							className={classNames(styles.logo, 'mb-0 mb-md-5')}
 						/>
 					</NavLink>
 
