@@ -1,5 +1,5 @@
 export const getData = (key) => {
-	if (!localStorage) return;
+	if (!localStorage || localStorage[key] === 'undefined') return;
 
 	try {
 		return JSON.parse(localStorage.getItem(key));

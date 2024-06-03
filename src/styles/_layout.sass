@@ -1,0 +1,25 @@
+#app
+	margin: 0
+	padding: 0
+	width: 100%
+	position: relative
+	// height: 100vh
+	// overflow: hidden
+	min-height: 100vh
+	display: flex
+	flex-direction: column
+	@include media-breakpoint-up(md)
+		display: grid
+		grid-template-columns: auto 1fr // sidebar width will change depending on whether it's toggled or not. right side will take up all the remaining space.
+		grid-template-areas: "sidebar main"
+
+.page
+	display: flex
+	flex-direction: column
+	// overflow: scroll
+	// border: 1px solid red
+
+.main
+	flex: 1
+	z-index: 1
+	height: 100vh

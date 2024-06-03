@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { fetchRentalsData } from '/src/api/client';
+import { fetchRentalsData } from '../../src/api/client';
 import { getData, storeData } from '@helpers';
 
 const RentalsContext = createContext({});
@@ -7,42 +7,34 @@ const RentalsContext = createContext({});
 export const useRentalsContext = () => useContext(RentalsContext);
 
 export default function RentalsContextProvider({ children }) {
-	const [storedRentals, setStoredRentals] = useState([]);
+	const storedRentals = getData('rentals');
 	const [rentals, setRentals] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-
-	useEffect(() => {
-		setStoredRentals(getData('rentalsInLocalStorage'));
-	}, [])
 
 	useEffect(() => {
 		if (storedRentals && storedRentals.length > 0 && storedRentals !== undefined) {
 			try {
 				setRentals(storedRentals);
 			} catch {
-				setError("Couldn't fetch rentals");
+				console.error("Couldn't store rentals");
 			}
 		} else {
 			getRentalsData();
 		}
-	}, [storedRentals]);
+	}, []);
 
 	const getRentalsData = async () => {
 		try {
 			const data = await fetchRentalsData();
-			storeData('rentalsInLocalStorage', data);
+			console.log(data)
+
+			if (data) {
+				setRentals(data);
+				storeData('rentals', data);
+			}
 		} catch (error) {
-			setError('Failed to fetch rentals data');
+			console.error('Failed to store rentals data');
 		}
 	};
-
-	useEffect(() => {
-		if (rentals && rentals.length > 0) {
-			setLoading(false);
-			setError('');
-		}
-	}, [rentals]);
 
 	return (
 		<RentalsContext.Provider value={{ rentals, setRentals }}>

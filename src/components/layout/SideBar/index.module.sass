@@ -1,0 +1,68 @@
+@import 'bootstrap/scss/bootstrap-grid.scss'
+@import '/src/styles/_variables.sass'
+
+.sidebar
+	grid-area: sidebar
+	
+	display: flex
+	justify-content: space-between
+	@include media-breakpoint-up(md)
+		flex-direction: column
+
+	padding: 8px
+	position: sticky
+	top: 0
+	z-index: 999
+
+	background-color: $primary-dark-1
+	color: $white
+	transition: 0.1s all ease-in-out
+	
+	width: 100%
+	height: fit-content
+	
+	@include media-breakpoint-up(md)
+		width: fit-content
+		height: 100vh
+	
+	&.toggled
+		span
+			opacity: 1
+			width: fit-content
+			margin-left: 14px
+			margin-right: 14px
+	&_links
+		display: none
+		@include media-breakpoint-up(md)
+			display: block
+		&_link
+			a
+				font-weight: 300
+				display: block
+				display: flex
+				align-items: center
+				padding: 12px
+				color: $white
+				border-radius: 10px
+				transition: all .2s ease-in-out
+				&:hover,
+				&:focus
+					background-color: $primary-dark-2
+					color: $white
+				span
+					opacity: 0
+					width: 0
+			&_icon
+				width: 26px
+				height: 26px
+				display: flex
+				align-items: center
+				justify-content: center
+
+.logo,
+.menu
+	padding: 12px
+	width: 26px
+	display: flex
+	width: fit-content
+	align-items: center
