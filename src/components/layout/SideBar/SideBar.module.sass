@@ -10,6 +10,11 @@
 	justify-content: space-between
 	flex-direction: column
 	transition: 0.1s all ease-in-out
+	width: 100%
+	@include media-breakpoint-up(md)
+		height: 100vh
+		width: fit-content
+	position: static
 	
 	&.toggled
 		span
