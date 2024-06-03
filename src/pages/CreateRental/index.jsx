@@ -1,5 +1,6 @@
 import styles from './index.module.sass';
 import { Container, Row, Col } from 'react-bootstrap';
+import { Button } from '@components';
 import { Hero } from '@components/layout';
 import { useState } from 'react';
 
@@ -151,12 +152,12 @@ export default function CreateRental({ handleAddRental }) {
 
 					<Row>
 						<Col>
-							<button
+							<Button
 								className='btn-primary'
 								type='submit'
 								onClick={handleSubmit}>
 								Add rental
-							</button>
+							</Button>
 						</Col>
 					</Row>
 				</form>
