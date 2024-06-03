@@ -1,4 +1,3 @@
-import { BoxArrowUpRight } from 'react-bootstrap-icons';
 import { Container, Row, Col } from 'react-bootstrap'
 import styles from './Footer.module.sass'
 
@@ -9,9 +8,8 @@ export default function Footer ({repositoryLink, repositoryLinkDesc}) {
 				<Row>
 					<Col>
 						<p>
-							<a href={repositoryLink} className="wavy" target="_blank">{repositoryLinkDesc} <BoxArrowUpRight size="15"/></a>
+							Made with 💙 by <a href={repositoryLink} className="wavy" target="_blank">Laura Sinclair</a>
 						</p>
-						<em>(additional content?)</em>
 					</Col>
 				</Row>
 			</Container>
