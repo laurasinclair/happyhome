@@ -67,7 +67,7 @@ export default function RentalsList() {
 
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center mb-4'>
-						<Button>Add rental</Button>
+						<Button to="/add-rental">Add rental</Button>
 
 						<div className='d-flex justify-content-between align-items-center'>
 							<input
