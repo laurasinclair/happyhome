@@ -12,7 +12,7 @@ export default function About(props) {
 				</Row>
 
 				<Row>
-					<Col className="px-4">
+					<Col md="10" lg="8" xl="6" className="px-4">
 						<div className="mb-4">
 							<p>
 								The dashboard is designed to provide a user-friendly interface for managing rental properties, tenants, and other administrative tasks. It includes features such as:
