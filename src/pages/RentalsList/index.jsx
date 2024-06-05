@@ -154,35 +154,35 @@ export default function RentalsList() {
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_id
 														)}>
-														<Link to={`rentals/${rental.id}`}>{rental.id}</Link>
+														<Link to={`./${rental.id}`}>{rental.id}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_name
 														)}>
-														<Link to={`rentals/${rental.id}`}>{rental.name}</Link>
+														<Link to={`./${rental.id}`}>{rental.name}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_city
 														)}>
-														<Link to={`rentals/${rental.id}`}>{rental.city}</Link>
+														<Link to={`./${rental.id}`}>{rental.city}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_country
 														)}>
-														<Link to={`rentals/${rental.id}`}>{rental.country}</Link>
+														<Link to={`./${rental.id}`}>{rental.country}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_score
 														)}>
-														<Link to={`rentals/${rental.id}`}><RentalCardScore
+														<Link to={`./${rental.id}`}><RentalCardScore
 															review_scores_rating={rental.review_scores_rating}
 														/></Link>
 													</div>
@@ -194,7 +194,7 @@ export default function RentalsList() {
 														<Button
 															type='primary'
 															className={styles.RentalsList_grid_btn}
-															to={`rentals/${rental.id}`}>
+															to={`./${rental.id}`}>
 															<Pen size='18' />
 														</Button>
 
