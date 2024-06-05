@@ -1,13 +1,19 @@
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL || 'http://localhost:5005';
-// const baseUrl = 'http://localhost:5005';
+const baseUrl = import.meta.env.VITE_MONGODB_BASEURL
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-export const fetchRentalsData = async () => {
-	try {
-		const response = await axios.get(`${baseUrl}/rentals`);
-		return response.data;
-	} catch (error) {
-		console.error('Error fetching rentals data:', error);
-		throw error;
-	}
+export const fetchRentalsData = () => {
+	const [response, setResponse] = useState(null);
+	const [error, setError] = useState('');
+
+	axios
+		.get(`${baseUrl}/rentals`)
+		.then((res) => setResponse(res.data))
+		.catch((err) => setError(err));
+
+	useEffect(() => {
+		fetchData();
+	}, []);
+
+	return { response, error };
 };
