@@ -8,6 +8,7 @@ import {
 	BackButton,
 	RentalCardScore,
 	RentalCardImage,
+	Loading
 } from '@components';
 import styles from '@components/rentals/RentalCard/RentalCard.module.sass';
 import { useState, useEffect } from 'react';
@@ -64,11 +65,7 @@ export default function Rental() {
 				</Row>
 
 				{loading ? (
-					<Row>
-						<Col>
-							<div>Loading...</div>
-						</Col>
-					</Row>
+					<Loading />
 				) : error ? (
 					<Row>
 						<Col>
