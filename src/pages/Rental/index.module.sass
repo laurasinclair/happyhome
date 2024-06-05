@@ -1,2 +1,29 @@
 @import 'bootstrap/scss/bootstrap-grid.scss'
 @import '/src/styles/_variables.sass'
+
+.Rental
+    &_item
+        background-color: $white
+        padding: 30px 26px
+        @include media-breakpoint-up(sm)
+            padding: 40px 40px
+        @include media-breakpoint-up(lg)
+            padding: 50px 60px
+        border-radius: 10px
+        margin-bottom: 40px
+        &_thumbnail
+            position: relative
+            img
+                border-radius: 6px
+            &_score
+                background-color: $white
+                position: absolute
+                bottom: 16px
+                left: 10px
+                border-radius: 6px
+                padding: 10px 12px
+        &_characteristics
+            strong
+                display: block
+            p
+                margin-bottom: 12px
