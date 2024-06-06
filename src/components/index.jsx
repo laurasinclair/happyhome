@@ -5,7 +5,6 @@ import Logo from './elements/Logo'
 
 // Rental-specfic
 import Search from './rentals/Search/Search'
-import CreateRental from './rentals/CreateRental'
 import RentalCard from './rentals/RentalCard/RentalCard'
 import RentalCardScore from './rentals/RentalCard/RentalCardScore'
 import RentalCardImage from './rentals/RentalCard/RentalCardImage'
@@ -20,7 +19,6 @@ export {
     BackButton,
     Logo,
     Search,
-    CreateRental,
     RentalCard,
     RentalCardScore,
     RentalCardImage,

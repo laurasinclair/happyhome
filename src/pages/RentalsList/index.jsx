@@ -37,22 +37,6 @@ export default function RentalsList() {
 		}
 	};
 
-	const handleAddRental = (newRental) => {
-		try {
-			const tempRentals = [...rentals];
-			tempRentals.unshift(newRental);
-			setRentals(tempRentals);
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-
-			console.table({
-				'rentals.length': rentals.length,
-				'added item:': newRental.id,
-			});
-		} catch (error) {
-			console.error('Error adding rental:', error);
-		}
-	};
-
 	return (
 		<>
 			<Container fluid>

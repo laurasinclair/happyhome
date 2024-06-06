@@ -3,34 +3,59 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { Button } from '@components';
 import { Hero } from '@components/layout';
 import { useState } from 'react';
+const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
+import axios from 'axios';
 
-export default function CreateRental({ handleAddRental }) {
+export default function CreateRental() {
 	const [name, setName] = useState(''),
 		[country, setCountry] = useState(''),
 		[city, setCity] = useState(''),
 		[description, setDescription] = useState(''),
 		[review_scores_rating, setScore] = useState(80),
-		[pictureUrl, setPictureUrl] = useState('');
+		[pictureUrl, setPictureUrl] = useState(''),
+		[accommodates, setAccommodates] = useState(0),
+		[propertyType, setPropertyType] = useState(''),
+		[roomType, setRoomType] = useState(''),
+		[beds, setBeds] = useState(0),
+		[bathrooms, setBathrooms] = useState(0);
+
+	const handleAddRental = (req) => {
+		try {
+			axios
+				.post(`http://localhost:5005/rentals`, req)
+				.then((res) => console.log(res.data));
+		} catch (error) {
+			console.error('Error adding rental:', error);
+		}
+	};
 
 	const handleNameInput = (e) => setName(e.target.value),
 		handleCountryInput = (e) => setCountry(e.target.value),
 		handleCityInput = (e) => setCity(e.target.value),
 		handleDescriptionInput = (e) => setDescription(e.target.value),
 		handleScoreInput = (e) => setScore(e.target.value),
-		handleImageInput = (e) => setPictureUrl(e.target.value);
+		handleImageInput = (e) => setPictureUrl(e.target.value),
+		handleRoomType = (e) => setRoomType(e.target.value),
+		handleAccommodatesInput = (e) => setAccommodates(e.target.value),
+		handlePropertyType = (e) => setPropertyType(e.target.value),
+		handleBedsInput = (e) => setBeds(e.target.value);
+
+	console.log([propertyType, beds, bathrooms, roomType]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const newId = Math.floor(Math.random() * 100000000);
 		handleAddRental({
 			name: name || 'Name not provided :(',
-			country,
-			city,
+			country: country,
+			city: city,
 			description: description || 'Description not provided :(',
-			id: newId,
-			review_scores_rating,
+			review_scores_rating: review_scores_rating,
 			picture_url: pictureUrl,
+			accommodates: accommodates,
+			beds: beds,
+			bathrooms: bathrooms,
+			propertyType: propertyType,
 		});
 
 		setName('');
@@ -68,6 +93,7 @@ export default function CreateRental({ handleAddRental }) {
 									placeholder='Rental name'
 									value={name}
 									onChange={handleNameInput}
+									required
 								/>
 							</div>
 						</Col>
@@ -99,6 +125,7 @@ export default function CreateRental({ handleAddRental }) {
 									placeholder='City'
 									value={city}
 									onChange={handleCityInput}
+									required
 								/>
 							</div>
 						</Col>
@@ -115,6 +142,93 @@ export default function CreateRental({ handleAddRental }) {
 									onChange={handleImageInput}
 									required
 								/>
+							</div>
+						</Col>
+						<Col sm='6'>
+							<div>
+								<label htmlFor='image'>Property type</label>
+
+								<select
+									id='title'
+									name='title'
+									onChange={handlePropertyType}
+									required>
+									<option
+										value='Please choose'
+										selected>
+										Please choose
+									</option>
+									<option value='Apartment'>Apartment</option>
+									<option value='House'>House</option>
+								</select>
+							</div>
+						</Col>
+						<Col sm='6'>
+							<div>
+								<label htmlFor='image'>Room type</label>
+
+								<select
+									id='title'
+									name='title'
+									onChange={handleRoomType}>
+									<option
+										value='Please choose'
+										selected>
+										Please choose
+									</option>
+									<option value='Single room'>Single room</option>
+									<option value='Shared room'>Shared room</option>
+								</select>
+							</div>
+						</Col>
+						<Col sm='6'>
+							<div>
+								<label htmlFor='image'>
+									How many people can this rental accommodate?
+								</label>
+
+								<Button
+									onClick={() =>
+										setAccommodates((prev) => (prev === 0 ? 0 : (prev -= 1)))
+									}>
+									-
+								</Button>
+								{accommodates}
+								<Button onClick={() => setAccommodates((prev) => (prev += 1))}>
+									+
+								</Button>
+							</div>
+						</Col>
+						<Col sm='6'>
+							<div>
+								<label htmlFor='image'>Beds</label>
+
+								<Button
+									onClick={() =>
+										setBeds((prev) => (prev === 0 ? 0 : (prev -= 1)))
+									}>
+									-
+								</Button>
+								{beds}
+								<Button onClick={() => setBeds((prev) => (prev += 1))}>
+									+
+								</Button>
+							</div>
+						</Col>
+						<Col sm='6'>
+							<div>
+								<label htmlFor='image'>Bathrooms</label>
+
+								<Button
+									onClick={() =>
+										setBathrooms((prev) => (prev === 0 ? 0 : (prev -= 1)))
+									}>
+									-
+								</Button>
+								{bathrooms}
+								<Button onClick={() => setBathrooms((prev) => (prev += 1))}>
+									+
+								</Button>
 							</div>
 						</Col>
 						<Col sm='12'>
