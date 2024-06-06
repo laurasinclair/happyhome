@@ -24,7 +24,7 @@ export default function CreateRental() {
 
 	const handleAddRental = (req) => {
 		try {
-			axios.post(`http://localhost:5005/rentals`, req).then((res) => {
+			axios.post(`${baseUrl}/rentals`, req).then((res) => {
 				if (res.status === 201) {
 					setSuccessMessage('Rental successfully created!');
 					setLinkToRental(res.data._id);
