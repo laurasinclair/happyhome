@@ -5,7 +5,6 @@ import Logo from './elements/Logo'
 
 // Rental-specfic
 import Search from './rentals/Search/Search'
-import CreateRental from './rentals/CreateRental'
 import RentalCard from './rentals/RentalCard/RentalCard'
 import RentalCardScore from './rentals/RentalCard/RentalCardScore'
 import RentalCardImage from './rentals/RentalCard/RentalCardImage'
@@ -14,17 +13,18 @@ import Stats from './rentals/Stats'
 
 // States
 import Loading from './states/Loading'
+import Success from './states/Success'
 
 export {
     Button,
     BackButton,
     Logo,
     Search,
-    CreateRental,
     RentalCard,
     RentalCardScore,
     RentalCardImage,
     Filter,
     Stats,
-    Loading
+    Loading,
+    Success
 }
