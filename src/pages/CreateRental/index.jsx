@@ -188,7 +188,7 @@ export default function CreateRental() {
 								</select>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm='6' md='4'>
 							<div>
 								<label htmlFor='image'>
 									How many people can this rental accommodate?
@@ -209,7 +209,7 @@ export default function CreateRental() {
 								</Button>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm='6' md='4'>
 							<div>
 								<label htmlFor='image'>Beds</label>
 
@@ -228,7 +228,7 @@ export default function CreateRental() {
 								</Button>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm='6' md='4'>
 							<div>
 								<label htmlFor='image'>Bathrooms</label>
 
