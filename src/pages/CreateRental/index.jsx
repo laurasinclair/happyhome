@@ -5,6 +5,7 @@ import { Hero } from '@components/layout';
 import { useState } from 'react';
 const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function CreateRental() {
 	const [name, setName] = useState(''),
@@ -18,13 +19,15 @@ export default function CreateRental() {
 		[roomType, setRoomType] = useState(''),
 		[beds, setBeds] = useState(0),
 		[bathrooms, setBathrooms] = useState(0),
-		[successMessage, setSuccessMessage] = useState(undefined);
+		[successMessage, setSuccessMessage] = useState(undefined),
+		[linkToRental, setLinkToRental] = useState(undefined);
 
 	const handleAddRental = (req) => {
 		try {
 			axios.post(`http://localhost:5005/rentals`, req).then((res) => {
 				if (res.status === 201) {
 					setSuccessMessage('Rental successfully created!');
+					setLinkToRental(res.data._id);
 				}
 			});
 		} catch (error) {
@@ -289,7 +292,11 @@ export default function CreateRental() {
 
 					{successMessage && (
 						<>
-							<Success className="mt-4">{successMessage}</Success>
+							<Success className='mt-4'>
+								{successMessage}
+								<br />
+								<Link to={`/rentals/${linkToRental}`}>View your rental</Link>
+							</Success>
 						</>
 					)}
 				</form>
