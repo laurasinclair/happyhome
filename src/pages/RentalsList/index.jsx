@@ -187,7 +187,7 @@ export default function RentalsList() {
 															type='secondary'
 															onClick={(e) => {
 																e.preventDefault();
-																deleteRental(id);
+																deleteRental(rental._id || rental.id);
 															}}
 															className={styles.RentalsList_grid_btn}>
 															<Trash size='18' />
