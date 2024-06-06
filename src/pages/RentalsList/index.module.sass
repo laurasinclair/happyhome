@@ -55,6 +55,11 @@
 				top: 0
 				right: 0
 				background: linear-gradient(270deg, $white 0%, $white 20%, transparentize($white, 1) 100%)
+
+			&:hover
+				&:after
+					background: linear-gradient(270deg, lighten(#111DA4, 60%) 0%, lighten(#111DA4, 60%) 20%, transparentize(lighten(#111DA4, 60%), 1) 100%)
+				
 		&_btn
 			height: fit-content !important
 			width: fit-content !important

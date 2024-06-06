@@ -6,6 +6,7 @@ import { Doughnut } from 'react-chartjs-2';
 import logo from '/src/assets/images/logo_happyhome_dark.svg';
 import styles from './index.module.sass';
 import { Loading } from '@components';
+import { useMediaPredicate } from "react-media-hook";
 import classNames from 'classnames';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -39,6 +40,8 @@ const House = (props) => (
 );
 
 export default function Stats() {
+	const mobileViewport = useMediaPredicate("(max-width: 728px)");
+
 	// https://www.chartjs.org/docs/latest/configuration
 
 	ChartJS.defaults.font.size = 16;
@@ -62,7 +65,7 @@ export default function Stats() {
 		plugins: {
 			legend: {
 				display: true,
-				position: 'right',
+				position: mobileViewport ? 'bottom' : 'right',
 				align: 'center',
 				maxWidth: 180,
 				// fullSize: false,
@@ -223,7 +226,7 @@ export default function Stats() {
 																: '#DF927A'
 														}
 														key={rental.name + index}
-														width='5%'
+														width={mobileViewport ? '10%' : '5%'}
 													/>
 												))}
 										</Col>
