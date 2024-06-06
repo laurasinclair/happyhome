@@ -13,6 +13,7 @@ import Stats from './rentals/Stats'
 
 // States
 import Loading from './states/Loading'
+import Success from './states/Success'
 
 export {
     Button,
@@ -24,5 +25,6 @@ export {
     RentalCardImage,
     Filter,
     Stats,
-    Loading
+    Loading,
+    Success
 }

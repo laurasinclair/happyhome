@@ -1,6 +1,6 @@
 import styles from './index.module.sass';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Button } from '@components';
+import { Button, Success } from '@components';
 import { Hero } from '@components/layout';
 import { useState } from 'react';
 const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
@@ -17,13 +17,16 @@ export default function CreateRental() {
 		[propertyType, setPropertyType] = useState(''),
 		[roomType, setRoomType] = useState(''),
 		[beds, setBeds] = useState(0),
-		[bathrooms, setBathrooms] = useState(0);
+		[bathrooms, setBathrooms] = useState(0),
+		[successMessage, setSuccessMessage] = useState(undefined);
 
 	const handleAddRental = (req) => {
 		try {
-			axios
-				.post(`http://localhost:5005/rentals`, req)
-				.then((res) => console.log(res.data));
+			axios.post(`http://localhost:5005/rentals`, req).then((res) => {
+				if (res.status === 201) {
+					setSuccessMessage('Rental successfully created!');
+				}
+			});
 		} catch (error) {
 			console.error('Error adding rental:', error);
 		}
@@ -80,20 +83,22 @@ export default function CreateRental() {
 			</Container>
 
 			<section className={styles.CreateRental}>
-				<form className={styles.CreateRental_form}>
+				<form
+					className={styles.CreateRental_form}
+					onSubmit={handleSubmit}>
 					<Row className='mb-3'>
 						<Col sm='6'>
 							<div>
 								<label htmlFor='name'>Name</label>
 
 								<input
+									required
 									name='name'
 									id='name'
 									type='text'
 									placeholder='Rental name'
 									value={name}
 									onChange={handleNameInput}
-									required
 								/>
 							</div>
 						</Col>
@@ -140,7 +145,6 @@ export default function CreateRental() {
 									placeholder='Image'
 									value={pictureUrl}
 									onChange={handleImageInput}
-									required
 								/>
 							</div>
 						</Col>
@@ -188,13 +192,16 @@ export default function CreateRental() {
 								</label>
 
 								<Button
+									type='secondary'
 									onClick={() =>
 										setAccommodates((prev) => (prev === 0 ? 0 : (prev -= 1)))
 									}>
 									-
 								</Button>
-								{accommodates}
-								<Button onClick={() => setAccommodates((prev) => (prev += 1))}>
+								<div className='count'>{accommodates}</div>
+								<Button
+									type='secondary'
+									onClick={() => setAccommodates((prev) => (prev += 1))}>
 									+
 								</Button>
 							</div>
@@ -204,13 +211,16 @@ export default function CreateRental() {
 								<label htmlFor='image'>Beds</label>
 
 								<Button
+									type='secondary'
 									onClick={() =>
 										setBeds((prev) => (prev === 0 ? 0 : (prev -= 1)))
 									}>
 									-
 								</Button>
-								{beds}
-								<Button onClick={() => setBeds((prev) => (prev += 1))}>
+								<div className='count'>{beds}</div>
+								<Button
+									type='secondary'
+									onClick={() => setBeds((prev) => (prev += 1))}>
 									+
 								</Button>
 							</div>
@@ -220,13 +230,16 @@ export default function CreateRental() {
 								<label htmlFor='image'>Bathrooms</label>
 
 								<Button
+									type='secondary'
 									onClick={() =>
 										setBathrooms((prev) => (prev === 0 ? 0 : (prev -= 1)))
 									}>
 									-
 								</Button>
-								{bathrooms}
-								<Button onClick={() => setBathrooms((prev) => (prev += 1))}>
+								<div className='count'>{bathrooms}</div>
+								<Button
+									type='secondary'
+									onClick={() => setBathrooms((prev) => (prev += 1))}>
 									+
 								</Button>
 							</div>
@@ -266,14 +279,19 @@ export default function CreateRental() {
 
 					<Row>
 						<Col>
-							<Button
+							<input
 								className='btn-primary'
 								type='submit'
-								onClick={handleSubmit}>
-								Add rental
-							</Button>
+								value='Add rental'
+							/>
 						</Col>
 					</Row>
+
+					{successMessage && (
+						<>
+							<Success className="mt-4">{successMessage}</Success>
+						</>
+					)}
 				</form>
 			</section>
 		</>
