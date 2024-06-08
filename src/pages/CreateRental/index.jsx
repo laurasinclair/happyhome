@@ -158,10 +158,10 @@ export default function CreateRental() {
 									id='title'
 									name='title'
 									onChange={handlePropertyType}
+									defaultValue='Please choose'
 									required>
 									<option
-										value='Please choose'
-										selected>
+										value='Please choose'>
 										Please choose
 									</option>
 									<option value='Apartment'>Apartment</option>
@@ -178,8 +178,7 @@ export default function CreateRental() {
 									name='title'
 									onChange={handleRoomType}>
 									<option
-										value='Please choose'
-										selected>
+										value='Please choose'>
 										Please choose
 									</option>
 									<option value='Single room'>Single room</option>

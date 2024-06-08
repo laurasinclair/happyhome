@@ -31,7 +31,6 @@ export default function Rental() {
 				setRental(res.data);
 			})
 			.catch((err) => {
-				setLoading(false);
 				setErrorMessage(
 					'There was a problem displaying this rental. Please try again later.'
 				);
