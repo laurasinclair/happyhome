@@ -1,4 +1,4 @@
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL
+const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -7,7 +7,12 @@ export const fetchRentalsData = () => {
 	const [error, setError] = useState('');
 
 	axios
-		.get(`${baseUrl}/rentals`)
+		.get(`${baseUrl}/rentals`, {
+			headers: {
+				'Content-Type': 'application/json',
+				// Add other headers as needed
+			},
+		})
 		.then((res) => setResponse(res.data))
 		.catch((err) => setError(err));
 
