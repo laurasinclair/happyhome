@@ -30,9 +30,9 @@ export default function Rental() {
 				setLoading(false);
 			})
 			.catch((err) => {
-				// setLoading(false);
-				setErrorMessage(
-					'There was a problem displaying this rental. Please try again later.'
+				setLoading(false);
+				console.error(
+					'❌ There was a problem displaying this rental.', err.message
 				);
 			});
 	}, []);
