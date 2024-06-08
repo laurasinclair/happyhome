@@ -39,7 +39,10 @@ export default function RentalsContextProvider({ children }) {
 				})
 				.catch((err) => setError(err));
 		} catch (error) {
-			console.error('Failed to store rentals data | ', error);
+			const errorDescription = error.response
+				? error.response.data.message
+				: error.message;
+			console.error('❌ Failed to fetch rentals data | ' + errorDescription);
 		}
 	};
 
