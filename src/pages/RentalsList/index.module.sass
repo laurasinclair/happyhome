@@ -3,6 +3,7 @@
 
 .RentalsList
 	&_grid
+		margin-bottom: 40px
 		border-top: 1px solid lighten(#111DA4, 50%)
 		// border-left: 1px solid lighten(#111DA4, 50%)
 		border-radius: 4px
@@ -15,10 +16,6 @@
 			&:hover
 				background-color: lighten(#111DA4, 60%)
 				cursor: pointer
-				&_body &_name
-					border: 10px solid red
-					&:after
-						background: linear-gradient(270deg, lighten(#111DA4, 60%) 0%, lighten(#111DA4, 60%) 20%, transparentize(lighten(#111DA4, 60%), 1) 100%) !important
 		&_col
 			a 
 				font-weight: 400
@@ -79,4 +76,52 @@
 			&:focus
 				border: 0
 				color: $white
-		
+
+.pagination
+	display: flex
+	justify-content: center
+	align-items: center
+	&_arrows,
+	&_numbers
+		font-size: 1rem
+		font-family: $font-family-sans-serif
+		border: 0
+		padding: 0
+		width: 44px
+		height: 44px
+		display: flex
+		align-items: center
+		justify-content: center
+		margin: 0 4px
+		border-radius: 50%
+		&:disabled
+			svg path
+				fill: $primary-light-2
+		&:hover
+			cursor: pointer
+
+	&_arrows
+		background-color: transparent
+		svg path
+			fill: $primary-dark-1
+		&:hover
+			background-color: $white
+
+	&_numbers
+		background-color: $primary-light-2
+		color: $primary
+		&:hover
+			background-color: $primary-light-1
+			color: $white
+	
+	&_perPage
+		display: flex
+		align-items: center
+		margin-bottom: 20px
+		&_select
+			margin: 0 8px
+			display: inline
+			width: fit-content
+			padding: 8px 10px
+			background-color: $white
+			border: 0

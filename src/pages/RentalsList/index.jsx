@@ -1,5 +1,12 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { Funnel, SortDown, Pen, Trash } from 'react-bootstrap-icons';
+import {
+	Funnel,
+	SortDown,
+	Pen,
+	Trash,
+	ChevronLeft,
+	ChevronRight,
+} from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
 import { RentalCardScore, Button, Loading, Error } from '@components';
 import { Hero } from '@components/layout';
@@ -12,7 +19,6 @@ import { Link } from 'react-router-dom';
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState('undefined');
-	const { rentals, setRentals, getRentalsData } = useRentalsContext();
 
 	const deleteRental = (rentalId) => {
 		axios
@@ -25,11 +31,63 @@ export default function RentalsList() {
 			});
 	};
 
-	useEffect(() => {
-		if (rentals && rentals.length > 0) {
+	const [currentPage, setCurrentPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
+	const [rentals, setRentals] = useState([]);
+	const [rentalsPerPage, setRentalsPerPage] = useState(10);
+
+	const fetchRentals = async (page) => {
+		try {
+			const response = await axios.get(
+				`${
+					'http://localhost:5005' || import.meta.env.VITE_MONGODB_BASEURL
+				}/rentals?page=${page}&pageSize=${rentalsPerPage}`
+			);
+			const { paginatedRentals, totalPages } = response.data;
+			setRentals(paginatedRentals);
+			setTotalPages(totalPages);
 			setLoading(false);
+		} catch (error) {
+			console.error('❌', error.message);
 		}
-	}, [rentals, deleteRental]);
+	};
+
+	const handleRentalsPerPage = (e) => {
+		setRentalsPerPage(e.target.value);
+	};
+
+	useEffect(() => {
+		fetchRentals(currentPage);
+		paginationNumbers();
+	}, [currentPage, handleRentalsPerPage]);
+
+	const handlePrevPage = () => {
+		if (currentPage > 1) {
+			setCurrentPage(currentPage - 1);
+		}
+	};
+
+	const handleNextPage = () => {
+		if (currentPage < totalPages) {
+			setCurrentPage(currentPage + 1);
+		}
+	};
+
+	const paginationNumbers = () => {
+		let buttons = [];
+		for (let i = 0; i < totalPages; i++) {
+			buttons.push(
+				<button
+					className={styles.pagination_numbers}
+					key={i}
+					onClick={() => setCurrentPage(i + 1)}>
+					{i + 1}
+				</button>
+			);
+		}
+		return buttons;
+	};
+
 	return (
 		<>
 			<Container fluid>
@@ -52,6 +110,7 @@ export default function RentalsList() {
 								name='Search'
 								id=''
 								placeholder='Search'
+								className='mb-0'
 							/>
 
 							<Button className='ms-3'>
@@ -60,6 +119,25 @@ export default function RentalsList() {
 							<Button className='ms-1'>
 								<SortDown size='20' />
 							</Button>
+						</div>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col>
+						<div className={styles.pagination_perPage}>
+							Display
+							<select
+								name='rentalsPerPage'
+								id='rentalsPerPage'
+								defaultValue='Please choose'
+								onChange={handleRentalsPerPage}
+								className={styles.pagination_perPage_select}>
+								<option value='10'>10</option>
+								<option value='20'>20</option>
+								<option value='50'>50</option>
+							</select>
+							rentals per page
 						</div>
 					</Col>
 				</Row>
@@ -125,7 +203,7 @@ export default function RentalsList() {
 											<>
 												<div
 													className={styles.RentalsList_grid_row}
-													key={rental._id+index}>
+													key={rental._id + index}>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
@@ -196,6 +274,28 @@ export default function RentalsList() {
 									})
 								)}
 							</div>
+						</div>
+					</Col>
+				</Row>
+
+				<Row>
+					<Col>
+						<div className={styles.pagination}>
+							<button
+								onClick={handlePrevPage}
+								disabled={currentPage === 1}
+								className={styles.pagination_arrows}>
+								<ChevronLeft size='24' />
+							</button>
+
+							{paginationNumbers()}
+
+							<button
+								onClick={handleNextPage}
+								disabled={currentPage === totalPages}
+								className={styles.pagination_arrows}>
+								<ChevronRight size='24' />
+							</button>
 						</div>
 					</Col>
 				</Row>
