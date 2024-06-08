@@ -16,14 +16,11 @@ export default function RentalsContextProvider({ children }) {
 			axios
 				.get(`${baseUrl}/rentals`)
 				.then((res) => {
-					setRentals('rentals', res);
+					setRentals(res.data);
 				})
-				.catch((err) => setError(err));
-		} catch (error) {
-			const errorDescription = error.response
-				? error.response.data.message
-				: error.message;
-			console.error('❌ Failed to fetch rentals data | ' + errorDescription);
+				.catch((err) => console.error('❌ ' + err.data.message));
+		} catch (err) {
+			console.error('❌ ' + err.data.message);
 		}
 	};
 

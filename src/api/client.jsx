@@ -14,7 +14,7 @@ export const fetchRentalsData = () => {
 			},
 		})
 		.then((res) => setResponse(res.data))
-		.catch((err) => setError(err));
+		.catch((err) => setError(err.data.message));
 
 	useEffect(() => {
 		fetchData();

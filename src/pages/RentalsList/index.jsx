@@ -10,13 +10,13 @@ import { Link } from 'react-router-dom';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
+	const [errorMessage, setErrorMessage] = useState('');
 	const { rentals, setRentals } = useRentalsContext();
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false);
-			setError(undefined);
+			setErrorMessage(undefined);
 		}
 	}, [rentals]);
 
@@ -24,7 +24,7 @@ export default function RentalsList() {
 		try {
 			//
 		} catch (error) {
-			setError('Error deleting rental:', error);
+			setErrorMessage('Error deleting rental');
 		}
 	};
 
@@ -116,48 +116,46 @@ export default function RentalsList() {
 							<div className={styles.RentalsList_grid_body}>
 								{loading ? (
 									<Loading />
-								) : error ? (
-									<div>{error}</div>
 								) : (
 									rentals &&
 									rentals.map((rental, index) => {
 										return (
 											<>
-												<div className={styles.RentalsList_grid_row}>
+												<div className={styles.RentalsList_grid_row} key={rental._id+index}>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_id
 														)}>
-														<Link to={`./${rental.id}`}>{rental.id}</Link>
+														<Link to={`./${rental._id}`}>{rental.id}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_name
 														)}>
-														<Link to={`./${rental.id}`}>{rental.name}</Link>
+														<Link to={`./${rental._id}`}>{rental.name}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_city
 														)}>
-														<Link to={`./${rental.id}`}>{rental.city}</Link>
+														<Link to={`./${rental._id}`}>{rental.city}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_country
 														)}>
-														<Link to={`./${rental.id}`}>{rental.country}</Link>
+														<Link to={`./${rental._id}`}>{rental.country}</Link>
 													</div>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_score
 														)}>
-														<Link to={`./${rental.id}`}><RentalCardScore
+														<Link to={`./${rental._id}`}><RentalCardScore
 															review_scores_rating={rental.review_scores_rating}
 														/></Link>
 													</div>

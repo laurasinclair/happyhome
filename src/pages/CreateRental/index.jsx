@@ -32,8 +32,7 @@ export default function CreateRental() {
 				}
 			});
 		} catch (error) {
-			setErrorMessage(error)
-			console.error('Error adding rental:', error);
+			setErrorMessage('Error adding rental')
 		}
 	};
 
