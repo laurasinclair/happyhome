@@ -95,6 +95,7 @@
 		margin: 0 4px
 		border-radius: 50%
 		&:disabled
+			cursor: auto
 			&:hover
 				background-color: transparent
 			svg path
@@ -115,7 +116,10 @@
 		&:hover
 			background-color: $primary-light-1
 			color: $white
-	
+		&_current
+			background-color: $primary
+			color: $white
+
 	&_perPage
 		display: flex
 		align-items: center

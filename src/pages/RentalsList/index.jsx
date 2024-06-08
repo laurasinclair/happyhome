@@ -78,7 +78,9 @@ export default function RentalsList() {
 		for (let i = 0; i < totalPages; i++) {
 			buttons.push(
 				<button
-					className={styles.pagination_numbers}
+					className={classNames(styles.pagination_numbers,
+						{[styles.pagination_numbers_current]: i + 1 === currentPage}
+					)}
 					key={i}
 					onClick={() => setCurrentPage(i + 1)}>
 					{i + 1}
