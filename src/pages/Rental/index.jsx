@@ -41,13 +41,10 @@ export default function Rental() {
 		axios
 			.delete(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
-				setLoading(false);
-				setRental(res.data);
+				getRentalsData();
 			})
 			.catch((err) => {
-				setErrorMessage(
-					'There was a problem displaying this rental. Please try again later.'
-				);
+				console.log('There was a problem deleting this rental.');
 			});
 	};
 
@@ -148,8 +145,8 @@ export default function Rental() {
 												iconRight={<Trash />}
 												onClick={(e) => {
 													e.preventDefault();
-													deleteRental(rental.id);
-													navigate('/');
+													deleteRental(rental._id);
+													navigate('/rentals');
 												}}
 											/>
 										</Col>

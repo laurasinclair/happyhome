@@ -18,7 +18,6 @@ export default function RentalsList() {
 		axios
 			.delete(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
-				console.log('successfully moved to Trash');
 				getRentalsData();
 			})
 			.catch((err) => {
