@@ -1,33 +1,36 @@
 import { Container, Row, Col } from 'react-bootstrap';
 import { Funnel, SortDown, Pen, Trash } from 'react-bootstrap-icons';
 import React, { useState, useEffect } from 'react';
-import { RentalCardScore, Button, Loading } from '@components';
+import { RentalCardScore, Button, Loading, Error } from '@components';
 import { Hero } from '@components/layout';
 import { useRentalsContext } from '@context';
 import styles from './index.module.sass';
 import classNames from 'classnames';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
-	const [errorMessage, setErrorMessage] = useState('');
-	const { rentals, setRentals } = useRentalsContext();
+	const [errorMessage, setErrorMessage] = useState('undefined');
+	const { rentals, setRentals, getRentalsData } = useRentalsContext();
+
+	const deleteRental = (rentalId) => {
+		axios
+			.delete(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
+			.then((res) => {
+				console.log('successfully moved to Trash');
+				getRentalsData();
+			})
+			.catch((err) => {
+				console.log('There was a problem deleting this rental.');
+			});
+	};
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false);
-			setErrorMessage(undefined);
 		}
-	}, [rentals]);
-
-	const deleteRental = (rentalId) => {
-		try {
-			//
-		} catch (error) {
-			setErrorMessage('Error deleting rental');
-		}
-	};
-
+	}, [rentals, deleteRental]);
 	return (
 		<>
 			<Container fluid>
@@ -42,7 +45,7 @@ export default function RentalsList() {
 
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center mb-4'>
-						<Button to="/add-rental">Add rental</Button>
+						<Button to='/add-rental'>Add rental</Button>
 
 						<div className='d-flex justify-content-between align-items-center'>
 							<input
@@ -121,7 +124,9 @@ export default function RentalsList() {
 									rentals.map((rental, index) => {
 										return (
 											<>
-												<div className={styles.RentalsList_grid_row} key={rental._id+index}>
+												<div
+													className={styles.RentalsList_grid_row}
+													key={rental._id+index}>
 													<div
 														className={classNames(
 															styles.RentalsList_grid_col,
@@ -155,9 +160,13 @@ export default function RentalsList() {
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_score
 														)}>
-														<Link to={`./${rental._id}`}><RentalCardScore
-															review_scores_rating={rental.review_scores_rating}
-														/></Link>
+														<Link to={`./${rental._id}`}>
+															<RentalCardScore
+																review_scores_rating={
+																	rental.review_scores_rating
+																}
+															/>
+														</Link>
 													</div>
 													<div
 														className={classNames(
@@ -176,7 +185,7 @@ export default function RentalsList() {
 															type='secondary'
 															onClick={(e) => {
 																e.preventDefault();
-																deleteRental(rental._id || rental.id);
+																deleteRental(rental._id);
 															}}
 															className={styles.RentalsList_grid_btn}>
 															<Trash size='18' />

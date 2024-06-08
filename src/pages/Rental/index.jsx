@@ -9,47 +9,47 @@ import {
 	RentalCardScore,
 	RentalCardImage,
 	Loading,
-	Error
+	Error,
 } from '@components';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 
 export default function Rental() {
 	const [rental, setRental] = useState({});
 	const { rentalId } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(undefined);
-	console.log(rentalId)
+	console.log(rentalId);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		axios
-			.get(`${baseUrl}/rentals/${rentalId}`)
+			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
-				setLoading(false)
+				setLoading(false);
 				setRental(res.data);
 			})
 			.catch((err) => {
-				setLoading(false)
-				setErrorMessage('There was a problem displaying this rental. Please try again later.');
+				setLoading(false);
+				setErrorMessage(
+					'There was a problem displaying this rental. Please try again later.'
+				);
 			});
 	}, []);
 
 	const deleteRental = (rentalId) => {
-		// try {
-		// 	const findIndex = rentals.findIndex((rental) => rental.id === rentalId);
-		// 	const tempRentals = [...rentals];
-		// 	tempRentals.splice(findIndex, 1);
-		// 	setRentals(tempRentals);
-		// 	localStorage.setItem(
-		// 		'rentalsInLocalStorage',
-		// 		JSON.stringify(tempRentals)
-		// 	);
-		// } catch (error) {
-		// 	setError('Error deleting rental:', error);
-		// }
+		axios
+			.delete(`${baseUrl}/rentals/${rentalId}`)
+			.then((res) => {
+				setLoading(false);
+				setRental(res.data);
+			})
+			.catch((err) => {
+				setErrorMessage(
+					'There was a problem displaying this rental. Please try again later.'
+				);
+			});
 	};
 
 	return (
@@ -65,9 +65,7 @@ export default function Rental() {
 					{loading ? (
 						<Loading />
 					) : errorMessage ? (
-						<Error>
-							{errorMessage}
-						</Error>
+						<Error>{errorMessage}</Error>
 					) : (
 						rental && (
 							<>

@@ -9,7 +9,6 @@ export const useRentalsContext = () => useContext(RentalsContext);
 
 export default function RentalsContextProvider({ children }) {
 	const [rentals, setRentals] = useState([]);
-	const [error, setError] = useState('');
 
 	const getRentalsData = async () => {
 		try {
@@ -18,9 +17,9 @@ export default function RentalsContextProvider({ children }) {
 				.then((res) => {
 					setRentals(res.data);
 				})
-				.catch((err) => console.error('❌ ' + err.data.message));
+				.catch((err) => console.error('❌ Error'));
 		} catch (err) {
-			console.error('❌ ' + err.data.message);
+			console.error('❌ Error');
 		}
 	};
 
@@ -29,7 +28,7 @@ export default function RentalsContextProvider({ children }) {
 	}, [])
 
 	return (
-		<RentalsContext.Provider value={{ rentals, setRentals }}>
+		<RentalsContext.Provider value={{ rentals, setRentals, getRentalsData }}>
 			{children}
 		</RentalsContext.Provider>
 	);
