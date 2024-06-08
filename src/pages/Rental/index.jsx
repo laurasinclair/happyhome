@@ -19,7 +19,6 @@ export default function Rental() {
 	const { rentalId } = useParams();
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(undefined);
-	console.log(rentalId);
 
 	const navigate = useNavigate();
 
@@ -27,10 +26,11 @@ export default function Rental() {
 		axios
 			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
-				setLoading(false);
 				setRental(res.data);
+				setLoading(false);
 			})
 			.catch((err) => {
+				// setLoading(false);
 				setErrorMessage(
 					'There was a problem displaying this rental. Please try again later.'
 				);
@@ -39,7 +39,7 @@ export default function Rental() {
 
 	const deleteRental = (rentalId) => {
 		axios
-			.delete(`${baseUrl}/rentals/${rentalId}`)
+			.delete(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
 				setLoading(false);
 				setRental(res.data);
