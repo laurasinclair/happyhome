@@ -211,7 +211,7 @@ export default function RentalsList() {
 															styles.RentalsList_grid_col,
 															styles.RentalsList_grid_id
 														)}>
-														<Link to={`./${rental._id}`}>{rental.id}</Link>
+														<Link to={`./${rental._id}`}>{rental._id}</Link>
 													</div>
 													<div
 														className={classNames(

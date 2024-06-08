@@ -1,11 +1,11 @@
 @import 'bootstrap/scss/bootstrap-grid.scss'
 @import '/src/styles/_variables.sass'
-
+		
 .RentalsList
 	&_grid
 		margin-bottom: 40px
-		border-top: 1px solid lighten(#111DA4, 50%)
-		// border-left: 1px solid lighten(#111DA4, 50%)
+		border-top: 1px solid $primary-light-2
+		// border-left: 1px solid $primary-light-2
 		border-radius: 4px
 		overflow: hidden
 		width: 100%
@@ -13,9 +13,6 @@
 			background-color: $white
 			display: grid
 			grid-template-columns: [dashboard_grid_id] 85px [dashboard_grid_name] auto [dashboard_grid_city] 15% [dashboard_grid_country] 10% [dashboard_grid_score] 10% [dashboard_grid_actions] 10%
-			&:hover
-				background-color: lighten(#111DA4, 60%)
-				cursor: pointer
 		&_col
 			a 
 				font-weight: 400
@@ -39,15 +36,33 @@
 			@include media-breakpoint-up(xl)
 				padding: 4px 14px
 			&:first-of-type
-				border-left: 1px solid lighten(#111DA4, 50%)
-			border-right: 1px solid lighten(#111DA4, 50%)
-			border-bottom: 1px solid lighten(#111DA4, 50%)
+				border-left: 1px solid $primary-light-2
+			border-right: 1px solid $primary-light-2
+			border-bottom: 1px solid $primary-light-2
 		&_header
 			font-weight: bold
-			background-color: lighten(#111DA4, 60%)
-		&_body &_name
+			background-color: $primary-light-3
+		&_body &_row
+			&:hover
+				background-color: lighten($primary-light-3, 2%)
+				cursor: pointer
+				.RentalsList_grid_id,
+				.RentalsList_grid_name
+					&:after
+						content: ''
+						display: block
+						width: 40px
+						height: 100%
+						position: absolute
+						top: 0
+						right: 0
+						background: linear-gradient(270deg, lighten($primary-light-3, 2%) 0%, lighten($primary-light-3, 2%) 20%, transparentize(lighten($primary-light-3, 2%), 1) 100%)
+
+		&_body &_name,
+		&_body &_id
 			white-space: nowrap
-			overflow: hidden
+			overflow-x: auto
+			overflow-y: hidden
 			position: relative
 			&:after
 				content: ''
@@ -58,7 +73,6 @@
 				top: 0
 				right: 0
 				background: linear-gradient(270deg, $white 0%, $white 20%, transparentize($white, 1) 100%)
-				
 		&_btn
 			height: fit-content !important
 			width: fit-content !important
