@@ -1,7 +1,8 @@
 import { Hero } from '@components/layout';
+import { Success } from '@components';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Trash, Pen } from 'react-bootstrap-icons';
+import { Trash, Pen, FloppyFill } from 'react-bootstrap-icons';
 import styles from './index.module.sass';
 import {
 	Button,
@@ -15,13 +16,17 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Rental() {
-	const [rental, setRental] = useState({});
-	const { rentalId } = useParams();
-	const [loading, setLoading] = useState(true);
-	const [errorMessage, setErrorMessage] = useState(undefined);
+	const [rental, setRental] = useState({}),
+		[loading, setLoading] = useState(true),
+		[errorMessage, setErrorMessage] = useState(undefined),
+		[successMessage, setSuccessMessage] = useState(undefined),
+		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] = useState(undefined),
+		[isEditing, setIsEditing] = useState(false);
 
+	const { rentalId } = useParams();
 	const navigate = useNavigate();
 
+	// fetching the rental
 	useEffect(() => {
 		axios
 			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
@@ -32,10 +37,53 @@ export default function Rental() {
 			.catch((err) => {
 				setLoading(false);
 				console.error(
-					'❌ There was a problem displaying this rental.', err.message
+					'❌ There was a problem displaying this rental.',
+					err.message
 				);
 			});
 	}, []);
+
+
+	// editing
+	const [description, setDescription] = useState(rental.description);
+	const [country, setCountry] = useState(rental.country);
+	const handleDescriptionInput = (e) => setDescription(e.target.value);
+	const handleCountry = (e) => setCountry(e.target.value);
+
+	const handleEditRental = (req) => {
+		axios
+			.put(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`, req)
+			.then((res) => {
+				if (res.status === 200) {
+					setRental(res.data);
+
+					setSuccessMessage('Rental successfully updated!');
+					setTimeout(() => {
+						setSuccessMessage(undefined);
+					}, 4000);
+				}
+			})
+			.catch((err) => {
+				console.error(
+					'❌ There was an error updating this rental.',
+					err.message
+				);
+
+				setErrorUpdateRentalMessage('There was an error updating this rental.');
+				setTimeout(() => {
+					setErrorUpdateRentalMessage(undefined);
+				}, 4000);
+			});
+	};
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+
+		handleEditRental({
+			description: description,
+			country: country
+		});
+	};
 
 	const deleteRental = (rentalId) => {
 		axios
@@ -100,12 +148,27 @@ export default function Rental() {
 													<strong>ID</strong>
 													{rental.id ? rental.id : 'id unknown'}
 												</p>
-												<p>
-													<strong>Country</strong>
-													{rental.country ? rental.country : 'country unknown'}
-												</p>
+												<strong>Country</strong>
+												{isEditing ? (
+													<>
+														<input
+															type='text'
+															name='country'
+															id='country'
+															defaultValue={rental.country}
+															onChange={handleCountry}
+														/>
+													</>
+												) : (
+													<p>
+														{rental.country
+															? rental.country
+															: 'country unknown'}
+													</p>
+												)}
 												<p>
 													<strong>City</strong>
+
 													{rental.city ? rental.city : 'City unknown'}
 													{rental.neighbourhood
 														? ' 📍 ' + rental.neighbourhood
@@ -120,21 +183,57 @@ export default function Rental() {
 											xl='8'
 											className='px-4 mb-4'>
 											<h3>Description</h3>
-											<p>
-												{rental.description
-													? rental.description
-													: 'No description'}
-											</p>
+											{isEditing ? (
+												<>
+													<textarea
+														name='description'
+														id='description'
+														defaultValue={rental.description}
+														onChange={handleDescriptionInput}
+													/>
+												</>
+											) : (
+												<p>
+													{rental.description
+														? rental.description
+														: 'No description'}
+												</p>
+											)}
 										</Col>
 									</Row>
+
+									{successMessage && <Success>{successMessage}</Success>}
+
+									{errorUpdateRentalMessage && (
+										<Error>{errorUpdateRentalMessage}</Error>
+									)}
+
 									<Row className='mt-4'>
 										<Col className='pe-md-1'>
-											<Button
-												text='Edit'
-												type='primary'
-												fullWidth
-												iconRight={<Pen />}
-											/>
+											{!isEditing ? (
+												<Button
+													text='Edit'
+													type='primary'
+													fullWidth
+													onClick={() => {
+														!isEditing
+															? setIsEditing(true)
+															: setIsEditing(false);
+													}}
+													iconRight={<Pen />}
+												/>
+											) : (
+												<Button
+													text='Save'
+													type='primary'
+													fullWidth
+													onClick={(e) => {
+														handleSubmit(e);
+														setIsEditing(false);
+													}}
+													iconRight={<FloppyFill />}
+												/>
+											)}
 										</Col>
 										<Col className='ps-md-1'>
 											<Button
