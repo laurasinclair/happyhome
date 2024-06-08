@@ -7,7 +7,7 @@ import {
 	ChevronLeft,
 	ChevronRight,
 } from 'react-bootstrap-icons';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { RentalCardScore, Button, Loading, Error } from '@components';
 import { Hero } from '@components/layout';
 import { useRentalsContext } from '@context';
@@ -39,9 +39,7 @@ export default function RentalsList() {
 	const fetchRentals = async (page) => {
 		try {
 			const response = await axios.get(
-				`${
-					'http://localhost:5005' || import.meta.env.VITE_MONGODB_BASEURL
-				}/rentals?page=${page}&pageSize=${rentalsPerPage}`
+				`${import.meta.env.VITE_MONGODB_BASEURL}/rentals?page=${page}&pageSize=${rentalsPerPage}`
 			);
 			const { paginatedRentals, totalPages } = response.data;
 			setRentals(paginatedRentals);
@@ -52,14 +50,14 @@ export default function RentalsList() {
 		}
 	};
 
-	const handleRentalsPerPage = (e) => {
+	const handleRentalsPerPage = useCallback((e) => {
 		setRentalsPerPage(e.target.value);
-	};
+	}, []);
 
 	useEffect(() => {
 		fetchRentals(currentPage);
 		paginationNumbers();
-	}, [currentPage, handleRentalsPerPage]);
+	}, [currentPage]);
 
 	const handlePrevPage = () => {
 		if (currentPage > 1) {
