@@ -16,22 +16,13 @@ export default function RentalsList() {
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false);
-			setError('');
+			setError(undefined);
 		}
 	}, [rentals]);
 
 	const deleteRental = (rentalId) => {
 		try {
-			const findIndex = rentals.findIndex((rental) => rental.id === rentalId);
-			const tempRentals = [...rentals];
-			tempRentals.splice(findIndex, 1);
-			setRentals(tempRentals);
-			localStorage.setItem('rentalsInLocalStorage', JSON.stringify(rentals));
-
-			console.table({
-				'rentals.length': rentals.length,
-				'index of deleted item:': findIndex,
-			});
+			//
 		} catch (error) {
 			setError('Error deleting rental:', error);
 		}

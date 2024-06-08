@@ -14,6 +14,7 @@ import Stats from './rentals/Stats'
 // States
 import Loading from './states/Loading'
 import Success from './states/Success'
+import Error from './states/Error'
 
 export {
     Button,
@@ -26,5 +27,6 @@ export {
     Filter,
     Stats,
     Loading,
-    Success
+    Success,
+    Error
 }

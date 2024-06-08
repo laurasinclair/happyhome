@@ -8,34 +8,15 @@ const RentalsContext = createContext({});
 export const useRentalsContext = () => useContext(RentalsContext);
 
 export default function RentalsContextProvider({ children }) {
-	const storedRentals = getData('rentals');
 	const [rentals, setRentals] = useState([]);
-	const [response, setResponse] = useState(null);
 	const [error, setError] = useState('');
-
-	useEffect(() => {
-		if (
-			storedRentals &&
-			storedRentals.length > 0 &&
-			storedRentals !== undefined
-		) {
-			try {
-				setRentals(storedRentals);
-			} catch {
-				console.error("Couldn't store rentals");
-			}
-		} else {
-			getRentalsData();
-		}
-	}, []);
 
 	const getRentalsData = async () => {
 		try {
 			axios
 				.get(`${baseUrl}/rentals`)
 				.then((res) => {
-					storeData('rentals', res);
-					setRentals(res.data);
+					setRentals('rentals', res);
 				})
 				.catch((err) => setError(err));
 		} catch (error) {
@@ -45,6 +26,10 @@ export default function RentalsContextProvider({ children }) {
 			console.error('❌ Failed to fetch rentals data | ' + errorDescription);
 		}
 	};
+
+	useEffect(() => {
+		getRentalsData();
+	}, [])
 
 	return (
 		<RentalsContext.Provider value={{ rentals, setRentals }}>
