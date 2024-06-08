@@ -20,16 +20,35 @@ export default function Rental() {
 		[loading, setLoading] = useState(true),
 		[errorMessage, setErrorMessage] = useState(undefined),
 		[successMessage, setSuccessMessage] = useState(undefined),
-		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] =
-			useState(undefined),
+		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] = useState(undefined),
 		[isEditing, setIsEditing] = useState(false);
 
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
 
+	// fetching the rental
+	useEffect(() => {
+		axios
+			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
+			.then((res) => {
+				setRental(res.data);
+				setLoading(false);
+			})
+			.catch((err) => {
+				setLoading(false);
+				console.error(
+					'❌ There was a problem displaying this rental.',
+					err.message
+				);
+			});
+	}, []);
+
+
 	// editing
-	const [description, setDescription] = useState('');
+	const [description, setDescription] = useState(rental.description);
+	const [country, setCountry] = useState(rental.country);
 	const handleDescriptionInput = (e) => setDescription(e.target.value);
+	const handleCountry = (e) => setCountry(e.target.value);
 
 	const handleEditRental = (req) => {
 		axios
@@ -62,24 +81,9 @@ export default function Rental() {
 
 		handleEditRental({
 			description: description,
+			country: country
 		});
 	};
-
-	useEffect(() => {
-		axios
-			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
-			.then((res) => {
-				setRental(res.data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				setLoading(false);
-				console.error(
-					'❌ There was a problem displaying this rental.',
-					err.message
-				);
-			});
-	}, []);
 
 	const deleteRental = (rentalId) => {
 		axios
@@ -144,12 +148,27 @@ export default function Rental() {
 													<strong>ID</strong>
 													{rental.id ? rental.id : 'id unknown'}
 												</p>
-												<p>
-													<strong>Country</strong>
-													{rental.country ? rental.country : 'country unknown'}
-												</p>
+												<strong>Country</strong>
+												{isEditing ? (
+													<>
+														<input
+															type='text'
+															name='country'
+															id='country'
+															defaultValue={rental.country}
+															onChange={handleCountry}
+														/>
+													</>
+												) : (
+													<p>
+														{rental.country
+															? rental.country
+															: 'country unknown'}
+													</p>
+												)}
 												<p>
 													<strong>City</strong>
+
 													{rental.city ? rental.city : 'City unknown'}
 													{rental.neighbourhood
 														? ' 📍 ' + rental.neighbourhood
@@ -167,9 +186,8 @@ export default function Rental() {
 											{isEditing ? (
 												<>
 													<textarea
-														type='text'
-														name=''
-														id=''
+														name='description'
+														id='description'
 														defaultValue={rental.description}
 														onChange={handleDescriptionInput}
 													/>
@@ -186,7 +204,9 @@ export default function Rental() {
 
 									{successMessage && <Success>{successMessage}</Success>}
 
-									{errorUpdateRentalMessage && (<Error>{errorUpdateRentalMessage}</Error>)}
+									{errorUpdateRentalMessage && (
+										<Error>{errorUpdateRentalMessage}</Error>
+									)}
 
 									<Row className='mt-4'>
 										<Col className='pe-md-1'>
