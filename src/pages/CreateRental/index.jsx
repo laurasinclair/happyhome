@@ -1,6 +1,6 @@
 import styles from './index.module.sass';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Button, Success } from '@components';
+import { Button, Success, Error } from '@components';
 import { Hero } from '@components/layout';
 import { useState } from 'react';
 const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
@@ -20,18 +20,19 @@ export default function CreateRental() {
 		[beds, setBeds] = useState(0),
 		[bathrooms, setBathrooms] = useState(0),
 		[successMessage, setSuccessMessage] = useState(undefined),
+		[errorMessage, setErrorMessage] = useState(undefined),
 		[linkToRental, setLinkToRental] = useState(undefined);
 
 	const handleAddRental = (req) => {
 		try {
-			axios.post(`${baseUrl}/rentals`, req).then((res) => {
+			axios.post(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`, req).then((res) => {
 				if (res.status === 201) {
 					setSuccessMessage('Rental successfully created!');
 					setLinkToRental(res.data._id);
 				}
 			});
 		} catch (error) {
-			console.error('Error adding rental:', error);
+			setErrorMessage('Error adding rental')
 		}
 	};
 
@@ -45,8 +46,6 @@ export default function CreateRental() {
 		handleAccommodatesInput = (e) => setAccommodates(e.target.value),
 		handlePropertyType = (e) => setPropertyType(e.target.value),
 		handleBedsInput = (e) => setBeds(e.target.value);
-
-	console.log([propertyType, beds, bathrooms, roomType]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -297,6 +296,14 @@ export default function CreateRental() {
 								<br />
 								<Link to={`/rentals/${linkToRental}`}>View your rental</Link>
 							</Success>
+						</>
+					)}
+
+					{errorMessage && (
+						<>
+							<Error className='mt-4'>
+								{errorMessage}
+							</Error>
 						</>
 					)}
 				</form>

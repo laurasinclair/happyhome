@@ -1,5 +1,4 @@
 import { Hero } from '@components/layout';
-import { useRentalsContext } from '@context';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Trash, Pen } from 'react-bootstrap-icons';
@@ -10,49 +9,47 @@ import {
 	RentalCardScore,
 	RentalCardImage,
 	Loading,
+	Error
 } from '@components';
 import { useState, useEffect } from 'react';
+import axios from 'axios';
+const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 
 export default function Rental() {
 	const [rental, setRental] = useState({});
 	const { rentalId } = useParams();
+	const [loading, setLoading] = useState(true);
+	const [errorMessage, setErrorMessage] = useState(undefined);
+	console.log(rentalId)
 
 	const navigate = useNavigate();
 
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-	const { rentals, setRentals } = useRentalsContext();
-
 	useEffect(() => {
-		if (rentals && rentals.length > 0) {
-			const findRental = rentals.find((rental) => {
-				return rental.id == Number(rentalId);
+		axios
+			.get(`${baseUrl}/rentals/${rentalId}`)
+			.then((res) => {
+				setLoading(false)
+				setRental(res.data);
+			})
+			.catch((err) => {
+				setLoading(false)
+				setErrorMessage('There was a problem displaying this rental. Please try again later.');
 			});
-
-			if (findRental) {
-				setRental(findRental);
-			}
-
-			setLoading(false);
-			setError('');
-		} else {
-			setError('No data to display');
-		}
-	}, [rentals]);
+	}, []);
 
 	const deleteRental = (rentalId) => {
-		try {
-			const findIndex = rentals.findIndex((rental) => rental.id === rentalId);
-			const tempRentals = [...rentals];
-			tempRentals.splice(findIndex, 1);
-			setRentals(tempRentals);
-			localStorage.setItem(
-				'rentalsInLocalStorage',
-				JSON.stringify(tempRentals)
-			);
-		} catch (error) {
-			setError('Error deleting rental:', error);
-		}
+		// try {
+		// 	const findIndex = rentals.findIndex((rental) => rental.id === rentalId);
+		// 	const tempRentals = [...rentals];
+		// 	tempRentals.splice(findIndex, 1);
+		// 	setRentals(tempRentals);
+		// 	localStorage.setItem(
+		// 		'rentalsInLocalStorage',
+		// 		JSON.stringify(tempRentals)
+		// 	);
+		// } catch (error) {
+		// 	setError('Error deleting rental:', error);
+		// }
 	};
 
 	return (
@@ -67,19 +64,17 @@ export default function Rental() {
 
 					{loading ? (
 						<Loading />
-					) : error ? (
-						<Row>
-							<Col>
-								<div>{error}</div>
-							</Col>
-						</Row>
+					) : errorMessage ? (
+						<Error>
+							{errorMessage}
+						</Error>
 					) : (
 						rental && (
 							<>
 								<Row>
 									<Col>
 										<Hero
-											category='Rental item'
+											category='Rental'
 											title={rental.name ? rental.name : 'Name unknown'}
 											size='s'
 										/>
