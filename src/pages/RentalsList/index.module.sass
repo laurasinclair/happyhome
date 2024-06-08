@@ -15,6 +15,10 @@
 			&:hover
 				background-color: lighten(#111DA4, 60%)
 				cursor: pointer
+				&_body &_name
+					border: 10px solid red
+					&:after
+						background: linear-gradient(270deg, lighten(#111DA4, 60%) 0%, lighten(#111DA4, 60%) 20%, transparentize(lighten(#111DA4, 60%), 1) 100%) !important
 		&_col
 			a 
 				font-weight: 400
@@ -57,10 +61,6 @@
 				top: 0
 				right: 0
 				background: linear-gradient(270deg, $white 0%, $white 20%, transparentize($white, 1) 100%)
-
-			&:hover
-				&:after
-					background: linear-gradient(270deg, lighten(#111DA4, 60%) 0%, lighten(#111DA4, 60%) 20%, transparentize(lighten(#111DA4, 60%), 1) 100%)
 				
 		&_btn
 			height: fit-content !important
