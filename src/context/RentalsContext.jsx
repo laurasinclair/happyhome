@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { getData, storeData } from '@helpers';
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 
 const RentalsContext = createContext({});
 
@@ -13,11 +12,12 @@ export default function RentalsContextProvider({ children }) {
 	const getRentalsData = async () => {
 		try {
 			axios
-				.get(`${baseUrl}/rentals`)
+				.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`)
 				.then((res) => {
-					setRentals(res.data);
+					console.log(res.data)
+					return res.data;
 				})
-				.catch((err) => console.error('❌ Error'));
+				.catch((err) => console.error('❌ Error', err));
 		} catch (err) {
 			console.error('❌ Error');
 		}

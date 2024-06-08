@@ -8,6 +8,7 @@ import styles from './index.module.sass';
 import { Loading } from '@components';
 import { useMediaPredicate } from "react-media-hook";
 import classNames from 'classnames';
+import axios from 'axios';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -94,24 +95,41 @@ export default function Stats() {
 	};
 
 	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState('');
-	const { rentals, setRentals } = useRentalsContext();
+	const [error, setError] = useState(undefined);
+	const [rentals, setRentals] = useState([]);
+
+	const fetchRentals = async () => {
+		try {
+			const response = await axios.get(
+				`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`
+			);
+			const { allRentals } = response.data;
+			setRentals(allRentals);
+			setLoading(false);
+		} catch (error) {
+			console.error('❌', error.message);
+		}
+	};
+
+	useEffect(() => {
+		fetchRentals();
+	}, [])
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setLoading(false);
-			setError('');
+			setError(undefined);
 		}
 	}, [rentals]);
 
-	const rentalsPerCountry = rentals.reduce((acc, rental) => {
+	const rentalsPerCountry = rentals && rentals.reduce((acc, rental) => {
 		if (rental && rental.country) {
 			acc[rental.country] = (acc[rental.country] || 0) + 1;
 		}
 		return acc;
 	}, {});
 
-	const rentalsPerCity = rentals.reduce((acc, rental) => {
+	const rentalsPerCity = rentals && rentals.reduce((acc, rental) => {
 		if (rental && rental.city) {
 			acc[rental.city] = (acc[rental.city] || 0) + 1;
 		}
