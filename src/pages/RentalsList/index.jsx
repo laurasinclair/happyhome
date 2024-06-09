@@ -59,7 +59,7 @@ export default function RentalsList() {
 		(e) => {
 			setRentalsPerPage(e.target.value);
 		},
-		[rentalsPerPage]
+		[currentPage, rentalsPerPage]
 	);
 
 	useEffect(() => {
