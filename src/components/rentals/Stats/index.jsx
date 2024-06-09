@@ -258,7 +258,7 @@ export default function Stats() {
 											md='12'
 											className={styles.stats_block_label}>
 											<h3 className='mb-4'>
-												Were in the <span>world</span> are your rentals?
+												Where in the <span>world</span> are your rentals?
 											</h3>
 										</Col>
 										<Col
