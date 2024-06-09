@@ -40,7 +40,7 @@ export default function RentalsList() {
 		try {
 			const response = await axios.get(
 				`${
-					'http://localhost:5005' || import.meta.env.VITE_MONGODB_BASEURL
+					import.meta.env.VITE_MONGODB_BASEURL
 				}/rentals?page=${page}&pageSize=${rentalsPerPage}`
 			);
 			const { paginatedRentals, totalPages } = response.data;
@@ -52,9 +52,12 @@ export default function RentalsList() {
 		}
 	};
 
-	const handleRentalsPerPage = useCallback((e) => {
-		setRentalsPerPage(e.target.value);
-	}, [rentalsPerPage]);
+	const handleRentalsPerPage = useCallback(
+		(e) => {
+			setRentalsPerPage(e.target.value);
+		},
+		[rentalsPerPage]
+	);
 
 	useEffect(() => {
 		fetchRentals(currentPage);
@@ -78,9 +81,9 @@ export default function RentalsList() {
 		for (let i = 0; i < totalPages; i++) {
 			buttons.push(
 				<button
-					className={classNames(styles.pagination_numbers,
-						{[styles.pagination_numbers_current]: i + 1 === currentPage}
-					)}
+					className={classNames(styles.pagination_numbers_number, {
+						[styles.pagination_numbers_current]: i + 1 === currentPage,
+					})}
 					key={i}
 					onClick={() => setCurrentPage(i + 1)}>
 					{i + 1}
@@ -290,7 +293,9 @@ export default function RentalsList() {
 								<ChevronLeft size='24' />
 							</button>
 
-							{paginationNumbers()}
+							<div className={styles.pagination_numbers}>
+								{paginationNumbers()}
+							</div>
 
 							<button
 								onClick={handleNextPage}
