@@ -1,4 +1,4 @@
-import { Table, HouseDoor, InfoCircle } from 'react-bootstrap-icons';
+import { Table, Houses, HouseAdd, InfoCircle } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
 import { Logo } from '@components';
 import styles from './index.module.sass';
@@ -15,13 +15,20 @@ export default function SideBar({ isActive, toggleSidebar }) {
 		},
 		{
 			id: 1,
-			icon: HouseDoor,
+			icon: Houses,
 			iconSize: 22,
 			linkText: 'Rentals',
 			url: '/rentals',
 		},
 		{
 			id: 2,
+			icon: HouseAdd,
+			iconSize: 22,
+			linkText: 'Add a rental',
+			url: '/add-rental',
+		},
+		{
+			id: 3,
 			icon: InfoCircle,
 			iconSize: 21,
 			linkText: 'About',
