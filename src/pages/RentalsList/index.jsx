@@ -255,7 +255,7 @@ export default function RentalsList() {
 														<Button
 															type='primary'
 															className={styles.RentalsList_grid_btn}
-															to={`./${rental.id}`}>
+															to={`./${rental._id}`}>
 															<Pen size='18' />
 														</Button>
 
