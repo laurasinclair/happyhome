@@ -7,7 +7,7 @@ import {
 	ChevronLeft,
 	ChevronRight,
 } from 'react-bootstrap-icons';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { RentalCardScore, Button, Loading, Error } from '@components';
 import { Hero } from '@components/layout';
 import { useRentalsContext } from '@context';
@@ -52,9 +52,9 @@ export default function RentalsList() {
 		}
 	};
 
-	const handleRentalsPerPage = (e) => {
+	const handleRentalsPerPage = useCallback((e) => {
 		setRentalsPerPage(e.target.value);
-	};
+	}, [rentalsPerPage]);
 
 	useEffect(() => {
 		fetchRentals(currentPage);
