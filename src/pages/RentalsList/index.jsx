@@ -146,166 +146,158 @@ export default function RentalsList() {
 						</div>
 					</Col>
 				</Row>
+			</Container>
 
-				<Row className='gx4 gx-xl-5'>
-					<Col>
-						<div className={styles.RentalsList_grid}>
-							<div
-								className={classNames(
-									styles.RentalsList_grid_header,
-									styles.RentalsList_grid_row
-								)}>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_id
-									)}>
-									ID
-								</div>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_name
-									)}>
-									Name
-								</div>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_city
-									)}>
-									City
-								</div>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_country
-									)}>
-									Country
-								</div>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_score
-									)}>
-									Score
-								</div>
-								<div
-									className={classNames(
-										styles.RentalsList_grid_col,
-										styles.RentalsList_grid_actions
-									)}>
-									Actions
-								</div>
-							</div>
-							<div className={styles.RentalsList_grid_body}>
-								{loading ? (
-									<Loading />
-								) : (
-									rentals &&
-									rentals.map((rental, index) => {
-										return (
-											<>
-												<div
-													className={styles.RentalsList_grid_row}
-													key={rental._id + index}>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_id
-														)}>
-														<Link to={`./${rental._id}`}>{rental._id}</Link>
-													</div>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_name
-														)}>
-														<Link to={`./${rental._id}`}>{rental.name}</Link>
-													</div>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_city
-														)}>
-														<Link to={`./${rental._id}`}>{rental.city}</Link>
-													</div>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_country
-														)}>
-														<Link to={`./${rental._id}`}>{rental.country}</Link>
-													</div>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_score
-														)}>
-														<Link to={`./${rental._id}`}>
-															<RentalCardScore
-																review_scores_rating={
-																	rental.review_scores_rating
-																}
-															/>
-														</Link>
-													</div>
-													<div
-														className={classNames(
-															styles.RentalsList_grid_col,
-															styles.RentalsList_grid_space
-														)}>
-														<Button
-															type='primary'
-															className={styles.RentalsList_grid_btn}
-															to={`./${rental._id}`}>
-															<Pen size='18' />
-														</Button>
-
-														<Button
-															text='Delete'
-															type='secondary'
-															onClick={(e) => {
-																e.preventDefault();
-																deleteRental(rental._id);
-															}}
-															className={styles.RentalsList_grid_btn}>
-															<Trash size='18' />
-														</Button>
-													</div>
-												</div>
-											</>
-										);
-									})
-								)}
-							</div>
+			<div className={styles.RentalsList_container}>
+				<div className={styles.RentalsList_grid}>
+					<div
+						className={classNames(
+							styles.RentalsList_grid_header,
+							styles.RentalsList_grid_row
+						)}>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_id
+							)}>
+							ID
 						</div>
-					</Col>
-				</Row>
-
-				<Row>
-					<Col>
-						<div className={styles.pagination}>
-							<button
-								onClick={handlePrevPage}
-								disabled={currentPage === 1}
-								className={styles.pagination_arrows}>
-								<ChevronLeft size='24' />
-							</button>
-
-							<div className={styles.pagination_numbers}>
-								{paginationNumbers()}
-							</div>
-
-							<button
-								onClick={handleNextPage}
-								disabled={currentPage === totalPages}
-								className={styles.pagination_arrows}>
-								<ChevronRight size='24' />
-							</button>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_name
+							)}>
+							Name
 						</div>
-					</Col>
-				</Row>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_city
+							)}>
+							City
+						</div>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_country
+							)}>
+							Country
+						</div>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_score
+							)}>
+							Score
+						</div>
+						<div
+							className={classNames(
+								styles.RentalsList_grid_col,
+								styles.RentalsList_grid_actions
+							)}>
+							Actions
+						</div>
+					</div>
+					<div className={styles.RentalsList_grid_body}>
+						{loading ? (
+							<Loading />
+						) : (
+							rentals &&
+							rentals.map((rental, index) => {
+								return (
+									<>
+										<div
+											className={styles.RentalsList_grid_row}
+											key={rental._id + index}>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_id
+												)}>
+												<Link to={`./${rental._id}`}>{rental._id}</Link>
+											</div>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_name
+												)}>
+												<Link to={`./${rental._id}`}>{rental.name}</Link>
+											</div>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_city
+												)}>
+												<Link to={`./${rental._id}`}>{rental.city}</Link>
+											</div>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_country
+												)}>
+												<Link to={`./${rental._id}`}>{rental.country}</Link>
+											</div>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_score
+												)}>
+												<Link to={`./${rental._id}`}>
+													<RentalCardScore
+														review_scores_rating={rental.review_scores_rating}
+													/>
+												</Link>
+											</div>
+											<div
+												className={classNames(
+													styles.RentalsList_grid_col,
+													styles.RentalsList_grid_space
+												)}>
+												<Button
+													type='primary'
+													className={styles.RentalsList_grid_btn}
+													to={`./${rental._id}`}>
+													<Pen size='18' />
+												</Button>
+
+												<Button
+													text='Delete'
+													type='secondary'
+													onClick={(e) => {
+														e.preventDefault();
+														deleteRental(rental._id);
+													}}
+													className={styles.RentalsList_grid_btn}>
+													<Trash size='18' />
+												</Button>
+											</div>
+										</div>
+									</>
+								);
+							})
+						)}
+					</div>
+				</div>
+			</div>
+
+			<Container fluid>
+				<div className={styles.pagination}>
+					<button
+						onClick={handlePrevPage}
+						disabled={currentPage === 1}
+						className={styles.pagination_arrows}>
+						<ChevronLeft size='24' />
+					</button>
+
+					<div className={styles.pagination_numbers}>{paginationNumbers()}</div>
+
+					<button
+						onClick={handleNextPage}
+						disabled={currentPage === totalPages}
+						className={styles.pagination_arrows}>
+						<ChevronRight size='24' />
+					</button>
+				</div>
 			</Container>
 		</>
 	);
