@@ -1,8 +1,7 @@
 import { Hero } from '@components/layout';
-import { Success } from '@components';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Trash, Pen, FloppyFill } from 'react-bootstrap-icons';
+import { Trash, Pen, FloppyFill, X } from 'react-bootstrap-icons';
 import styles from './index.module.sass';
 import {
 	Button,
@@ -11,8 +10,11 @@ import {
 	RentalCardImage,
 	Loading,
 	Error,
+	Success,
+	Warning,
 } from '@components';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Rental() {
@@ -20,8 +22,10 @@ export default function Rental() {
 		[loading, setLoading] = useState(true),
 		[errorMessage, setErrorMessage] = useState(undefined),
 		[successMessage, setSuccessMessage] = useState(undefined),
-		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] = useState(undefined),
-		[isEditing, setIsEditing] = useState(false);
+		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] =
+			useState(undefined),
+		[isEditing, setIsEditing] = useState(false),
+		[confirmDelete, setConfirmDelete] = useState(false);
 
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
@@ -42,7 +46,6 @@ export default function Rental() {
 				);
 			});
 	}, []);
-
 
 	// editing
 	const [description, setDescription] = useState(rental.description);
@@ -81,7 +84,7 @@ export default function Rental() {
 
 		handleEditRental({
 			description: description,
-			country: country
+			country: country,
 		});
 	};
 
@@ -220,36 +223,72 @@ export default function Rental() {
 															? setIsEditing(true)
 															: setIsEditing(false);
 													}}
-													iconRight={<Pen />}
-												/>
+													iconLeft={<Pen />}>
+													{' '}
+													Edit{' '}
+												</Button>
 											) : (
 												<Button
-													text='Save'
 													type='primary'
 													fullWidth
 													onClick={(e) => {
 														handleSubmit(e);
 														setIsEditing(false);
 													}}
-													iconRight={<FloppyFill />}
-												/>
+													iconLeft={<FloppyFill />}>
+													{' '}
+													Save{' '}
+												</Button>
 											)}
 										</Col>
 										<Col className='ps-md-1'>
-											<Button
-												text='Delete'
-												link='/'
-												type='secondary'
-												fullWidth
-												iconRight={<Trash />}
-												onClick={(e) => {
-													e.preventDefault();
-													deleteRental(rental._id);
-													navigate('/rentals');
-												}}
-											/>
+											{!isEditing ? (
+												<Button
+													text='Delete'
+													link='/'
+													type='secondary'
+													fullWidth
+													iconLeft={<Trash />}
+													onClick={() => {
+														setConfirmDelete(true);
+													}}>
+													Delete
+												</Button>
+											) : (
+												<Button
+													type='secondary'
+													fullWidth
+													onClick={() => {
+														!isEditing
+															? setIsEditing(true)
+															: setIsEditing(false);
+													}}
+													iconLeft={<X size='30' />}>
+													Cancel
+												</Button>
+											)}
 										</Col>
 									</Row>
+
+									{confirmDelete && (
+										<Row>
+											<Col>
+												<Warning>
+													Are you sure you'd like to delete this rental? This
+													action is irreversible. <br />
+													<Link
+														onClick={(e) => {
+															e.preventDefault();
+															deleteRental(rental._id);
+															setConfirmDelete(false);
+															navigate('/rentals');
+														}}>
+														Delete rental
+													</Link>
+												</Warning>
+											</Col>
+										</Row>
+									)}
 								</div>
 							</>
 						)
