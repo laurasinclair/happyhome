@@ -14,14 +14,14 @@ import { useRentalsContext } from '@context';
 import styles from './index.module.sass';
 import classNames from 'classnames';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { useMediaPredicate } from "react-media-hook";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useMediaPredicate } from 'react-media-hook';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState('undefined');
 
-	const viewportSm = useMediaPredicate("(max-width: 560px)");
+	const viewportSm = useMediaPredicate('(max-width: 560px)');
 
 	const deleteRental = (rentalId) => {
 		axios
@@ -34,12 +34,15 @@ export default function RentalsList() {
 			});
 	};
 
-	const [currentPage, setCurrentPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
 	const [rentals, setRentals] = useState([]);
-	const [rentalsPerPage, setRentalsPerPage] = useState(10);
+	const navigate = useNavigate();
+	const location = useLocation();
+	const params = new URLSearchParams(location.search);
+	const [currentPage, setCurrentPage] = useState(params.get('page') || 1);
+	const [rentalsPerPage, setRentalsPerPage] = useState(params.get('pageSize') || 10);
 
-	const fetchRentals = async (page) => {
+	const fetchRentals = async (page, rentalsPerPage) => {
 		try {
 			const response = await axios.get(
 				`${
@@ -50,6 +53,9 @@ export default function RentalsList() {
 			setRentals(paginatedRentals);
 			setTotalPages(totalPages);
 			setLoading(false);
+			navigate(
+				`/rentals?page=${page}&pageSize=${rentalsPerPage}`
+			);
 		} catch (error) {
 			console.error('❌', error.message);
 		}
@@ -63,9 +69,9 @@ export default function RentalsList() {
 	);
 
 	useEffect(() => {
-		fetchRentals(currentPage);
+		fetchRentals(currentPage, rentalsPerPage);
 		paginationNumbers();
-	}, [currentPage, handleRentalsPerPage]);
+	}, [currentPage, handleRentalsPerPage, location.search]);
 
 	const handlePrevPage = () => {
 		if (currentPage > 1) {
@@ -110,14 +116,17 @@ export default function RentalsList() {
 
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center flex-column flex-sm-row mb-4'>
-						<Button to='/add-rental'
-						{...(viewportSm && { fullWidth: true })}
-						>Add rental</Button>
+						<Button
+							to='/add-rental'
+							{...(viewportSm && { fullWidth: true })}>
+							Add rental
+						</Button>
 
-						<div className={classNames(
-							'd-flex justify-content-between align-items-center',
-							{'w-100': viewportSm}
-						)}>
+						<div
+							className={classNames(
+								'd-flex justify-content-between align-items-center',
+								{ 'w-100': viewportSm }
+							)}>
 							<input
 								type='text'
 								name='Search'
