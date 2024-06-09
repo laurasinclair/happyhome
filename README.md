@@ -1,7 +1,6 @@
 # HappyHome
 
-HappyHome is an admin dashboard for an apartment rental platform, where the admin can see and manage the apartments shown on the platform.
-Developed with React.js, Bootstrap, and Sass, it offers an intuitive, accessible, and responsive interface. By using local storage to prevent unnecessary API calls, it ensures efficient performance, enabling admins to easily manage apartment listings.
+HappyHome is an admin dashboard for an apartment rental platform, where the admin can see and manage apartments. Frontend developed with React.js, backend with Express.js.
 
 ## Have a look!
 
@@ -12,10 +11,19 @@ Developed with React.js, Bootstrap, and Sass, it offers an intuitive, accessible
 - React.js
 - Vite
 - Axios
-- Bootstrap - for grid layout and little css helpers (margin, padding)
-- SASS
+- Bootstrap - for grid system and layout helpers (margin, padding). All the rest is custom ❤️
+- 
+- React Router (for client-side routing)
 - Node.js environment
+- Netlify (for frontend deployment)
+
+**Backend**
+- Express.js
+- Mongoose
+- CRUD operations (GET/POST/PUT/DELETE)
+- Dotenv
+- Vercel (for backend deployment)
 
 **Database**
-- MongoDB Realm
-- Atlas
+- MongoDB
+- MongoDB Atlas
