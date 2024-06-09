@@ -15,10 +15,13 @@ import styles from './index.module.sass';
 import classNames from 'classnames';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { useMediaPredicate } from "react-media-hook";
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
 	const [errorMessage, setErrorMessage] = useState('undefined');
+
+	const viewportSm = useMediaPredicate("(max-width: 560px)");
 
 	const deleteRental = (rentalId) => {
 		axios
@@ -106,10 +109,15 @@ export default function RentalsList() {
 				</Row>
 
 				<Row>
-					<Col className='d-flex justify-content-between align-items-center mb-4'>
-						<Button to='/add-rental'>Add rental</Button>
+					<Col className='d-flex justify-content-between align-items-center flex-column flex-sm-row mb-4'>
+						<Button to='/add-rental'
+						{...(viewportSm && { fullWidth: true })}
+						>Add rental</Button>
 
-						<div className='d-flex justify-content-between align-items-center'>
+						<div className={classNames(
+							'd-flex justify-content-between align-items-center',
+							{'w-100': viewportSm}
+						)}>
 							<input
 								type='text'
 								name='Search'
