@@ -1,7 +1,7 @@
 import styles from './index.module.sass';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Button, Success, Error } from '@components';
-import { Hero } from '@components/layout';
+import { Hero } from '@components';
 import { useState } from 'react';
 const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';

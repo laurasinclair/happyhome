@@ -6,7 +6,7 @@ import {
 	About,
 	NotFound,
 } from '@pages';
-import { SideBar, Footer } from '@components/layout';
+import { SideBar, Footer } from '@components';
 import { Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
