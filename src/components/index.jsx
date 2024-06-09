@@ -2,6 +2,12 @@
 import Button from './elements/Button'
 import BackButton from './elements/BackButton'
 import Logo from './elements/Logo'
+import Icons from './elements/Icons'
+
+// Layout
+import Hero from './layout/Hero'
+import SideBar from './layout/SideBar'
+import Footer from './layout/Footer'
 
 // Rental-specfic
 import Search from './rentals/Search/Search'
@@ -18,17 +24,8 @@ import Error from './states/Error'
 import Warning from './states/Warning'
 
 export {
-    Button,
-    BackButton,
-    Logo,
-    Search,
-    RentalCard,
-    RentalCardScore,
-    RentalCardImage,
-    Filter,
-    Stats,
-    Loading,
-    Success,
-    Error,
-    Warning
+    Button, BackButton, Logo, Icons,
+    Hero, SideBar, Footer,
+    Search, RentalCard, RentalCardScore, RentalCardImage, Filter, Stats,
+    Loading, Success, Error, Warning
 }

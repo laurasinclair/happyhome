@@ -4,7 +4,6 @@ import CreateRental from './CreateRental'
 import About from './About/'
 import NotFound from './NotFound'
 import Rental from './Rental'
-import Stats from '../components/rentals/Stats'
 
 export {
     Dashboard,
@@ -12,6 +11,5 @@ export {
     CreateRental,
     About,
     NotFound,
-    Rental,
-    Stats
+    Rental
 }

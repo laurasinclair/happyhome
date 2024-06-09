@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap-icons';
 import React, { useState, useEffect, useCallback } from 'react';
 import { RentalCardScore, Button, Loading, Error } from '@components';
-import { Hero } from '@components/layout';
+import { Hero } from '@components';
 import { useRentalsContext } from '@context';
 import styles from './index.module.sass';
 import classNames from 'classnames';

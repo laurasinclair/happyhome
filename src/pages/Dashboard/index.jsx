@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './index.module.sass';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Stats, Loading } from '@components';
-import { Hero } from '@components/layout';
+import { Hero } from '@components';
 import { useRentalsContext } from '@context';
 import { Link } from 'react-router-dom';
 import { HouseAdd, Houses } from 'react-bootstrap-icons';

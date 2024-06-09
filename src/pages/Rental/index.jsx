@@ -1,7 +1,15 @@
-import { Hero } from '@components/layout';
+import { Hero } from '@components';
+import {
+	Bed,
+	Bathtub,
+	Clock,
+	People,
+	PriceTag,
+	ID,
+} from '@components/elements/Icons';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import { Trash, Pen, FloppyFill, X } from 'react-bootstrap-icons';
+import { Trash, Pen, FloppyFill, X, Globe, Map } from 'react-bootstrap-icons';
 import styles from './index.module.sass';
 import {
 	Button,
@@ -127,16 +135,19 @@ export default function Rental() {
 								</Row>
 
 								<div className={styles.Rental_item}>
-									<Row className='mb-5'>
-										<Col>
+									<Row className='mb-4'>
+										<Col
+											md='6'
+											className='mb-4'>
 											<div className={styles.Rental_item_thumbnail}>
-												<div className={styles.Rental_item_thumbnail_score}>
-													<RentalCardScore
-														review_scores_rating={
-															rental.review_scores_rating || 0
-														}
-													/>
-												</div>
+												{rental.review_scores_rating && (
+													<div className={styles.Rental_item_thumbnail_score}>
+														<RentalCardScore
+															review_scores_rating={rental.review_scores_rating}
+														/>
+													</div>
+												)}
+
 												<RentalCardImage
 													picture_url={rental.picture_url}
 													rentalName={
@@ -147,44 +158,111 @@ export default function Rental() {
 										</Col>
 										<Col>
 											<div className={styles.Rental_item_characteristics}>
-												<p>
-													<strong>ID</strong>
-													{rental.id ? rental.id : 'id unknown'}
-												</p>
-												<strong>Country</strong>
-												{isEditing ? (
-													<>
-														<input
-															type='text'
-															name='country'
-															id='country'
-															defaultValue={rental.country}
-															onChange={handleCountry}
-														/>
-													</>
-												) : (
-													<p>
-														{rental.country
-															? rental.country
-															: 'country unknown'}
-													</p>
-												)}
-												<p>
-													<strong>City</strong>
+												<div className={styles.Rental_item_characteristics_tag}>
+													<div>
+														<ID size='28' />
+													</div>
+													<p>{rental.id ? rental.id : 'id unknown'}</p>
+												</div>
 
-													{rental.city ? rental.city : 'City unknown'}
-													{rental.neighbourhood
-														? ' 📍 ' + rental.neighbourhood
-														: null}
+												<div className={styles.Rental_item_characteristics_tag}>
+													<Globe size='26' />
+													{isEditing ? (
+														<>
+															<input
+																type='text'
+																name='country'
+																id='country'
+																defaultValue={rental.country}
+																onChange={handleCountry}
+															/>
+														</>
+													) : (
+														<p>
+															<strong>
+																{rental.country
+																	? rental.country
+																	: 'country unknown'}
+															</strong>
+														</p>
+													)}
+												</div>
+
+												<div className={styles.Rental_item_characteristics_tag}>
+													<Map size='24' />
+													<p>
+														<strong>
+															{rental.city ? rental.city : 'City unknown'}
+														</strong>
+														{rental.neighbourhood
+															? ' 📍 ' + rental.neighbourhood
+															: null}
+													</p>
+												</div>
+
+												<div className={styles.Rental_item_characteristics_tag}>
+													<PriceTag
+														size='24'
+														className='me-2'
+													/>
+													<p>
+														{rental.price && (
+															<>
+																<strong>{rental.price}</strong>&nbsp;€ per night
+															</>
+														)}
+													</p>
+												</div>
+											</div>
+										</Col>
+									</Row>
+									<Row className='mb-5'>
+										<Col>
+											<div className={styles.Rental_item_stuff}>
+												<div className={styles.Rental_item_stuff_icon}>
+													<Bed />
+												</div>
+												<p>
+													{rental.beds &&
+														`${rental.beds} ${
+															rental.beds <= 1 ? 'bed' : 'beds'
+														}`}
+												</p>
+											</div>
+										</Col>
+										<Col>
+											<div className={styles.Rental_item_stuff}>
+												<div className={styles.Rental_item_stuff_icon}>
+													<Bathtub />
+												</div>
+												<p>
+													{rental.bathrooms &&
+														`${rental.bathrooms} ${
+															rental.bathrooms <= 1 ? 'bathroom' : 'bathrooms'
+														}`}
+												</p>
+											</div>
+										</Col>
+										<Col>
+											<div className={styles.Rental_item_stuff}>
+												<div className={styles.Rental_item_stuff_icon}>
+													<People />
+												</div>
+												<p>
+													{rental.accommodates &&
+														`${rental.accommodates} ${
+															rental.accommodates <= 1 ? 'person' : 'people'
+														}`}
 												</p>
 											</div>
 										</Col>
 									</Row>
+
 									<Row>
 										<Col
 											lg='8'
 											xl='8'
-											className='px-4 mb-4'>
+											className='mb-4'>
 											<h3>Description</h3>
 											{isEditing ? (
 												<>
@@ -199,8 +277,18 @@ export default function Rental() {
 												<p>
 													{rental.description
 														? rental.description
-														: 'No description'}
+														: 'No description provided.'}
 												</p>
+											)}
+										</Col>
+									</Row>
+									<Row>
+										<Col>
+											{rental.cancellation_policy && (
+												<div>
+													<strong>Cancellation policy:</strong>&nbsp;
+													{rental.cancellation_policy}
+												</div>
 											)}
 										</Col>
 									</Row>
@@ -222,7 +310,7 @@ export default function Rental() {
 														!isEditing
 															? setIsEditing(true)
 															: setIsEditing(false);
-														confirmDelete && setConfirmDelete(false)
+														confirmDelete && setConfirmDelete(false);
 													}}
 													iconLeft={<Pen />}>
 													{' '}

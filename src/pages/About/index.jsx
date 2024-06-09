@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import { Hero } from '@components/layout';
+import { Hero } from '@components';
 
 export default function About(props) {
 	return (
