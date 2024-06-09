@@ -28,8 +28,7 @@ export default function About(props) {
 
 							<p className='lead'>
 								All done with my little hands, this dashboard was built and
-								designed to provide a user-friendly interface for managing
-								rental properties.
+								designed to provide a user-friendly interface for managing rental properties.
 							</p>
 							<p>It includes features such as:</p>
 							<ul className='list-arrow'>
