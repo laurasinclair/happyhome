@@ -58,18 +58,16 @@ export default function Stats() {
 		// hoverBorderJoinStyle: 'round',
 
 		options: {
-			aspectRatio: 1.8,
+			aspectRatio: 3
 		},
-		// layout: {
-		// 	padding: 0,
-		// },
+		layout: {
+			padding: 0
+		},
 		plugins: {
 			legend: {
 				display: true,
 				position: mobileViewport ? 'bottom' : 'right',
 				align: 'center',
-				maxWidth: 180,
-				// fullSize: false,
 				labels: {
 					...ChartJS.overrides['doughnut'].plugins.legend.labels,
 					usePointStyle: true,
@@ -142,8 +140,8 @@ export default function Stats() {
 			{
 				label: '',
 				data: [],
-				clip: { left: 5, top: false, right: -2, bottom: 0 },
-				hoverOffset: 14,
+				// clip: { left: 5, top: false, right: -2, bottom: 0 },
+				// hoverOffset: 14,
 				backgroundColor: [
 					'#253EC4',
 					'#E8D3D5',
@@ -258,7 +256,7 @@ export default function Stats() {
 											md='12'
 											className={styles.stats_block_label}>
 											<h3 className='mb-4'>
-												Were in the <span>world</span> are your rentals?
+												Where in the <span>world</span> are your rentals?
 											</h3>
 										</Col>
 										<Col

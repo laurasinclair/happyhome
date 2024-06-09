@@ -15,6 +15,7 @@ import Stats from './rentals/Stats'
 import Loading from './states/Loading'
 import Success from './states/Success'
 import Error from './states/Error'
+import Warning from './states/Warning'
 
 export {
     Button,
@@ -28,5 +29,6 @@ export {
     Stats,
     Loading,
     Success,
-    Error
+    Error,
+    Warning
 }
