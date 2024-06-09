@@ -52,7 +52,7 @@ export default function RentalsList() {
 
 	const handleRentalsPerPage = useCallback((e) => {
 		setRentalsPerPage(e.target.value);
-	}, []);
+	}, [rentalsPerPage]);
 
 	useEffect(() => {
 		fetchRentals(currentPage);

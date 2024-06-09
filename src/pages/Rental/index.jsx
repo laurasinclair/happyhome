@@ -222,6 +222,7 @@ export default function Rental() {
 														!isEditing
 															? setIsEditing(true)
 															: setIsEditing(false);
+														confirmDelete && setConfirmDelete(false)
 													}}
 													iconLeft={<Pen />}>
 													{' '}
@@ -241,8 +242,8 @@ export default function Rental() {
 												</Button>
 											)}
 										</Col>
-										<Col className='ps-md-1'>
-											{!isEditing ? (
+										<Col className='ps-md-1 mb-3'>
+											{!isEditing && !confirmDelete ? (
 												<Button
 													text='Delete'
 													link='/'
@@ -259,9 +260,8 @@ export default function Rental() {
 													type='secondary'
 													fullWidth
 													onClick={() => {
-														!isEditing
-															? setIsEditing(true)
-															: setIsEditing(false);
+														isEditing && setIsEditing(false);
+														confirmDelete && setConfirmDelete(false);
 													}}
 													iconLeft={<X size='30' />}>
 													Cancel
