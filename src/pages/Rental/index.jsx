@@ -283,7 +283,7 @@ export default function Rental() {
 										</Col>
 									</Row>
 									<Row>
-										<Col>
+										<Col className='mb-4'>
 											{rental.cancellation_policy && (
 												<div>
 													<strong>Cancellation policy:</strong>&nbsp;
