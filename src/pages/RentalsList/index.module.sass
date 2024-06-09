@@ -1,14 +1,24 @@
 @import 'bootstrap/scss/bootstrap-grid.scss'
 @import '/src/styles/_variables.sass'
-		
+
 .RentalsList
+	&_container
+		width: 100%
+		overflow-x: auto
+		margin: 0
+		padding-left: 0.8rem
+		@include media-breakpoint-up(md)
+			overflow-x: visible
+			padding: 0 1rem
 	&_grid
-		margin-bottom: 40px
+		margin-bottom: 20px
 		border-top: 1px solid $primary-light-2
 		// border-left: 1px solid $primary-light-2
 		border-radius: 4px
 		overflow: hidden
-		width: 100%
+		width: 1000px
+		@include media-breakpoint-up(md)
+			width: 100%
 		&_row
 			background-color: $white
 			display: grid
@@ -26,7 +36,7 @@
 			flex-direction: row
 			align-items: center
 			padding: 2px 8px
-			height: 40px
+			height: 45px
 			@include media-breakpoint-up(md)
 				height: 50px
 				padding: 2px 8px
@@ -95,8 +105,9 @@
 	display: flex
 	justify-content: center
 	align-items: center
+	margin: 10px auto
 	&_arrows,
-	&_numbers
+	&_numbers_number
 		font-size: 1rem
 		font-family: $font-family-sans-serif
 		border: 0
@@ -125,11 +136,16 @@
 			background-color: $white
 
 	&_numbers
-		background-color: $primary-light-2
-		color: $primary
-		&:hover
-			background-color: $primary-light-1
-			color: $white
+		display: flex
+		flex-wrap: wrap
+		justify-content: center
+		&_number
+			background-color: $primary-light-2
+			color: $primary
+			margin-bottom: 6px
+			&:hover
+				background-color: $primary-light-1
+				color: $white
 		&_current
 			background-color: $primary
 			color: $white
