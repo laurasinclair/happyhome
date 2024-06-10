@@ -1,11 +1,13 @@
 import React from 'react';
-import styles from './index.module.sass';
+
 import { ExclamationCircle } from 'react-bootstrap-icons';
 import classNames from 'classnames';
 
+import styles from './index.module.sass';
+
 function Warning({ children, className }) {
 	return (
-		<div className={classNames(styles.Warning, className)}>
+		<div className={classNames(styles.warning, className)}>
 			<ExclamationCircle size='24' />
 			<p>
 				{children}

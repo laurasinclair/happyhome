@@ -1,7 +1,8 @@
 import React from 'react'
+import classNames from 'classnames'
+
 import styles from './index.module.sass';
 import loader from '@img/loader.svg'
-import classNames from 'classnames'
 
 function Loading() {
   return (

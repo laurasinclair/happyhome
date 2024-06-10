@@ -1,9 +1,10 @@
-import { Table, Houses, HouseAdd, InfoCircle } from 'react-bootstrap-icons';
 import { NavLink } from 'react-router-dom';
+
+import classNames from 'classnames';
+import { Table, Houses, HouseAdd, InfoCircle } from 'react-bootstrap-icons';
+
 import { Logo } from '@components';
 import styles from './index.module.sass';
-import { useRef } from 'react';
-import classNames from 'classnames';
 
 export default function SideBar({ isActive, toggleSidebar }) {
 	const sidebarLinks = [

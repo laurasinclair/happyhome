@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { Button, Hero, Success, Error, NumberBlock } from '@components';
@@ -68,7 +68,8 @@ export default function CreateRental() {
 			[name]: value,
 		}));
 
-	console.log('formData.beds', formData.beds)
+
+	console.log('formData.review_scores_rating', formData.review_scores_rating)
 
 	};
 
@@ -296,11 +297,10 @@ export default function CreateRental() {
 								<input
 									type='range'
 									id='score'
+									name='score'
 									min='1'
 									max='100'
-									list='markers'
-									value={formData.review_scores_rating}
-									name='score'
+									defaultValue={formData.review_scores_rating}
 									onChange={handleInputChange}
 								/>
 							</div>

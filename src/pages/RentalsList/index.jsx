@@ -1,4 +1,10 @@
+import React, { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
+import { useMediaPredicate } from 'react-media-hook';
 import { Container, Row, Col } from 'react-bootstrap';
+import classNames from 'classnames';
 import {
 	Funnel,
 	SortDown,
@@ -7,15 +13,9 @@ import {
 	ChevronLeft,
 	ChevronRight,
 } from 'react-bootstrap-icons';
-import React, { useState, useEffect, useCallback } from 'react';
-import { RentalCardScore, Button, Loading, Error } from '@components';
-import { Hero } from '@components';
-import { useRentalsContext } from '@context';
+
+import { Hero, RentalScore, Button, Loading, Error } from '@components';
 import styles from './index.module.sass';
-import classNames from 'classnames';
-import axios from 'axios';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useMediaPredicate } from 'react-media-hook';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
@@ -260,7 +260,7 @@ export default function RentalsList() {
 													styles.RentalsList_grid_score
 												)}>
 												<Link to={`./${rental._id}`}>
-													<RentalCardScore
+													<RentalScore
 														review_scores_rating={rental.review_scores_rating}
 													/>
 												</Link>

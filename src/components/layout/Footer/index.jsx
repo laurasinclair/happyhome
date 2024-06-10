@@ -1,4 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap'
+
 import styles from './index.module.sass'
 
 export default function Footer ({repositoryLink, repositoryLinkDesc}) {

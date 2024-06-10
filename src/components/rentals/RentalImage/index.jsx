@@ -1,8 +1,9 @@
-import styles from './RentalCard.module.sass'
 import { useState, useEffect } from 'react'
+
+// import styles from './index.module.sass'
 import placeholder from '@img/placeholder_image.jpg'
 
-export default function RentalCardImage({ rentalName, picture_url }) {
+export default function RentalImage({ rentalName, picture_url }) {
 	const [imageUrl, setImageUrl] = useState(placeholder)
 
 	useEffect(() => {
