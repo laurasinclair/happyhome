@@ -14,7 +14,7 @@ export default function RentalsContextProvider({ children }) {
 			axios
 				.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`)
 				.then((res) => {
-					console.log(res.data)
+					// console.log(res.data)
 					return res.data;
 				})
 				.catch((err) => console.error('❌ Error', err));

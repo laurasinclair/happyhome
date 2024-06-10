@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { useMediaPredicate } from 'react-media-hook';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import {
 	Funnel,
@@ -14,12 +14,11 @@ import {
 	ChevronRight,
 } from 'react-bootstrap-icons';
 
-import { Hero, RentalScore, Button, Loading, Error } from '@components';
+import { Container, Hero, RentalScore, Button, Loading } from '@components';
 import styles from './index.module.sass';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
-	const [errorMessage, setErrorMessage] = useState('undefined');
 
 	const viewportSm = useMediaPredicate('(max-width: 560px)');
 
@@ -40,7 +39,9 @@ export default function RentalsList() {
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
 	const [currentPage, setCurrentPage] = useState(params.get('page') || 1);
-	const [rentalsPerPage, setRentalsPerPage] = useState(params.get('pageSize') || 10);
+	const [rentalsPerPage, setRentalsPerPage] = useState(
+		params.get('pageSize') || 10
+	);
 
 	const fetchRentals = async (page, rentalsPerPage) => {
 		try {
@@ -53,9 +54,7 @@ export default function RentalsList() {
 			setRentals(paginatedRentals);
 			setTotalPages(totalPages);
 			setLoading(false);
-			navigate(
-				`/rentals?page=${page}&pageSize=${rentalsPerPage}`
-			);
+			navigate(`/rentals?page=${page}&pageSize=${rentalsPerPage}`);
 		} catch (error) {
 			console.error('❌', error.message);
 		}
@@ -104,15 +103,11 @@ export default function RentalsList() {
 
 	return (
 		<>
-			<Container fluid>
-				<Row>
-					<Col>
-						<Hero
-							title='Properties list'
-							size='m'
-						/>
-					</Col>
-				</Row>
+			<Container>
+				<Hero
+					title='Properties list'
+					size='m'
+				/>
 
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center flex-column flex-sm-row mb-4'>
@@ -136,10 +131,10 @@ export default function RentalsList() {
 							/>
 
 							<Button className='ms-3'>
-								<Funnel size='20' />
+								<Funnel size={20} />
 							</Button>
 							<Button className='ms-1'>
-								<SortDown size='20' />
+								<SortDown size={20} />
 							</Button>
 						</div> */}
 					</Col>
@@ -155,9 +150,9 @@ export default function RentalsList() {
 								defaultValue='Please choose'
 								onChange={handleRentalsPerPage}
 								className={styles.pagination_perPage_select}>
-								<option value='10'>10</option>
-								<option value='20'>20</option>
-								<option value='50'>50</option>
+								<option value={10}>10</option>
+								<option value={20}>20</option>
+								<option value={50}>50</option>
 							</select>
 							rentals per page
 						</div>
@@ -274,7 +269,7 @@ export default function RentalsList() {
 													type='primary'
 													className={styles.RentalsList_grid_btn}
 													to={`./${rental._id}`}>
-													<Pen size='18' />
+													<Pen size={18} />
 												</Button>
 
 												<Button
@@ -285,7 +280,7 @@ export default function RentalsList() {
 														deleteRental(rental._id);
 													}}
 													className={styles.RentalsList_grid_btn}>
-													<Trash size='18' />
+													<Trash size={18} />
 												</Button>
 											</div>
 										</div>
@@ -297,13 +292,13 @@ export default function RentalsList() {
 				</div>
 			</div>
 
-			<Container fluid>
+			<Container>
 				<div className={styles.pagination}>
 					<button
 						onClick={handlePrevPage}
 						disabled={currentPage === 1}
 						className={styles.pagination_arrows}>
-						<ChevronLeft size='24' />
+						<ChevronLeft size={24} />
 					</button>
 
 					<div className={styles.pagination_numbers}>{paginationNumbers()}</div>
@@ -312,7 +307,7 @@ export default function RentalsList() {
 						onClick={handleNextPage}
 						disabled={currentPage === totalPages}
 						className={styles.pagination_arrows}>
-						<ChevronRight size='24' />
+						<ChevronRight size={24} />
 					</button>
 				</div>
 			</Container>

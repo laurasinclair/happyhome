@@ -8,7 +8,7 @@ import styles from './index.module.sass';
 function Success({ children, className }) {
 	return (
 		<div className={classNames(styles.success, className)}>
-			<Check size='32' />
+			<Check size={32} />
 			<p>
 				{children}
 			</p>

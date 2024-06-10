@@ -8,7 +8,7 @@ import styles from './index.module.sass';
 function Warning({ children, className }) {
 	return (
 		<div className={classNames(styles.warning, className)}>
-			<ExclamationCircle size='24' />
+			<ExclamationCircle size={24} />
 			<p>
 				{children}
 			</p>

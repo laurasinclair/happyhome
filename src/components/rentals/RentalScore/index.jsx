@@ -22,7 +22,7 @@ export default function RentalScore({ review_scores_rating }) {
 		<>
 			{review_scores_rating && (
 				<div className={styles.rentalScore}>
-					<CircleFill size="15" className={classNames(styles.rentalScore_icon, ratingStyle)} />
+					<CircleFill size={15} className={classNames(styles.rentalScore_icon, ratingStyle)} />
 					<span>{(review_scores_rating / 20).toFixed(1)}</span>
 				</div>
 			)}

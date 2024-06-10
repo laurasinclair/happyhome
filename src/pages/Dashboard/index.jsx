@@ -1,44 +1,40 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { HouseAdd, Houses } from 'react-bootstrap-icons';
 
-import { Stats, Hero } from '@components';
+import { Container, Stats, Hero } from '@components';
 
 function Dashboard() {
 	return (
-		<Container fluid>
-			<Row>
-				<Col>
-					<Hero
-						title='Dashboard'
-						size='m'
-						leadText="Welcome aboard! Hope you're having a beautiful day."
-					/>
-				</Col>
-			</Row>
+		<Container>
+			<Hero
+				title='Dashboard'
+				size='m'
+				leadText="Welcome aboard! Hope you're having a beautiful day."
+			/>
 
 			<section>
 				<h2 className='mb-4'>Quick actions</h2>
 				<Row>
-					<Col xs='6'>
+					<Col xs={6}>
 						<Link
 							to='/rentals'
 							className='cta'>
 							<Houses
-								size='38'
+								size={38}
 								className='mb-2'
 							/>
 							Manage your rentals
 						</Link>
 					</Col>
-					<Col xs='6'>
+					<Col xs={6}>
 						<Link
 							to='/add-rental'
 							className='cta'>
 							<HouseAdd
-								size='38'
+								size={38}
 								className='mb-2'
 							/>
 							Add a new rental

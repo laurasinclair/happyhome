@@ -1,17 +1,36 @@
 p
+	font-weight: 500
 	margin-bottom: 6px
-	font-weight: 200
 
-h1
-	font-size: 3rem
-	margin-bottom: 10px
+strong
+	font-weight: 900
 
-h2
+h1,
+.display-h1
 	margin-bottom: 1rem
+	font-weight: 900
+	line-height: 1.2
+	font-size: 2.2rem
+	@include media-breakpoint-up(sm)
+		font-size: 2.4rem
+	@include media-breakpoint-up(lg)
+		font-size: 2.9rem
+
+h2,
+.display-h2
+	margin-bottom: 1rem
+	font-weight: 900
+	line-height: 1.2
+	font-size: 1.8rem
+	@include media-breakpoint-up(sm)
+		font-size: 2rem
+	@include media-breakpoint-up(lg)
+		font-size: 2.2rem
+	@include media-breakpoint-up(xl)
+		font-size: 2.4rem
 
 h3, h4
 	margin-bottom: 0.8rem
-	color: $primary
 
 .lead
 	font-size: 1.2rem
@@ -19,12 +38,7 @@ h3, h4
 
 
 h1, h2, h3, h4, h5, h6
+	color: $primary
 	line-height: 1.2
 	&.wavy
 		text-decoration: 2.5px underline wavy $pink
-
-p
-	font-weight: 500
-
-strong
-	font-weight: 900
