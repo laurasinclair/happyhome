@@ -162,7 +162,7 @@ export default function Rental() {
 													<div>
 														<ID size='28' />
 													</div>
-													<p>{rental.id ? rental.id : 'id unknown'}</p>
+													<p>{rental._id ? rental._id : 'id unknown'}</p>
 												</div>
 
 												<div className={styles.Rental_item_characteristics_tag}>
