@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { useMediaPredicate } from 'react-media-hook';
 import classNames from 'classnames';
 import axios from 'axios';
 
 import styles from './index.module.sass';
+import useBreakpoints from '/src/context/useBreakpoints';
 import { Loading, Block } from '@components';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -41,53 +41,35 @@ const House = (props) => (
 );
 
 export default function Stats() {
-	const mobileViewport = useMediaPredicate('(max-width: 728px)');
+	const { xs, sm, md, lg, xl } = useBreakpoints();
 
 	// https://www.chartjs.org/docs/latest/configuration
-
 	ChartJS.defaults.font.size = 16;
 	ChartJS.defaults.color = '#111DA4';
 	ChartJS.defaults.font.family = 'CircularStd, Arial, Helvetica, sans-serif';
-	ChartJS.overrides['doughnut'] = {
-		cutout: '70%',
-		// spacing: 10,
-		// borderAlign: 'inner',
-		// borderRadius: 4,
-		// borderJoinStyle: 'round',
-		// offset: 10,
-		// hoverBorderJoinStyle: 'round',
 
-		options: {
-			aspectRatio: 3,
-		},
-		layout: {
-			padding: 0,
-		},
+	const chartOptions = {
+		cutout: '70%',
+		maintainAspectRatio: false,
 		plugins: {
 			legend: {
-				display: true,
-				position: mobileViewport ? 'bottom' : 'right',
-				align: 'center',
+				position: (lg && 'right') || 'bottom',
 				labels: {
-					...ChartJS.overrides['doughnut'].plugins.legend.labels,
 					usePointStyle: true,
 					pointStyle: 'circle',
-					textAlign: 'left',
 					padding: 18,
-					// boxWidth: 50,
+					boxWidth: 50,
 				},
 			},
 			tooltip: {
 				backgroundColor: '#000',
-				// borderColor: '#000',
 				borderWidth: 0,
 				titleColor: 'white',
 				bodyColor: 'white',
 				padding: 18,
-				// labelMargin: 100,
 				caretSize: 0,
-				pointStyle: 'circle',
 				usePointStyle: true,
+				pointStyle: 'circle',
 			},
 		},
 	};
@@ -161,10 +143,9 @@ export default function Stats() {
 
 	const [citiesData, setCitiesData] = useState({
 		labels: Object.keys(rentalsPerCity),
+
 		datasets: [
 			{
-				label: '',
-				data: [],
 				backgroundColor: [
 					'#253EC4',
 					'#E8D3D5',
@@ -219,19 +200,18 @@ export default function Stats() {
 							<Block className={styles.stats_block}>
 								<Row>
 									<Col
-										md={6}
 										lg={4}
 										className={styles.stats_block_label}>
 										<h3
 											className={classNames(
 												'display-h2',
+												'mt-lg-5',
 												styles.stats_block_label_title
 											)}>
 											You're managing <span>{rentals.length}</span> rentals
 										</h3>
 									</Col>
 									<Col
-										md={6}
 										lg={8}
 										className={styles.stats_block_chart}>
 										{rentals &&
@@ -245,7 +225,13 @@ export default function Stats() {
 															: '#DF927A'
 													}
 													key={rental.name + index}
-													width={mobileViewport ? '10%' : '5%'}
+													width={
+														(xl && '5%') ||
+														(lg && '7%') ||
+														(md && '5%') ||
+														(sm && '7%') ||
+														'10%'
+													}
 												/>
 											))}
 									</Col>
@@ -254,9 +240,8 @@ export default function Stats() {
 						</Col>
 						<Col sm={6}>
 							<Block className={styles.stats_block}>
-								<Row>
+								<Row className="flex-column justify-content-between">
 									<Col
-										md={12}
 										className={styles.stats_block_label}>
 										<h3
 											className={classNames(
@@ -267,12 +252,16 @@ export default function Stats() {
 										</h3>
 									</Col>
 									<Col
-										md={12}
 										className={classNames(
 											styles.stats_block_chart,
 											styles.stats_block_chart_countries
 										)}>
-										<Doughnut data={countriesData} />
+										<Doughnut
+											options={chartOptions}
+											data={countriesData}
+											redraw={true}
+											updateMode={'show'}
+										/>
 									</Col>
 								</Row>
 							</Block>
@@ -280,9 +269,8 @@ export default function Stats() {
 
 						<Col sm={6}>
 							<Block className={styles.stats_block}>
-								<Row>
+								<Row className="flex-column justify-content-between h-100">
 									<Col
-										md={12}
 										className={styles.stats_block_label}>
 										<h3
 											className={classNames(
@@ -293,12 +281,11 @@ export default function Stats() {
 										</h3>
 									</Col>
 									<Col
-										md={12}
 										className={classNames(
 											styles.stats_block_chart,
 											styles.stats_block_chart_cities
 										)}>
-										<Doughnut data={citiesData} />
+										<Doughnut options={chartOptions} data={citiesData} />
 									</Col>
 								</Row>
 							</Block>
