@@ -110,7 +110,7 @@ export default function Rental() {
 
 	return (
 		<>
-			<section className={styles.Rental}>
+			<section className={styles.rentalItem}>
 				<Container>
 					<Row>
 						<Col className='p-4'>
@@ -135,6 +135,26 @@ export default function Rental() {
 								/>
 
 								<Block>
+									{isEditing && (
+										<Row>
+											<Col className='mb-5'>
+												<h3>Rental name</h3>
+												<Row>
+													<Col>
+														<input
+															type='text'
+															name='name'
+															id='name'
+															defaultValue={rental.name}
+															placeholder={rental.name}
+															onChange={handleInputChange}
+														/>
+													</Col>
+												</Row>
+											</Col>
+										</Row>
+									)}
+
 									<Row className='mb-4'>
 										<Col
 											md={6}
@@ -298,6 +318,29 @@ export default function Rental() {
 										</Col>
 									</Row>
 
+									<Row>
+										<Col
+											lg={10}
+											xl={8}
+											className='mb-4'>
+											<h3>Description</h3>
+											{isEditing ? (
+												<>
+													<textarea
+														name='description'
+														id='description'
+														defaultValue={rental.description}
+														onChange={handleInputChange}
+													/>
+												</>
+											) : (
+												<p>
+													{rental.description || 'No description provided.'}
+												</p>
+											)}
+										</Col>
+									</Row>
+
 									{isEditing && (
 										<Row>
 											<Col sm={12}>
@@ -319,53 +362,7 @@ export default function Rental() {
 											</Col>
 										</Row>
 									)}
-									{isEditing && (
-										<Row>
-											<Col
-												lg={8}
-												xl={8}
-												className='mb-4'>
-												<h3>Rental name</h3>
-												<Row>
-													<Col>
-														<input
-															type='text'
-															name='name'
-															id='name'
-															defaultValue={rental.name}
-															placeholder={rental.name}
-															onChange={handleInputChange}
-														/>
-													</Col>
-												</Row>
-											</Col>
-										</Row>
-									)}
 
-									<Row>
-										<Col
-											lg={10}
-											xl={8}
-											className='mb-4'>
-											<h3>Description</h3>
-											{isEditing ? (
-												<>
-													<textarea
-														name='description'
-														id='description'
-														defaultValue={rental.description}
-														onChange={handleInputChange}
-													/>
-												</>
-											) : (
-												<p>
-													{rental.description
-														? rental.description
-														: 'No description provided.'}
-												</p>
-											)}
-										</Col>
-									</Row>
 									<Row>
 										<Col className='mb-4'>
 											{rental.cancellation_policy && (
@@ -376,12 +373,6 @@ export default function Rental() {
 											)}
 										</Col>
 									</Row>
-
-									{successMessage && <Success>{successMessage}</Success>}
-
-									{errorUpdateRentalMessage && (
-										<Error>{errorUpdateRentalMessage}</Error>
-									)}
 
 									<Row className='mt-4'>
 										<Col className='pe-md-1'>
@@ -397,8 +388,7 @@ export default function Rental() {
 														confirmDelete && setConfirmDelete(false);
 													}}
 													iconLeft={<Pen />}>
-													{' '}
-													Edit{' '}
+													Edit
 												</Button>
 											) : (
 												<Button
@@ -409,11 +399,11 @@ export default function Rental() {
 														setIsEditing(false);
 													}}
 													iconLeft={<FloppyFill />}>
-													{' '}
-													Save{' '}
+													Save
 												</Button>
 											)}
 										</Col>
+
 										<Col className='ps-md-1 mb-3'>
 											{!isEditing && !confirmDelete ? (
 												<Button
@@ -424,6 +414,7 @@ export default function Rental() {
 													iconLeft={<Trash />}
 													onClick={() => {
 														setConfirmDelete(true);
+														setSuccessMessage(undefined)
 													}}>
 													Delete
 												</Button>
@@ -441,6 +432,12 @@ export default function Rental() {
 											)}
 										</Col>
 									</Row>
+
+									{successMessage && <Success>{successMessage}</Success>}
+
+									{errorUpdateRentalMessage && (
+										<Error>{errorUpdateRentalMessage}</Error>
+									)}
 
 									{confirmDelete && (
 										<Row>
