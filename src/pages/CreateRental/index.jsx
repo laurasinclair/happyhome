@@ -84,8 +84,6 @@ export default function CreateRental() {
 		}));
 	};
 
-	console.log(isSubmitted)
-
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
@@ -306,11 +304,11 @@ export default function CreateRental() {
 
 								<input
 									type='range'
-									id='score'
-									name='score'
-									min={1}
-									max={1000}
-									step={1}
+									id='review_scores_rating'
+									name='review_scores_rating'
+									min={0}
+									max={100}
+									step={5}
 									value={formData.review_scores_rating}
 									onChange={handleInputChange}
 								/>

@@ -53,7 +53,6 @@ export default function Rental() {
 	}, []);
 
 	// editing
-
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setFormData((prevData) => ({
@@ -113,7 +112,10 @@ export default function Rental() {
 				<Container fluid>
 					<Row>
 						<Col className='p-4'>
-							<BackButton />
+							<BackButton
+								label='Back to all rentals'
+								to='/rentals'
+							/>
 						</Col>
 					</Row>
 
@@ -150,9 +152,7 @@ export default function Rental() {
 
 												<RentalImage
 													picture_url={rental.picture_url}
-													rentalName={
-														rental.name ? rental.name : 'Name unknown'
-													}
+													rentalName={rental.name || 'Name unknown'}
 												/>
 											</div>
 										</Col>
@@ -163,7 +163,7 @@ export default function Rental() {
 													className={
 														styles.Rental_item_characteristics_tag_text
 													}>
-													<p>{rental._id ? rental._id : 'ID unknown'}</p>
+													<p>{rental._id || 'ID unknown'}</p>
 												</div>
 											</div>
 
@@ -176,9 +176,7 @@ export default function Rental() {
 													{!isEditing ? (
 														<p>
 															<strong>
-																{rental.country
-																	? rental.country
-																	: 'Country unknown'}
+																{rental.country || 'Country unknown'}
 															</strong>
 														</p>
 													) : (
@@ -203,9 +201,7 @@ export default function Rental() {
 													}>
 													{!isEditing ? (
 														<p>
-															<strong>
-																{rental.city ? rental.city : 'City unknown'}
-															</strong>
+															<strong>{rental.city || 'City unknown'}</strong>
 															{rental.neighbourhood
 																? ' 📍 ' + rental.neighbourhood
 																: null}
@@ -313,11 +309,12 @@ export default function Rental() {
 
 													<input
 														type='range'
-														id='score'
-														min='1'
-														max='100'
-														defaultValue={formData.review_scores_rating}
-														name='score'
+														id='review_scores_rating'
+														name='review_scores_rating'
+														min={0}
+														max={100}
+														step={5}
+														value={formData.review_scores_rating}
 														onChange={handleInputChange}
 													/>
 												</div>
