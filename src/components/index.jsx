@@ -9,6 +9,7 @@ import NumberBlock from './elements/NumberBlock'
 import Hero from './layout/Hero'
 import SideBar from './layout/SideBar'
 import Footer from './layout/Footer'
+import Block from './layout/Block'
 
 // Rental-specfic
 import Search from './rentals/Search/Search'
@@ -25,7 +26,7 @@ import Warning from './states/Warning'
 
 export {
     Button, BackButton, Logo, Icons, NumberBlock,
-    Hero, SideBar, Footer,
+    Hero, SideBar, Footer, Block,
     Search, RentalScore, RentalImage, Filter, Stats,
     Loading, Success, Error, Warning
 }

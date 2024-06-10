@@ -9,6 +9,7 @@ import { Bed, Bathtub, People, PriceTag, ID } from '@components/elements/Icons';
 import styles from './index.module.sass';
 import {
 	Hero,
+	Block,
 	NumberBlock,
 	Button,
 	BackButton,
@@ -130,20 +131,20 @@ export default function Rental() {
 									<Col>
 										<Hero
 											category='Rental'
-											title={rental.name ? rental.name : 'Name unknown'}
+											title={rental.name || 'Name unknown'}
 											size='s'
 										/>
 									</Col>
 								</Row>
 
-								<div className={styles.Rental_item}>
+								<Block>
 									<Row className='mb-4'>
 										<Col
 											md={6}
 											className='mb-4'>
-											<div className={styles.Rental_item_thumbnail}>
+											<div className={styles.rentalItem_thumbnail}>
 												{rental.review_scores_rating && (
-													<div className={styles.Rental_item_thumbnail_score}>
+													<div className={styles.rentalItem_thumbnail_score}>
 														<RentalScore
 															review_scores_rating={rental.review_scores_rating}
 														/>
@@ -157,21 +158,21 @@ export default function Rental() {
 											</div>
 										</Col>
 										<Col>
-											<div className={styles.Rental_item_characteristics_tag}>
+											<div className={styles.rentalItem_characteristics_tag}>
 												<ID size={28} />
 												<div
 													className={
-														styles.Rental_item_characteristics_tag_text
+														styles.rentalItem_characteristics_tag_text
 													}>
 													<p>{rental._id || 'ID unknown'}</p>
 												</div>
 											</div>
 
-											<div className={styles.Rental_item_characteristics_tag}>
+											<div className={styles.rentalItem_characteristics_tag}>
 												<Globe size={26} />
 												<div
 													className={
-														styles.Rental_item_characteristics_tag_text
+														styles.rentalItem_characteristics_tag_text
 													}>
 													{!isEditing ? (
 														<p>
@@ -192,12 +193,12 @@ export default function Rental() {
 												</div>
 											</div>
 
-											<div className={styles.Rental_item_characteristics_tag}>
+											<div className={styles.rentalItem_characteristics_tag}>
 												<Map size={24} />
 
 												<div
 													className={
-														styles.Rental_item_characteristics_tag_text
+														styles.rentalItem_characteristics_tag_text
 													}>
 													{!isEditing ? (
 														<p>
@@ -219,14 +220,14 @@ export default function Rental() {
 												</div>
 											</div>
 
-											<div className={styles.Rental_item_characteristics_tag}>
+											<div className={styles.rentalItem_characteristics_tag}>
 												<PriceTag
 													size={24}
 													className='me-2'
 												/>
 												<div
 													className={
-														styles.Rental_item_characteristics_tag_text
+														styles.rentalItem_characteristics_tag_text
 													}>
 													{!isEditing ? (
 														<p>
@@ -463,7 +464,7 @@ export default function Rental() {
 											</Col>
 										</Row>
 									)}
-								</div>
+								</Block>
 							</>
 						)
 					)}
