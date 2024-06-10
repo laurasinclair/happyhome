@@ -12,9 +12,8 @@ import Footer from './layout/Footer'
 
 // Rental-specfic
 import Search from './rentals/Search/Search'
-import RentalCard from './rentals/RentalCard/RentalCard'
-import RentalCardScore from './rentals/RentalCard/RentalCardScore'
-import RentalCardImage from './rentals/RentalCard/RentalCardImage'
+import RentalScore from './rentals/RentalScore'
+import RentalImage from './rentals/RentalImage'
 import Filter from './rentals/Filter/Filter'
 import Stats from './rentals/Stats'
 
@@ -27,6 +26,6 @@ import Warning from './states/Warning'
 export {
     Button, BackButton, Logo, Icons, NumberBlock,
     Hero, SideBar, Footer,
-    Search, RentalCard, RentalCardScore, RentalCardImage, Filter, Stats,
+    Search, RentalScore, RentalImage, Filter, Stats,
     Loading, Success, Error, Warning
 }

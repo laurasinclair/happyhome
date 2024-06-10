@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-import styles from './index.module.sass';
+
 import classNames from 'classnames';
+
+import styles from './index.module.sass';
 
 export default function Button({ to, children, type = 'primary', fullWidth = false, iconRight, iconLeft, onClick, className }) {
     const typeStyles = {

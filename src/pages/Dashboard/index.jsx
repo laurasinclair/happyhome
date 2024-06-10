@@ -1,11 +1,10 @@
 import React from 'react';
-import styles from './index.module.sass';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Stats, Loading } from '@components';
-import { Hero } from '@components';
-import { useRentalsContext } from '@context';
 import { Link } from 'react-router-dom';
+
+import { Container, Row, Col } from 'react-bootstrap';
 import { HouseAdd, Houses } from 'react-bootstrap-icons';
+
+import { Stats, Hero } from '@components';
 
 function Dashboard() {
 	return (
@@ -27,7 +26,10 @@ function Dashboard() {
 						<Link
 							to='/rentals'
 							className='cta'>
-								<Houses size="38" className="mb-2" />
+							<Houses
+								size='38'
+								className='mb-2'
+							/>
 							Manage your rentals
 						</Link>
 					</Col>
@@ -35,7 +37,10 @@ function Dashboard() {
 						<Link
 							to='/add-rental'
 							className='cta'>
-							<HouseAdd size="38" className="mb-2" />
+							<HouseAdd
+								size='38'
+								className='mb-2'
+							/>
 							Add a new rental
 						</Link>
 					</Col>

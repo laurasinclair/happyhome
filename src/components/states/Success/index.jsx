@@ -1,7 +1,9 @@
 import React from 'react';
-import styles from './index.module.sass';
+
 import { Check } from 'react-bootstrap-icons';
 import classNames from 'classnames';
+
+import styles from './index.module.sass';
 
 function Success({ children, className }) {
 	return (

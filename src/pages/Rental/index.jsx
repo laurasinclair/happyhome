@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
-import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Trash, Pen, FloppyFill, X, Globe, Map } from 'react-bootstrap-icons';
 
@@ -12,8 +12,8 @@ import {
 	NumberBlock,
 	Button,
 	BackButton,
-	RentalCardScore,
-	RentalCardImage,
+	RentalScore,
+	RentalImage,
 	Loading,
 	Error,
 	Success,
@@ -142,13 +142,13 @@ export default function Rental() {
 											<div className={styles.Rental_item_thumbnail}>
 												{rental.review_scores_rating && (
 													<div className={styles.Rental_item_thumbnail_score}>
-														<RentalCardScore
+														<RentalScore
 															review_scores_rating={rental.review_scores_rating}
 														/>
 													</div>
 												)}
 
-												<RentalCardImage
+												<RentalImage
 													picture_url={rental.picture_url}
 													rentalName={
 														rental.name ? rental.name : 'Name unknown'
@@ -316,7 +316,7 @@ export default function Rental() {
 														id='score'
 														min='1'
 														max='100'
-														value={formData.review_scores_rating}
+														defaultValue={formData.review_scores_rating}
 														name='score'
 														onChange={handleInputChange}
 													/>

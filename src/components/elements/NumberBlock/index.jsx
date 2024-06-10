@@ -9,12 +9,13 @@ function NumberBlock({ setFormData, icon, keyName, value, words }) {
 				{keyName && value && (
 					<button
 						className={styles.numberBlock_btn}
-						onClick={() =>
+						onClick={(e) => {
+							e.preventDefault();
 							setFormData((prev) => ({
 								...prev,
 								[keyName]: value > 1 ? value - 1 : 1,
-							}))
-						}>
+							}));
+						}}>
 						-
 					</button>
 				)}
@@ -29,12 +30,13 @@ function NumberBlock({ setFormData, icon, keyName, value, words }) {
 				{keyName && value && (
 					<button
 						className={styles.numberBlock_btn}
-						onClick={() =>
+						onClick={(e) => {
+							e.preventDefault();
 							setFormData((prev) => ({
 								...prev,
 								[keyName]: value >= 1 ? value + 1 : 1,
-							}))
-						}>
+							}));
+						}}>
 						+
 					</button>
 				)}
