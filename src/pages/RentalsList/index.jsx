@@ -122,7 +122,7 @@ export default function RentalsList() {
 							Add rental
 						</Button>
 
-						<div
+						{/* <div
 							className={classNames(
 								'd-flex justify-content-between align-items-center',
 								{ 'w-100': viewportSm }
@@ -141,7 +141,7 @@ export default function RentalsList() {
 							<Button className='ms-1'>
 								<SortDown size='20' />
 							</Button>
-						</div>
+						</div> */}
 					</Col>
 				</Row>
 
