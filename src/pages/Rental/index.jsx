@@ -113,7 +113,10 @@ export default function Rental() {
 				<Container fluid>
 					<Row>
 						<Col className='p-4'>
-							<BackButton />
+							<BackButton
+								label='Back to all rentals'
+								to='/rentals'
+							/>
 						</Col>
 					</Row>
 

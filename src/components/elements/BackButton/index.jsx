@@ -1,20 +1,16 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { ArrowLeftShort } from 'react-bootstrap-icons'
+import { ArrowLeftShort } from 'react-bootstrap-icons';
 
-import styles from './index.module.sass'
+import styles from './index.module.sass';
 
-export default function BackButton() {
-	const navigate = useNavigate()
-
+export default function BackButton({ label, to }) {
 	return (
 		<Link
-			onClick={() => {
-				navigate(-1)
-			}}
+			to={to || -1}
 			className={styles.backbutton}>
-			<ArrowLeftShort size="26" /> Back to previous page
+			<ArrowLeftShort size='26' /> {label || 'Back to previous page'}
 		</Link>
-	)
+	);
 }
