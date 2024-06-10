@@ -2,34 +2,32 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
+import classNames from 'classnames';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { Button, Hero, Success, Error, NumberBlock } from '@components';
 import styles from './index.module.sass';
-import {
-	Bed,
-	Bathtub,
-	People
-} from '@components/elements/Icons';
+import { Bed, Bathtub, People } from '@components/elements/Icons';
 
 export default function CreateRental() {
-	const [successMessage, setSuccessMessage] = useState(undefined),
-		[errorMessage, setErrorMessage] = useState(undefined),
-		[linkToRental, setLinkToRental] = useState(undefined);
+	const [successMessage, setSuccessMessage] = useState(''),
+		[errorMessage, setErrorMessage] = useState(''),
+		[isSubmitted, setIsSubmitted] = useState(false),
+		[linkToRental, setLinkToRental] = useState('');
 
 	const [formData, setFormData] = useState({
-		name: undefined,
-		country: undefined,
-		city: undefined,
-		description: undefined,
+		name: '',
+		country: '',
+		city: '',
+		description: '',
 		review_scores_rating: 80,
-		pictureUrl: undefined,
+		pictureUrl: '',
 		accommodates: 2,
-		propertyType: undefined,
-		roomType: undefined,
+		propertyType: '',
+		roomType: '',
 		beds: 1,
 		bathrooms: 1,
-		price: undefined,
+		price: '',
 		cancellationPolicy: 'Strict',
 	});
 
@@ -41,23 +39,40 @@ export default function CreateRental() {
 					if (res.status === 201) {
 						setSuccessMessage('Rental successfully created!');
 						setLinkToRental(res.data._id);
-						setErrorMessage(undefined);
+						setErrorMessage('');
+
+						setFormData({
+							name: '',
+							country: '',
+							city: '',
+							description: '',
+							review_scores_rating: 80,
+							pictureUrl: '',
+							accommodates: 2,
+							propertyType: '',
+							roomType: '',
+							beds: 1,
+							bathrooms: 1,
+							price: '',
+						});
+						setIsSubmitted(false)
 					}
 				})
 				.catch((error) => {
-					setIsValid(false);
+					setSuccessMessage('');
 
 					setErrorMessage(
 						'Error adding rental - ' + error.response.data.errors[0]
 					);
-
-					setTimeout(() => {
-						setErrorMessage(undefined);
-					}, 4000);
 				});
 		} catch (error) {
 			setErrorMessage('Error adding rental');
 		}
+	};
+
+	const handleInputFocus = (e) => {
+		setIsSubmitted((prev) => prev ? !prev : prev)
+		setErrorMessage('')
 	};
 
 	const handleInputChange = (e) => {
@@ -67,12 +82,9 @@ export default function CreateRental() {
 			...prevData,
 			[name]: value,
 		}));
-
-
-	console.log('formData.review_scores_rating', formData.review_scores_rating)
-
 	};
 
+	console.log(isSubmitted)
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -81,20 +93,7 @@ export default function CreateRental() {
 			...formData,
 		});
 
-		setFormData({
-			name: undefined,
-			country: undefined,
-			city: undefined,
-			description: undefined,
-			review_scores_rating: 80,
-			pictureUrl: undefined,
-			accommodates: 2,
-			propertyType: undefined,
-			roomType: undefined,
-			beds: 1,
-			bathrooms: 1,
-			price: undefined,
-		});
+		setIsSubmitted(true)
 	};
 
 	return (
@@ -129,6 +128,8 @@ export default function CreateRental() {
 									placeholder='Rental name'
 									value={formData.name}
 									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+									className={isSubmitted && 'invalid'}
 								/>
 							</div>
 						</Col>
@@ -146,6 +147,8 @@ export default function CreateRental() {
 									placeholder='Country'
 									value={formData.country}
 									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+									className={isSubmitted && 'invalid'}
 									required
 								/>
 							</div>
@@ -164,6 +167,8 @@ export default function CreateRental() {
 									placeholder='City'
 									value={formData.city}
 									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+									className={isSubmitted && 'invalid'}
 									required
 								/>
 							</div>
@@ -269,6 +274,8 @@ export default function CreateRental() {
 									placeholder='This property is fantastic because...'
 									value={formData.description}
 									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+									className={isSubmitted && 'invalid'}
 									required
 								/>
 							</div>
@@ -286,6 +293,9 @@ export default function CreateRental() {
 									placeholder='40'
 									value={formData.price}
 									onChange={handleInputChange}
+									onFocus={handleInputFocus}
+									className={isSubmitted && 'invalid'}
+									required
 								/>
 							</div>
 						</Col>
@@ -298,9 +308,10 @@ export default function CreateRental() {
 									type='range'
 									id='score'
 									name='score'
-									min='1'
-									max='100'
-									defaultValue={formData.review_scores_rating}
+									min={1}
+									max={1000}
+									step={1}
+									value={formData.review_scores_rating}
 									onChange={handleInputChange}
 								/>
 							</div>
@@ -313,8 +324,9 @@ export default function CreateRental() {
 								className='btn-primary'
 								type='submit'
 								value='Add rental'
-								onClick={handleSubmit}
-							>Add rental</Button>
+								onClick={handleSubmit}>
+								Add rental
+							</Button>
 						</Col>
 					</Row>
 

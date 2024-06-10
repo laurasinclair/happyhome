@@ -26,6 +26,9 @@ input, textarea, select
 	font-family: $font-family-sans-serif
 	border-radius: 4px
 	border: 1px solid $primary-light-2
+	&.invalid
+		&:invalid
+			border: 2px solid $pink !important
 	&[type=submit]
 		cursor: pointer
 	&:focus
@@ -46,6 +49,8 @@ input, textarea, select
 		transition: opacity .2s
 		&:hover
 			opacity: 1
+		&:focus
+			outline: none !important
 		&::-webkit-slider-thumb
 			-webkit-appearance: none
 			appearance: none
