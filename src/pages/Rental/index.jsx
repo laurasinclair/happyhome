@@ -324,6 +324,28 @@ export default function Rental() {
 											</Col>
 										</Row>
 									)}
+									{isEditing && (
+										<Row>
+											<Col
+												lg='8'
+												xl='8'
+												className='mb-4'>
+												<h3>Rental name</h3>
+												<Row>
+													<Col>
+														<input
+															type='text'
+															name='name'
+															id='name'
+															defaultValue={rental.name}
+															placeholder={rental.name}
+															onChange={handleInputChange}
+														/>
+													</Col>
+												</Row>
+											</Col>
+										</Row>
+									)}
 
 									<Row>
 										<Col
