@@ -346,7 +346,7 @@ export default function Rental() {
 
 									<Row>
 										<Col
-											lg={8}
+											lg={10}
 											xl={8}
 											className='mb-4'>
 											<h3>Description</h3>
