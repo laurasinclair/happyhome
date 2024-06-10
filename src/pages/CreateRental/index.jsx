@@ -1,20 +1,16 @@
-import styles from './index.module.sass';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Button, Success, Error } from '@components';
-import { Hero } from '@components';
 import { useState } from 'react';
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+
+import { Container, Row, Col } from 'react-bootstrap';
+
+import { Button, Hero, Success, Error, NumberBlock } from '@components';
+import styles from './index.module.sass';
 import {
 	Bed,
 	Bathtub,
-	Clock,
-	People,
-	PriceTag,
-	ID,
+	People
 } from '@components/elements/Icons';
-import classNames from 'classnames';
 
 export default function CreateRental() {
 	const [successMessage, setSuccessMessage] = useState(undefined),
@@ -49,7 +45,7 @@ export default function CreateRental() {
 					}
 				})
 				.catch((error) => {
-					setIsValid(false)
+					setIsValid(false);
 
 					setErrorMessage(
 						'Error adding rental - ' + error.response.data.errors[0]
@@ -66,11 +62,16 @@ export default function CreateRental() {
 
 	const handleInputChange = (e) => {
 		const { name, value } = e.target;
+
 		setFormData((prevData) => ({
 			...prevData,
 			[name]: value,
 		}));
+
+	console.log('formData.beds', formData.beds)
+
 	};
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -221,113 +222,35 @@ export default function CreateRental() {
 						<Col
 							sm='6'
 							md='4'>
-							<div className={styles.Rental_item_stuff}>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											accommodates:
-												prev.accommodates > 1 ? prev.accommodates - 1 : 1,
-										}))
-									}>
-									-
-								</button>
-								<div className={styles.Rental_item_stuff_content}>
-									<div className={styles.Rental_item_stuff_content_icon}>
-										<People />
-									</div>
-									<p>
-										{formData.accommodates &&
-											`${formData.accommodates} ${
-												formData.accommodates <= 1 ? 'person' : 'people'
-											}`}
-									</p>
-								</div>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											accommodates:
-												prev.accommodates === 0 ? 0 : prev.accommodates + 1,
-										}))
-									}>
-									+
-								</button>
-							</div>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='accommodates'
+								value={formData.accommodates}
+								icon={<People />}
+								words={['person', 'people']}
+							/>
 						</Col>
 						<Col
 							sm='6'
 							md='4'>
-							<div className={styles.Rental_item_stuff}>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											beds: prev.beds > 1 ? prev.beds - 1 : 1,
-										}))
-									}>
-									-
-								</button>
-								<div className={styles.Rental_item_stuff_content}>
-									<div className={styles.Rental_item_stuff_content_icon}>
-										<Bed />
-									</div>
-									<p>
-										{formData.beds &&
-											`${formData.beds} ${formData.beds <= 1 ? 'bed' : 'beds'}`}
-									</p>
-								</div>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											beds: prev.beds === 0 ? 0 : prev.beds + 1,
-										}))
-									}>
-									+
-								</button>
-							</div>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='beds'
+								value={formData.beds}
+								icon={<Bed />}
+								words={['bed', 'beds']}
+							/>
 						</Col>
 						<Col
 							sm='6'
 							md='4'>
-							<div className={styles.Rental_item_stuff}>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											bathrooms: prev.bathrooms > 1 ? prev.bathrooms - 1 : 1,
-										}))
-									}>
-									-
-								</button>
-								<div className={styles.Rental_item_stuff_content}>
-									<div className={styles.Rental_item_stuff_content_icon}>
-										<Bathtub />
-									</div>
-									<p>
-										{formData.bathrooms &&
-											`${formData.bathrooms} ${
-												formData.bathrooms <= 1 ? 'bathroom' : 'bathrooms'
-											}`}
-									</p>
-								</div>
-								<button
-									className={styles.Rental_item_stuff_btn}
-									onClick={() =>
-										setFormData((prev) => ({
-											...prev,
-											bathrooms: prev.bathrooms === 0 ? 0 : prev.bathrooms + 1,
-										}))
-									}>
-									+
-								</button>
-							</div>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='bathrooms'
+								value={formData.bathrooms}
+								icon={<Bathtub />}
+								words={['bathroom', 'bathrooms']}
+							/>
 						</Col>
 					</Row>
 
@@ -351,7 +274,9 @@ export default function CreateRental() {
 						</Col>
 						<Col sm='12'>
 							<div>
-								<label htmlFor='price'>Price in EUR per night <span aria-label='required'>*</span></label>
+								<label htmlFor='price'>
+									Price in EUR per night <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									name='price'
@@ -384,11 +309,12 @@ export default function CreateRental() {
 
 					<Row>
 						<Col>
-							<input
+							<Button
 								className='btn-primary'
 								type='submit'
 								value='Add rental'
-							/>
+								onClick={handleSubmit}
+							>Add rental</Button>
 						</Col>
 					</Row>
 
