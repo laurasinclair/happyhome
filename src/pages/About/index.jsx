@@ -6,12 +6,8 @@ import { Hero, Container } from '@components';
 
 export default function About() {
 	return (
-		<Container className="gx-5" fluid>
-			<Row>
-				<Col>
-					<Hero title='About this project' />
-				</Col>
-			</Row>
+		<Container>
+			<Hero title='About this project' />
 
 			<section>
 				<Row>

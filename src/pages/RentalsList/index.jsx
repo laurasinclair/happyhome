@@ -39,7 +39,9 @@ export default function RentalsList() {
 	const location = useLocation();
 	const params = new URLSearchParams(location.search);
 	const [currentPage, setCurrentPage] = useState(params.get('page') || 1);
-	const [rentalsPerPage, setRentalsPerPage] = useState(params.get('pageSize') || 10);
+	const [rentalsPerPage, setRentalsPerPage] = useState(
+		params.get('pageSize') || 10
+	);
 
 	const fetchRentals = async (page, rentalsPerPage) => {
 		try {
@@ -52,9 +54,7 @@ export default function RentalsList() {
 			setRentals(paginatedRentals);
 			setTotalPages(totalPages);
 			setLoading(false);
-			navigate(
-				`/rentals?page=${page}&pageSize=${rentalsPerPage}`
-			);
+			navigate(`/rentals?page=${page}&pageSize=${rentalsPerPage}`);
 		} catch (error) {
 			console.error('❌', error.message);
 		}
@@ -103,15 +103,11 @@ export default function RentalsList() {
 
 	return (
 		<>
-			<Container className="gx-5" fluid>
-				<Row>
-					<Col>
-						<Hero
-							title='Properties list'
-							size='m'
-						/>
-					</Col>
-				</Row>
+			<Container>
+				<Hero
+					title='Properties list'
+					size='m'
+				/>
 
 				<Row>
 					<Col className='d-flex justify-content-between align-items-center flex-column flex-sm-row mb-4'>
@@ -296,7 +292,7 @@ export default function RentalsList() {
 				</div>
 			</div>
 
-			<Container className="gx-5" fluid>
+			<Container>
 				<div className={styles.pagination}>
 					<button
 						onClick={handlePrevPage}

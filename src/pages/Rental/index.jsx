@@ -111,7 +111,7 @@ export default function Rental() {
 	return (
 		<>
 			<section className={styles.Rental}>
-				<Container className="gx-5" fluid>
+				<Container>
 					<Row>
 						<Col className='p-4'>
 							<BackButton
@@ -128,15 +128,11 @@ export default function Rental() {
 					) : (
 						rental && (
 							<>
-								<Row>
-									<Col>
-										<Hero
-											category='Rental'
-											title={rental.name || 'Name unknown'}
-											size='s'
-										/>
-									</Col>
-								</Row>
+								<Hero
+									category='Rental'
+									title={rental.name || 'Name unknown'}
+									size='s'
+								/>
 
 								<Block>
 									<Row className='mb-4'>

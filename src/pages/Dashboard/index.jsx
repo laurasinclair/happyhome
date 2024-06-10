@@ -8,16 +8,12 @@ import { Container, Stats, Hero } from '@components';
 
 function Dashboard() {
 	return (
-		<Container className="gx-5" fluid>
-			<Row>
-				<Col>
-					<Hero
-						title='Dashboard'
-						size='m'
-						leadText="Welcome aboard! Hope you're having a beautiful day."
-					/>
-				</Col>
-			</Row>
+		<Container>
+			<Hero
+				title='Dashboard'
+				size='m'
+				leadText="Welcome aboard! Hope you're having a beautiful day."
+			/>
 
 			<section>
 				<h2 className='mb-4'>Quick actions</h2>

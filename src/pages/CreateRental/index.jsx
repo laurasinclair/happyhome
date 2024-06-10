@@ -95,22 +95,12 @@ export default function CreateRental() {
 
 	return (
 		<>
-			<Container
-				className='gx-5'
-				fluid>
-				<Row>
-					<Col>
-						<Hero
-							title='Add a new rental'
-							size='m'
-						/>
-					</Col>
-				</Row>
-			</Container>
+			<Container>
+				<Hero
+					title='Add a new rental'
+					size='m'
+				/>
 
-			<Container
-				className='gx-5'
-				fluid>
 				<Block>
 					<form
 						className={styles.CreateRental_form}
