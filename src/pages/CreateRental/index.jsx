@@ -14,6 +14,7 @@ import {
 	PriceTag,
 	ID,
 } from '@components/elements/Icons';
+import classNames from 'classnames';
 
 export default function CreateRental() {
 	const [successMessage, setSuccessMessage] = useState(undefined),
@@ -48,6 +49,8 @@ export default function CreateRental() {
 					}
 				})
 				.catch((error) => {
+					setIsValid(false)
+
 					setErrorMessage(
 						'Error adding rental - ' + error.response.data.errors[0]
 					);
@@ -112,7 +115,9 @@ export default function CreateRental() {
 					<Row className='mb-3'>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='name'>Name</label>
+								<label htmlFor='name'>
+									Name <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									required
@@ -128,7 +133,9 @@ export default function CreateRental() {
 
 						<Col sm='6'>
 							<div>
-								<label htmlFor='country'>Country</label>
+								<label htmlFor='country'>
+									Country <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									name='country'
@@ -144,7 +151,9 @@ export default function CreateRental() {
 
 						<Col sm='6'>
 							<div>
-								<label htmlFor='city'>City</label>
+								<label htmlFor='city'>
+									City <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									name='city'
@@ -173,7 +182,9 @@ export default function CreateRental() {
 						</Col>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='image'>Property type</label>
+								<label htmlFor='image'>
+									Property type <span aria-label='required'>*</span>
+								</label>
 
 								<select
 									id='title'
@@ -189,12 +200,15 @@ export default function CreateRental() {
 						</Col>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='image'>Room type</label>
+								<label htmlFor='image'>
+									Room type <span aria-label='required'>*</span>
+								</label>
 
 								<select
 									id='title'
 									name='title'
-									onChange={handleInputChange}>
+									onChange={handleInputChange}
+									required>
 									<option value='Please choose'>Please choose</option>
 									<option value='Single room'>Single room</option>
 									<option value='Shared room'>Shared room</option>
@@ -320,7 +334,9 @@ export default function CreateRental() {
 					<Row>
 						<Col sm='12'>
 							<div>
-								<label htmlFor='description'>Description</label>
+								<label htmlFor='description'>
+									Description <span aria-label='required'>*</span>
+								</label>
 
 								<textarea
 									name='description'
@@ -329,17 +345,18 @@ export default function CreateRental() {
 									placeholder='This property is fantastic because...'
 									value={formData.description}
 									onChange={handleInputChange}
+									required
 								/>
 							</div>
 						</Col>
 						<Col sm='12'>
 							<div>
-								<label htmlFor='price'>Price in EUR per night</label>
+								<label htmlFor='price'>Price in EUR per night <span aria-label='required'>*</span></label>
 
 								<input
 									name='price'
 									id='price'
-									type='text'
+									type='number'
 									placeholder='40'
 									value={formData.price}
 									onChange={handleInputChange}
