@@ -1,74 +1,99 @@
-import styles from './index.module.sass';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Button, Success, Error } from '@components';
-import { Hero } from '@components';
 import { useState } from 'react';
-const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+import { Container, Row, Col } from 'react-bootstrap';
+
+import { Button, Hero, Success, Error, NumberBlock } from '@components';
+import styles from './index.module.sass';
+import {
+	Bed,
+	Bathtub,
+	People
+} from '@components/elements/Icons';
+
 export default function CreateRental() {
-	const [name, setName] = useState(''),
-		[country, setCountry] = useState(''),
-		[city, setCity] = useState(''),
-		[description, setDescription] = useState(''),
-		[review_scores_rating, setScore] = useState(80),
-		[pictureUrl, setPictureUrl] = useState(''),
-		[accommodates, setAccommodates] = useState(0),
-		[propertyType, setPropertyType] = useState(''),
-		[roomType, setRoomType] = useState(''),
-		[beds, setBeds] = useState(0),
-		[bathrooms, setBathrooms] = useState(0),
-		[successMessage, setSuccessMessage] = useState(undefined),
+	const [successMessage, setSuccessMessage] = useState(undefined),
 		[errorMessage, setErrorMessage] = useState(undefined),
 		[linkToRental, setLinkToRental] = useState(undefined);
 
+	const [formData, setFormData] = useState({
+		name: undefined,
+		country: undefined,
+		city: undefined,
+		description: undefined,
+		review_scores_rating: 80,
+		pictureUrl: undefined,
+		accommodates: 2,
+		propertyType: undefined,
+		roomType: undefined,
+		beds: 1,
+		bathrooms: 1,
+		price: undefined,
+		cancellationPolicy: 'Strict',
+	});
+
 	const handleAddRental = (req) => {
 		try {
-			axios.post(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`, req).then((res) => {
-				if (res.status === 201) {
-					setSuccessMessage('Rental successfully created!');
-					setLinkToRental(res.data._id);
-				}
-			});
+			axios
+				.post(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals`, req)
+				.then((res) => {
+					if (res.status === 201) {
+						setSuccessMessage('Rental successfully created!');
+						setLinkToRental(res.data._id);
+						setErrorMessage(undefined);
+					}
+				})
+				.catch((error) => {
+					setIsValid(false);
+
+					setErrorMessage(
+						'Error adding rental - ' + error.response.data.errors[0]
+					);
+
+					setTimeout(() => {
+						setErrorMessage(undefined);
+					}, 4000);
+				});
 		} catch (error) {
-			setErrorMessage('Error adding rental')
+			setErrorMessage('Error adding rental');
 		}
 	};
 
-	const handleNameInput = (e) => setName(e.target.value),
-		handleCountryInput = (e) => setCountry(e.target.value),
-		handleCityInput = (e) => setCity(e.target.value),
-		handleDescriptionInput = (e) => setDescription(e.target.value),
-		handleScoreInput = (e) => setScore(e.target.value),
-		handleImageInput = (e) => setPictureUrl(e.target.value),
-		handleRoomType = (e) => setRoomType(e.target.value),
-		handleAccommodatesInput = (e) => setAccommodates(e.target.value),
-		handlePropertyType = (e) => setPropertyType(e.target.value),
-		handleBedsInput = (e) => setBeds(e.target.value);
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+
+	console.log('formData.beds', formData.beds)
+
+	};
+
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
 		handleAddRental({
-			name: name || 'Name not provided :(',
-			country: country,
-			city: city,
-			description: description || 'Description not provided :(',
-			review_scores_rating: review_scores_rating,
-			picture_url: pictureUrl,
-			accommodates: accommodates,
-			beds: beds,
-			bathrooms: bathrooms,
-			propertyType: propertyType,
+			...formData,
 		});
 
-		setName('');
-		setCountry('');
-		setCity('');
-		setDescription('');
-		setScore(80);
-		setPictureUrl('');
+		setFormData({
+			name: undefined,
+			country: undefined,
+			city: undefined,
+			description: undefined,
+			review_scores_rating: 80,
+			pictureUrl: undefined,
+			accommodates: 2,
+			propertyType: undefined,
+			roomType: undefined,
+			beds: 1,
+			bathrooms: 1,
+			price: undefined,
+		});
 	};
 
 	return (
@@ -91,7 +116,9 @@ export default function CreateRental() {
 					<Row className='mb-3'>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='name'>Name</label>
+								<label htmlFor='name'>
+									Name <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									required
@@ -99,23 +126,25 @@ export default function CreateRental() {
 									id='name'
 									type='text'
 									placeholder='Rental name'
-									value={name}
-									onChange={handleNameInput}
+									value={formData.name}
+									onChange={handleInputChange}
 								/>
 							</div>
 						</Col>
 
 						<Col sm='6'>
 							<div>
-								<label htmlFor='country'>Country</label>
+								<label htmlFor='country'>
+									Country <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									name='country'
 									id='country'
 									type='text'
 									placeholder='Country'
-									value={country}
-									onChange={handleCountryInput}
+									value={formData.country}
+									onChange={handleInputChange}
 									required
 								/>
 							</div>
@@ -123,15 +152,17 @@ export default function CreateRental() {
 
 						<Col sm='6'>
 							<div>
-								<label htmlFor='city'>City</label>
+								<label htmlFor='city'>
+									City <span aria-label='required'>*</span>
+								</label>
 
 								<input
 									name='city'
 									id='city'
 									type='text'
 									placeholder='City'
-									value={city}
-									onChange={handleCityInput}
+									value={formData.city}
+									onChange={handleInputChange}
 									required
 								/>
 							</div>
@@ -145,25 +176,24 @@ export default function CreateRental() {
 									id='image'
 									type='text'
 									placeholder='Image'
-									value={pictureUrl}
-									onChange={handleImageInput}
+									value={formData.pictureUrl}
+									onChange={handleInputChange}
 								/>
 							</div>
 						</Col>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='image'>Property type</label>
+								<label htmlFor='image'>
+									Property type <span aria-label='required'>*</span>
+								</label>
 
 								<select
 									id='title'
 									name='title'
-									onChange={handlePropertyType}
+									onChange={handleInputChange}
 									defaultValue='Please choose'
 									required>
-									<option
-										value='Please choose'>
-										Please choose
-									</option>
+									<option value='Please choose'>Please choose</option>
 									<option value='Apartment'>Apartment</option>
 									<option value='House'>House</option>
 								</select>
@@ -171,98 +201,97 @@ export default function CreateRental() {
 						</Col>
 						<Col sm='6'>
 							<div>
-								<label htmlFor='image'>Room type</label>
+								<label htmlFor='image'>
+									Room type <span aria-label='required'>*</span>
+								</label>
 
 								<select
 									id='title'
 									name='title'
-									onChange={handleRoomType}>
-									<option
-										value='Please choose'>
-										Please choose
-									</option>
+									onChange={handleInputChange}
+									required>
+									<option value='Please choose'>Please choose</option>
 									<option value='Single room'>Single room</option>
 									<option value='Shared room'>Shared room</option>
 								</select>
 							</div>
 						</Col>
-						<Col sm='6' md='4'>
-							<div>
-								<label htmlFor='image'>
-									How many people can this rental accommodate?
-								</label>
+					</Row>
 
-								<Button
-									type='secondary'
-									onClick={() =>
-										setAccommodates((prev) => (prev === 0 ? 0 : (prev -= 1)))
-									}>
-									-
-								</Button>
-								<div className='count'>{accommodates}</div>
-								<Button
-									type='secondary'
-									onClick={() => setAccommodates((prev) => (prev += 1))}>
-									+
-								</Button>
-							</div>
+					<Row>
+						<Col
+							sm='6'
+							md='4'>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='accommodates'
+								value={formData.accommodates}
+								icon={<People />}
+								words={['person', 'people']}
+							/>
 						</Col>
-						<Col sm='6' md='4'>
-							<div>
-								<label htmlFor='image'>Beds</label>
+						<Col
+							sm='6'
+							md='4'>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='beds'
+								value={formData.beds}
+								icon={<Bed />}
+								words={['bed', 'beds']}
+							/>
+						</Col>
+						<Col
+							sm='6'
+							md='4'>
+							<NumberBlock
+								setFormData={setFormData}
+								keyName='bathrooms'
+								value={formData.bathrooms}
+								icon={<Bathtub />}
+								words={['bathroom', 'bathrooms']}
+							/>
+						</Col>
+					</Row>
 
-								<Button
-									type='secondary'
-									onClick={() =>
-										setBeds((prev) => (prev === 0 ? 0 : (prev -= 1)))
-									}>
-									-
-								</Button>
-								<div className='count'>{beds}</div>
-								<Button
-									type='secondary'
-									onClick={() => setBeds((prev) => (prev += 1))}>
-									+
-								</Button>
-							</div>
-						</Col>
-						<Col sm='6' md='4'>
-							<div>
-								<label htmlFor='image'>Bathrooms</label>
-
-								<Button
-									type='secondary'
-									onClick={() =>
-										setBathrooms((prev) => (prev === 0 ? 0 : (prev -= 1)))
-									}>
-									-
-								</Button>
-								<div className='count'>{bathrooms}</div>
-								<Button
-									type='secondary'
-									onClick={() => setBathrooms((prev) => (prev += 1))}>
-									+
-								</Button>
-							</div>
-						</Col>
+					<Row>
 						<Col sm='12'>
 							<div>
-								<label htmlFor='description'>Description</label>
+								<label htmlFor='description'>
+									Description <span aria-label='required'>*</span>
+								</label>
 
 								<textarea
 									name='description'
 									id='description'
 									type='description'
 									placeholder='This property is fantastic because...'
-									value={description}
-									onChange={handleDescriptionInput}
+									value={formData.description}
+									onChange={handleInputChange}
+									required
 								/>
 							</div>
 						</Col>
-						<Col>
+						<Col sm='12'>
+							<div>
+								<label htmlFor='price'>
+									Price in EUR per night <span aria-label='required'>*</span>
+								</label>
+
+								<input
+									name='price'
+									id='price'
+									type='number'
+									placeholder='40'
+									value={formData.price}
+									onChange={handleInputChange}
+								/>
+							</div>
+						</Col>
+						<Col sm='12'>
 							<div>
 								<label htmlFor='score'>Rating</label>
-								<p>{review_scores_rating / 20}</p>
+								<p>{formData.review_scores_rating / 20}</p>
 
 								<input
 									type='range'
@@ -270,9 +299,9 @@ export default function CreateRental() {
 									min='1'
 									max='100'
 									list='markers'
-									value={review_scores_rating}
+									value={formData.review_scores_rating}
 									name='score'
-									onChange={handleScoreInput}
+									onChange={handleInputChange}
 								/>
 							</div>
 						</Col>
@@ -280,11 +309,12 @@ export default function CreateRental() {
 
 					<Row>
 						<Col>
-							<input
+							<Button
 								className='btn-primary'
 								type='submit'
 								value='Add rental'
-							/>
+								onClick={handleSubmit}
+							>Add rental</Button>
 						</Col>
 					</Row>
 
@@ -300,9 +330,7 @@ export default function CreateRental() {
 
 					{errorMessage && (
 						<>
-							<Error className='mt-4'>
-								{errorMessage}
-							</Error>
+							<Error className='mt-4'>{errorMessage}</Error>
 						</>
 					)}
 				</form>

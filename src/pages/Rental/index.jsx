@@ -1,17 +1,15 @@
-import { Hero } from '@components';
-import {
-	Bed,
-	Bathtub,
-	Clock,
-	People,
-	PriceTag,
-	ID,
-} from '@components/elements/Icons';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Trash, Pen, FloppyFill, X, Globe, Map } from 'react-bootstrap-icons';
+
+import { Bed, Bathtub, People, PriceTag, ID } from '@components/elements/Icons';
 import styles from './index.module.sass';
 import {
+	Hero,
+	NumberBlock,
 	Button,
 	BackButton,
 	RentalCardScore,
@@ -21,9 +19,6 @@ import {
 	Success,
 	Warning,
 } from '@components';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 export default function Rental() {
 	const [rental, setRental] = useState({}),
@@ -33,7 +28,8 @@ export default function Rental() {
 		[errorUpdateRentalMessage, setErrorUpdateRentalMessage] =
 			useState(undefined),
 		[isEditing, setIsEditing] = useState(false),
-		[confirmDelete, setConfirmDelete] = useState(false);
+		[confirmDelete, setConfirmDelete] = useState(false),
+		[formData, setFormData] = useState({});
 
 	const { rentalId } = useParams();
 	const navigate = useNavigate();
@@ -44,6 +40,7 @@ export default function Rental() {
 			.get(`${import.meta.env.VITE_MONGODB_BASEURL}/rentals/${rentalId}`)
 			.then((res) => {
 				setRental(res.data);
+				setFormData(res.data);
 				setLoading(false);
 			})
 			.catch((err) => {
@@ -56,10 +53,14 @@ export default function Rental() {
 	}, []);
 
 	// editing
-	const [description, setDescription] = useState(rental.description);
-	const [country, setCountry] = useState(rental.country);
-	const handleDescriptionInput = (e) => setDescription(e.target.value);
-	const handleCountry = (e) => setCountry(e.target.value);
+
+	const handleInputChange = (event) => {
+		const { name, value } = event.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value,
+		}));
+	};
 
 	const handleEditRental = (req) => {
 		axios
@@ -91,8 +92,7 @@ export default function Rental() {
 		e.preventDefault();
 
 		handleEditRental({
-			description: description,
-			country: country,
+			...formData,
 		});
 	};
 
@@ -157,106 +157,173 @@ export default function Rental() {
 											</div>
 										</Col>
 										<Col>
-											<div className={styles.Rental_item_characteristics}>
-												<div className={styles.Rental_item_characteristics_tag}>
-													<div>
-														<ID size='28' />
-													</div>
-													<p>{rental.id ? rental.id : 'id unknown'}</p>
+											<div className={styles.Rental_item_characteristics_tag}>
+												<ID size='28' />
+												<div
+													className={
+														styles.Rental_item_characteristics_tag_text
+													}>
+													<p>{rental._id ? rental._id : 'ID unknown'}</p>
 												</div>
+											</div>
 
-												<div className={styles.Rental_item_characteristics_tag}>
-													<Globe size='26' />
-													{isEditing ? (
-														<>
-															<input
-																type='text'
-																name='country'
-																id='country'
-																defaultValue={rental.country}
-																onChange={handleCountry}
-															/>
-														</>
-													) : (
+											<div className={styles.Rental_item_characteristics_tag}>
+												<Globe size='26' />
+												<div
+													className={
+														styles.Rental_item_characteristics_tag_text
+													}>
+													{!isEditing ? (
 														<p>
 															<strong>
 																{rental.country
 																	? rental.country
-																	: 'country unknown'}
+																	: 'Country unknown'}
 															</strong>
 														</p>
+													) : (
+														<input
+															type='text'
+															name='country'
+															id='country'
+															defaultValue={rental.country}
+															placeholder={rental.country}
+															onChange={handleInputChange}
+														/>
 													)}
 												</div>
+											</div>
 
-												<div className={styles.Rental_item_characteristics_tag}>
-													<Map size='24' />
-													<p>
-														<strong>
-															{rental.city ? rental.city : 'City unknown'}
-														</strong>
-														{rental.neighbourhood
-															? ' 📍 ' + rental.neighbourhood
-															: null}
-													</p>
+											<div className={styles.Rental_item_characteristics_tag}>
+												<Map size='24' />
+
+												<div
+													className={
+														styles.Rental_item_characteristics_tag_text
+													}>
+													{!isEditing ? (
+														<p>
+															<strong>
+																{rental.city ? rental.city : 'City unknown'}
+															</strong>
+															{rental.neighbourhood
+																? ' 📍 ' + rental.neighbourhood
+																: null}
+														</p>
+													) : (
+														<input
+															type='text'
+															name='city'
+															id='city'
+															defaultValue={rental.city}
+															placeholder={rental.city}
+															onChange={handleInputChange}
+														/>
+													)}
 												</div>
+											</div>
 
-												<div className={styles.Rental_item_characteristics_tag}>
-													<PriceTag
-														size='24'
-														className='me-2'
-													/>
-													<p>
-														{rental.price && (
-															<>
-																<strong>{rental.price}</strong>&nbsp;€ per night
-															</>
-														)}
-													</p>
+											<div className={styles.Rental_item_characteristics_tag}>
+												<PriceTag
+													size='24'
+													className='me-2'
+												/>
+												<div
+													className={
+														styles.Rental_item_characteristics_tag_text
+													}>
+													{!isEditing ? (
+														<p>
+															<strong>{rental.price}</strong>&nbsp;€ per night
+														</p>
+													) : (
+														<input
+															type='number'
+															name='price'
+															id='price'
+															defaultValue={rental.price}
+															placeholder={rental.price}
+															onChange={handleInputChange}
+														/>
+													)}
 												</div>
 											</div>
 										</Col>
 									</Row>
 									<Row className='mb-5'>
 										<Col>
-											<div className={styles.Rental_item_stuff}>
-												<div className={styles.Rental_item_stuff_icon}>
-													<Bed />
-												</div>
-												<p>
-													{rental.beds &&
-														`${rental.beds} ${
-															rental.beds <= 1 ? 'bed' : 'beds'
-														}`}
-												</p>
-											</div>
+											{!isEditing ? (
+												<NumberBlock
+													value={formData.beds}
+													icon={<Bed />}
+													words={['bed', 'beds']}
+												/>
+											) : (
+												<NumberBlock
+													setFormData={setFormData}
+													keyName='beds'
+													value={formData.beds}
+													icon={<Bed />}
+													words={['bed', 'beds']}
+												/>
+											)}
 										</Col>
 										<Col>
-											<div className={styles.Rental_item_stuff}>
-												<div className={styles.Rental_item_stuff_icon}>
-													<Bathtub />
-												</div>
-												<p>
-													{rental.bathrooms &&
-														`${rental.bathrooms} ${
-															rental.bathrooms <= 1 ? 'bathroom' : 'bathrooms'
-														}`}
-												</p>
-											</div>
+											{!isEditing ? (
+												<NumberBlock
+													value={formData.bathrooms}
+													icon={<Bathtub />}
+													words={['bathroom', 'bathrooms']}
+												/>
+											) : (
+												<NumberBlock
+													setFormData={setFormData}
+													keyName='bathrooms'
+													value={formData.bathrooms}
+													icon={<Bathtub />}
+													words={['bathroom', 'bathrooms']}
+												/>
+											)}
 										</Col>
 										<Col>
-											<div className={styles.Rental_item_stuff}>
-												<div className={styles.Rental_item_stuff_icon}>
-													<People />
-												</div>
-												<p>
-													{rental.accommodates &&
-														`${rental.accommodates} ${
-															rental.accommodates <= 1 ? 'person' : 'people'
-														}`}
-												</p>
-											</div>
+											{!isEditing ? (
+												<NumberBlock
+													value={formData.accommodates}
+													icon={<People />}
+													words={['person', 'people']}
+												/>
+											) : (
+												<NumberBlock
+													setFormData={setFormData}
+													keyName='accommodates'
+													value={formData.accommodates}
+													icon={<People />}
+													words={['person', 'people']}
+												/>
+											)}
 										</Col>
 									</Row>
+
+									{isEditing && (
+										<Row>
+											<Col sm='12'>
+												<div>
+													<label htmlFor='score'>Rating</label>
+													<p>{formData.review_scores_rating / 20}</p>
+
+													<input
+														type='range'
+														id='score'
+														min='1'
+														max='100'
+														value={formData.review_scores_rating}
+														name='score'
+														onChange={handleInputChange}
+													/>
+												</div>
+											</Col>
+										</Row>
+									)}
 
 									<Row>
 										<Col
@@ -270,7 +337,7 @@ export default function Rental() {
 														name='description'
 														id='description'
 														defaultValue={rental.description}
-														onChange={handleDescriptionInput}
+														onChange={handleInputChange}
 													/>
 												</>
 											) : (

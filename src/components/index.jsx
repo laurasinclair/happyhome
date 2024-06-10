@@ -3,6 +3,7 @@ import Button from './elements/Button'
 import BackButton from './elements/BackButton'
 import Logo from './elements/Logo'
 import Icons from './elements/Icons'
+import NumberBlock from './elements/NumberBlock'
 
 // Layout
 import Hero from './layout/Hero'
@@ -24,7 +25,7 @@ import Error from './states/Error'
 import Warning from './states/Warning'
 
 export {
-    Button, BackButton, Logo, Icons,
+    Button, BackButton, Logo, Icons, NumberBlock,
     Hero, SideBar, Footer,
     Search, RentalCard, RentalCardScore, RentalCardImage, Filter, Stats,
     Loading, Success, Error, Warning
