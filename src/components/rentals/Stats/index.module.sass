@@ -19,21 +19,16 @@
 		&_label
 			display: flex
 			align-items: center
-			@include media-breakpoint-up(lg)
-				flex: 1
-			h3
-				font-size: 1.8rem
-				padding: 14px 0
-				@include media-breakpoint-up(md)
-					padding: 20px 0
-					font-size: 2.4rem
-				@include media-breakpoint-up(lg)
-					padding: 0
-					margin-right: 100px
-					font-size: 2.8rem
+			&_title
 				color: $primary-light-2
 				span
 					color: $primary
+				padding: 14px 0
+				@include media-breakpoint-up(md)
+					padding: 20px 0
+				@include media-breakpoint-up(lg)
+					padding: 0
+					margin-right: 100px
 		&_chart
 			canvas
 				width: 100%

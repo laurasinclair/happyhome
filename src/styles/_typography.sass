@@ -5,7 +5,8 @@ p
 strong
 	font-weight: 900
 
-h1
+h1,
+.display-h1
 	margin-bottom: 1rem
 	font-weight: 900
 	line-height: 1.2
@@ -15,8 +16,18 @@ h1
 	@include media-breakpoint-up(lg)
 		font-size: 2.9rem
 
-h2
+h2,
+.display-h2
 	margin-bottom: 1rem
+	font-weight: 900
+	line-height: 1.2
+	font-size: 1.8rem
+	@include media-breakpoint-up(sm)
+		font-size: 2rem
+	@include media-breakpoint-up(lg)
+		font-size: 2.2rem
+	@include media-breakpoint-up(xl)
+		font-size: 2.4rem
 
 h3, h4
 	margin-bottom: 0.8rem

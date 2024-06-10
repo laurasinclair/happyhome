@@ -1,14 +1,14 @@
-import { Row, Col } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
-import { useRentalsContext } from '@context';
+
+import { Row, Col } from 'react-bootstrap';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import logo from '/src/assets/images/logo_happyhome_dark.svg';
-import styles from './index.module.sass';
-import { Loading } from '@components';
-import { useMediaPredicate } from "react-media-hook";
+import { useMediaPredicate } from 'react-media-hook';
 import classNames from 'classnames';
 import axios from 'axios';
+
+import styles from './index.module.sass';
+import { Loading, Block } from '@components';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -41,7 +41,7 @@ const House = (props) => (
 );
 
 export default function Stats() {
-	const mobileViewport = useMediaPredicate("(max-width: 728px)");
+	const mobileViewport = useMediaPredicate('(max-width: 728px)');
 
 	// https://www.chartjs.org/docs/latest/configuration
 
@@ -58,10 +58,10 @@ export default function Stats() {
 		// hoverBorderJoinStyle: 'round',
 
 		options: {
-			aspectRatio: 3
+			aspectRatio: 3,
 		},
 		layout: {
-			padding: 0
+			padding: 0,
 		},
 		plugins: {
 			legend: {
@@ -111,7 +111,7 @@ export default function Stats() {
 
 	useEffect(() => {
 		fetchRentals();
-	}, [])
+	}, []);
 
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
@@ -120,19 +120,23 @@ export default function Stats() {
 		}
 	}, [rentals]);
 
-	const rentalsPerCountry = rentals && rentals.reduce((acc, rental) => {
-		if (rental && rental.country) {
-			acc[rental.country] = (acc[rental.country] || 0) + 1;
-		}
-		return acc;
-	}, {});
+	const rentalsPerCountry =
+		rentals &&
+		rentals.reduce((acc, rental) => {
+			if (rental && rental.country) {
+				acc[rental.country] = (acc[rental.country] || 0) + 1;
+			}
+			return acc;
+		}, {});
 
-	const rentalsPerCity = rentals && rentals.reduce((acc, rental) => {
-		if (rental && rental.city) {
-			acc[rental.city] = (acc[rental.city] || 0) + 1;
-		}
-		return acc;
-	}, {});
+	const rentalsPerCity =
+		rentals &&
+		rentals.reduce((acc, rental) => {
+			if (rental && rental.city) {
+				acc[rental.city] = (acc[rental.city] || 0) + 1;
+			}
+			return acc;
+		}, {});
 
 	const [countriesData, setCountriesData] = useState({
 		labels: Object.keys(rentalsPerCountry),
@@ -204,98 +208,104 @@ export default function Stats() {
 
 	return (
 		<>
-			<Row className={classNames('gx4', styles.stats)}>
-				{loading ? (
-					<Col>
-						<Loading />
-					</Col>
-				) : error ? (
-					<Col>
-						<div>{error}</div>
-					</Col>
-				) : (
-					rentals && (
-						<>
-							<Col sm={12}>
-								<div className={styles.stats_block}>
-									<Row>
-										<Col
-											md={6}
-											lg={4}
-											className={styles.stats_block_label}>
-											<h3 className='mb-4'>
-												You're managing <span>{rentals.length}</span> rentals
-											</h3>
-										</Col>
-										<Col
-											md={6}
-											lg={8}
-											className={styles.stats_block_chart}>
-											{rentals &&
-												rentals.map((rental, index) => (
-													<House
-														fill={
-															index % 3 === 0
-																? '#253EC4'
-																: index % 3 === 1
-																? '#E8D3D5'
-																: '#DF927A'
-														}
-														key={rental.name + index}
-														width={mobileViewport ? '10%' : '5%'}
-													/>
-												))}
-										</Col>
-									</Row>
-								</div>
-							</Col>
-							<Col sm={6}>
-								<div className={styles.stats_block}>
-									<Row>
-										<Col
-											md={12}
-											className={styles.stats_block_label}>
-											<h3 className='mb-4'>
-												Where in the <span>world</span> are your rentals?
-											</h3>
-										</Col>
-										<Col
-											md={12}
+			{loading ? (
+				<Loading />
+			) : error ? (
+				<div>{error}</div>
+			) : (
+				rentals && (
+					<Row>
+						<Col sm={12}>
+							<Block className={styles.stats_block}>
+								<Row>
+									<Col
+										md={6}
+										lg={4}
+										className={styles.stats_block_label}>
+										<h3
 											className={classNames(
-												styles.stats_block_chart,
-												styles.stats_block_chart_countries
+												'display-h2',
+												styles.stats_block_label_title
 											)}>
-											<Doughnut data={countriesData} />
-										</Col>
-									</Row>
-								</div>
-							</Col>
+											You're managing <span>{rentals.length}</span> rentals
+										</h3>
+									</Col>
+									<Col
+										md={6}
+										lg={8}
+										className={styles.stats_block_chart}>
+										{rentals &&
+											rentals.map((rental, index) => (
+												<House
+													fill={
+														index % 3 === 0
+															? '#253EC4'
+															: index % 3 === 1
+															? '#E8D3D5'
+															: '#DF927A'
+													}
+													key={rental.name + index}
+													width={mobileViewport ? '10%' : '5%'}
+												/>
+											))}
+									</Col>
+								</Row>
+							</Block>
+						</Col>
+						<Col sm={6}>
+							<Block className={styles.stats_block}>
+								<Row>
+									<Col
+										md={12}
+										className={styles.stats_block_label}>
+										<h3
+											className={classNames(
+												'display-h2',
+												styles.stats_block_label_title
+											)}>
+											Where in the <span>world</span> are your rentals?
+										</h3>
+									</Col>
+									<Col
+										md={12}
+										className={classNames(
+											styles.stats_block_chart,
+											styles.stats_block_chart_countries
+										)}>
+										<Doughnut data={countriesData} />
+									</Col>
+								</Row>
+							</Block>
+						</Col>
 
-							<Col sm={6}>
-								<div className={styles.stats_block}>
-									<Row>
-										<Col
-											md={12}
-											className={styles.stats_block_label}>
-											<h3 className='mb-4'>
-												Which <span>city</span> are your rentals in?
-											</h3>
-										</Col>
-										<Col
-											md={12}
+						<Col sm={6}>
+							<Block className={styles.stats_block}>
+								<Row>
+									<Col
+										md={12}
+										className={styles.stats_block_label}>
+										<h3
 											className={classNames(
-												styles.stats_block_chart,
-												styles.stats_block_chart_cities
+												'display-h2',
+												styles.stats_block_label_title
 											)}>
-											<Doughnut data={citiesData} />
-										</Col>
-									</Row>
-								</div>
-							</Col>
-						</>
-					)
-				)}
-			</Row>
+											Which <span>city</span> are your rentals in?
+										</h3>
+									</Col>
+									<Col
+										md={12}
+										className={classNames(
+											styles.stats_block_chart,
+											styles.stats_block_chart_cities
+										)}>
+										<Doughnut data={citiesData} />
+									</Col>
+								</Row>
+							</Block>
+						</Col>
+					</Row>
+				)
+			)}
 		</>
 	);
 }
