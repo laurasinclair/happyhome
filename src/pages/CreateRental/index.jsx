@@ -6,6 +6,14 @@ import { useState } from 'react';
 const baseUrl = import.meta.env.VITE_MONGODB_BASEURL;
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {
+	Bed,
+	Bathtub,
+	Clock,
+	People,
+	PriceTag,
+	ID,
+} from '@components/elements/Icons';
 
 export default function CreateRental() {
 	const [successMessage, setSuccessMessage] = useState(undefined),
@@ -25,6 +33,7 @@ export default function CreateRental() {
 		beds: 1,
 		bathrooms: 1,
 		price: undefined,
+		cancellationPolicy: 'Strict',
 	});
 
 	const handleAddRental = (req) => {
@@ -35,7 +44,17 @@ export default function CreateRental() {
 					if (res.status === 201) {
 						setSuccessMessage('Rental successfully created!');
 						setLinkToRental(res.data._id);
+						setErrorMessage(undefined);
 					}
+				})
+				.catch((error) => {
+					setErrorMessage(
+						'Error adding rental - ' + error.response.data.errors[0]
+					);
+
+					setTimeout(() => {
+						setErrorMessage(undefined);
+					}, 4000);
 				});
 		} catch (error) {
 			setErrorMessage('Error adding rental');
@@ -54,22 +73,23 @@ export default function CreateRental() {
 		e.preventDefault();
 
 		handleAddRental({
-			...formData
+			...formData,
 		});
 
-		// setFormData({
-		// 	name: '',
-		// 	country: '',
-		// 	city: '',
-		// 	description: '',
-		// 	review_scores_rating: 80,
-		// 	pictureUrl: '',
-		// 	accommodates: 2,
-		// 	propertyType: '',
-		// 	roomType: '',
-		// 	beds: 1,
-		// 	bathrooms: 1,
-		// });
+		setFormData({
+			name: undefined,
+			country: undefined,
+			city: undefined,
+			description: undefined,
+			review_scores_rating: 80,
+			pictureUrl: undefined,
+			accommodates: 2,
+			propertyType: undefined,
+			roomType: undefined,
+			beds: 1,
+			bathrooms: 1,
+			price: undefined,
+		});
 	};
 
 	return (
@@ -181,100 +201,123 @@ export default function CreateRental() {
 								</select>
 							</div>
 						</Col>
+					</Row>
+
+					<Row>
 						<Col
 							sm='6'
 							md='4'>
-							<div>
-								<label htmlFor='image'>
-									How many people can this rental accommodate?
-								</label>
-
-								<Button
-									type='secondary'
+							<div className={styles.Rental_item_stuff}>
+								<button
+									className={styles.Rental_item_stuff_btn}
 									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
 											accommodates:
-												prev.accommodates === 0 ? 0 : (prev.accommodates - 1),
+												prev.accommodates > 1 ? prev.accommodates - 1 : 1,
 										}))
 									}>
 									-
-								</Button>
-								<div className='count'>{formData.accommodates}</div>
-								<Button
-									type='secondary'
+								</button>
+								<div className={styles.Rental_item_stuff_content}>
+									<div className={styles.Rental_item_stuff_content_icon}>
+										<People />
+									</div>
+									<p>
+										{formData.accommodates &&
+											`${formData.accommodates} ${
+												formData.accommodates <= 1 ? 'person' : 'people'
+											}`}
+									</p>
+								</div>
+								<button
+									className={styles.Rental_item_stuff_btn}
 									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
 											accommodates:
-												prev.accommodates === 0 ? 0 : (prev.accommodates + 1),
+												prev.accommodates === 0 ? 0 : prev.accommodates + 1,
 										}))
 									}>
 									+
-								</Button>
+								</button>
 							</div>
 						</Col>
 						<Col
 							sm='6'
 							md='4'>
-							<div>
-								<label htmlFor='image'>Beds</label>
-
-								<Button
-									type='secondary'
+							<div className={styles.Rental_item_stuff}>
+								<button
+									className={styles.Rental_item_stuff_btn}
 									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
-											beds:
-												prev.beds === 0 ? 0 : (prev.beds - 1),
+											beds: prev.beds > 1 ? prev.beds - 1 : 1,
 										}))
 									}>
 									-
-								</Button>
-								<div className='count'>{formData.beds}</div>
-								<Button
-									type='secondary'
+								</button>
+								<div className={styles.Rental_item_stuff_content}>
+									<div className={styles.Rental_item_stuff_content_icon}>
+										<Bed />
+									</div>
+									<p>
+										{formData.beds &&
+											`${formData.beds} ${formData.beds <= 1 ? 'bed' : 'beds'}`}
+									</p>
+								</div>
+								<button
+									className={styles.Rental_item_stuff_btn}
 									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
-											beds:
-												prev.beds === 0 ? 0 : (prev.beds + 1),
+											beds: prev.beds === 0 ? 0 : prev.beds + 1,
 										}))
 									}>
 									+
-								</Button>
+								</button>
 							</div>
 						</Col>
 						<Col
 							sm='6'
 							md='4'>
-							<div>
-								<label htmlFor='image'>Bathrooms</label>
-
-								<Button
-									type='secondary'
+							<div className={styles.Rental_item_stuff}>
+								<button
+									className={styles.Rental_item_stuff_btn}
 									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
-											bathrooms:
-												prev.bathrooms === 0 ? 0 : (prev.bathrooms - 1),
+											bathrooms: prev.bathrooms > 1 ? prev.bathrooms - 1 : 1,
 										}))
 									}>
 									-
-								</Button>
-								<div className='count'>{formData.bathrooms}</div>
-								<Button
-									type='secondary'onClick={() =>
+								</button>
+								<div className={styles.Rental_item_stuff_content}>
+									<div className={styles.Rental_item_stuff_content_icon}>
+										<Bathtub />
+									</div>
+									<p>
+										{formData.bathrooms &&
+											`${formData.bathrooms} ${
+												formData.bathrooms <= 1 ? 'bathroom' : 'bathrooms'
+											}`}
+									</p>
+								</div>
+								<button
+									className={styles.Rental_item_stuff_btn}
+									onClick={() =>
 										setFormData((prev) => ({
 											...prev,
-											bathrooms:
-												prev.bathrooms === 0 ? 0 : (prev.bathrooms + 1),
+											bathrooms: prev.bathrooms === 0 ? 0 : prev.bathrooms + 1,
 										}))
 									}>
 									+
-								</Button>
+								</button>
 							</div>
 						</Col>
+					</Row>
+
+					<Row>
 						<Col sm='12'>
 							<div>
 								<label htmlFor='description'>Description</label>
@@ -289,7 +332,21 @@ export default function CreateRental() {
 								/>
 							</div>
 						</Col>
-						<Col>
+						<Col sm='12'>
+							<div>
+								<label htmlFor='price'>Price in EUR per night</label>
+
+								<input
+									name='price'
+									id='price'
+									type='text'
+									placeholder='40'
+									value={formData.price}
+									onChange={handleInputChange}
+								/>
+							</div>
+						</Col>
+						<Col sm='12'>
 							<div>
 								<label htmlFor='score'>Rating</label>
 								<p>{formData.review_scores_rating / 20}</p>
