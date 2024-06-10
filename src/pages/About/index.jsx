@@ -1,8 +1,8 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 import { BoxArrowUpRight } from 'react-bootstrap-icons';
 
-import { Hero } from '@components';
+import { Hero, Container } from '@components';
 
 export default function About() {
 	return (

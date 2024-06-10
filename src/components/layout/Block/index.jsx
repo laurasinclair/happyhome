@@ -1,4 +1,3 @@
-import { Container, Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import styles from './index.module.sass';

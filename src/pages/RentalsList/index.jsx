@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 import { useMediaPredicate } from 'react-media-hook';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import classNames from 'classnames';
 import {
 	Funnel,
@@ -14,12 +14,11 @@ import {
 	ChevronRight,
 } from 'react-bootstrap-icons';
 
-import { Hero, RentalScore, Button, Loading, Error } from '@components';
+import { Container, Hero, RentalScore, Button, Loading } from '@components';
 import styles from './index.module.sass';
 
 export default function RentalsList() {
 	const [loading, setLoading] = useState(true);
-	const [errorMessage, setErrorMessage] = useState('undefined');
 
 	const viewportSm = useMediaPredicate('(max-width: 560px)');
 

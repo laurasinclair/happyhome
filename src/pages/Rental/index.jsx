@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { Trash, Pen, FloppyFill, X, Globe, Map } from 'react-bootstrap-icons';
 
 import { Bed, Bathtub, People, PriceTag, ID } from '@components/elements/Icons';
 import styles from './index.module.sass';
 import {
+	Container,
 	Hero,
 	Block,
 	NumberBlock,

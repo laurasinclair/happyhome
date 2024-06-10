@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
-import { Button, Hero, Success, Error, NumberBlock, Block } from '@components';
+import { Container, Button, Hero, Success, Error, NumberBlock, Block } from '@components';
 import styles from './index.module.sass';
 import { Bed, Bathtub, People } from '@components/elements/Icons';
 

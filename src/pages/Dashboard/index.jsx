@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { HouseAdd, Houses } from 'react-bootstrap-icons';
 
-import { Stats, Hero } from '@components';
+import { Container, Stats, Hero } from '@components';
 
 function Dashboard() {
 	return (

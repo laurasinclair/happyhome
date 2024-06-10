@@ -6,6 +6,7 @@ import Icons from './elements/Icons'
 import NumberBlock from './elements/NumberBlock'
 
 // Layout
+import Container from './layout/Container'
 import Hero from './layout/Hero'
 import SideBar from './layout/SideBar'
 import Footer from './layout/Footer'
@@ -26,7 +27,7 @@ import Warning from './states/Warning'
 
 export {
     Button, BackButton, Logo, Icons, NumberBlock,
-    Hero, SideBar, Footer, Block,
+    Container, Hero, SideBar, Footer, Block,
     Search, RentalScore, RentalImage, Filter, Stats,
     Loading, Success, Error, Warning
 }

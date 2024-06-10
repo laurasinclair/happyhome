@@ -1,4 +1,4 @@
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import React, { useState, useEffect } from 'react';
 import { useRentalsContext } from '@context';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
