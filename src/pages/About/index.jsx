@@ -1,8 +1,10 @@
 import { Container, Row, Col } from 'react-bootstrap';
 
+import { BoxArrowUpRight } from 'react-bootstrap-icons';
+
 import { Hero } from '@components';
 
-export default function About(props) {
+export default function About() {
 	return (
 		<Container fluid>
 			<Row>
@@ -31,7 +33,7 @@ export default function About(props) {
 									href='https://github.com/laurasinclair/happyhome'
 									className='wavy d-block'
 									target='_blank'>
-									GitHub repository
+									GitHub repository <BoxArrowUpRight size="13" />
 								</a>
 							</p>
 						</div>
@@ -48,7 +50,7 @@ export default function About(props) {
 							</li>
 							<li>React Router (for client-side routing)</li>
 							<li>Node.js environment</li>
-							<li>Netlify (for frontend deployment)</li>
+							<li>Netlify </li>
 						</ul>
 
 						<h3>Backend</h3>
@@ -58,7 +60,7 @@ export default function About(props) {
 							<li>CRUD operations (GET/POST/PUT/DELETE) </li>
 							<li>Middleware for handling errors </li>
 							<li>Dotenv </li>
-							<li>Vercel (for backend deployment) </li>
+							<li>Vercel </li>
 						</ul>
 
 						<h3>Database</h3>
