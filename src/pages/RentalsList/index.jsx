@@ -104,7 +104,7 @@ export default function RentalsList() {
 
 	return (
 		<>
-			<Container fluid>
+			<Container className="gx-5" fluid>
 				<Row>
 					<Col>
 						<Hero
@@ -136,10 +136,10 @@ export default function RentalsList() {
 							/>
 
 							<Button className='ms-3'>
-								<Funnel size='20' />
+								<Funnel size={20} />
 							</Button>
 							<Button className='ms-1'>
-								<SortDown size='20' />
+								<SortDown size={20} />
 							</Button>
 						</div> */}
 					</Col>
@@ -155,9 +155,9 @@ export default function RentalsList() {
 								defaultValue='Please choose'
 								onChange={handleRentalsPerPage}
 								className={styles.pagination_perPage_select}>
-								<option value='10'>10</option>
-								<option value='20'>20</option>
-								<option value='50'>50</option>
+								<option value={10}>10</option>
+								<option value={20}>20</option>
+								<option value={50}>50</option>
 							</select>
 							rentals per page
 						</div>
@@ -274,7 +274,7 @@ export default function RentalsList() {
 													type='primary'
 													className={styles.RentalsList_grid_btn}
 													to={`./${rental._id}`}>
-													<Pen size='18' />
+													<Pen size={18} />
 												</Button>
 
 												<Button
@@ -285,7 +285,7 @@ export default function RentalsList() {
 														deleteRental(rental._id);
 													}}
 													className={styles.RentalsList_grid_btn}>
-													<Trash size='18' />
+													<Trash size={18} />
 												</Button>
 											</div>
 										</div>
@@ -297,13 +297,13 @@ export default function RentalsList() {
 				</div>
 			</div>
 
-			<Container fluid>
+			<Container className="gx-5" fluid>
 				<div className={styles.pagination}>
 					<button
 						onClick={handlePrevPage}
 						disabled={currentPage === 1}
 						className={styles.pagination_arrows}>
-						<ChevronLeft size='24' />
+						<ChevronLeft size={24} />
 					</button>
 
 					<div className={styles.pagination_numbers}>{paginationNumbers()}</div>
@@ -312,7 +312,7 @@ export default function RentalsList() {
 						onClick={handleNextPage}
 						disabled={currentPage === totalPages}
 						className={styles.pagination_arrows}>
-						<ChevronRight size='24' />
+						<ChevronRight size={24} />
 					</button>
 				</div>
 			</Container>

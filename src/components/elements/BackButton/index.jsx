@@ -10,7 +10,7 @@ export default function BackButton({ label, to }) {
 		<Link
 			to={to || -1}
 			className={styles.backbutton}>
-			<ArrowLeftShort size='26' /> {label || 'Back to previous page'}
+			<ArrowLeftShort size={26} /> {label || 'Back to previous page'}
 		</Link>
 	);
 }

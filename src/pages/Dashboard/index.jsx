@@ -8,7 +8,7 @@ import { Stats, Hero } from '@components';
 
 function Dashboard() {
 	return (
-		<Container fluid>
+		<Container className="gx-5" fluid>
 			<Row>
 				<Col>
 					<Hero
@@ -22,23 +22,23 @@ function Dashboard() {
 			<section>
 				<h2 className='mb-4'>Quick actions</h2>
 				<Row>
-					<Col xs='6'>
+					<Col xs={6}>
 						<Link
 							to='/rentals'
 							className='cta'>
 							<Houses
-								size='38'
+								size={38}
 								className='mb-2'
 							/>
 							Manage your rentals
 						</Link>
 					</Col>
-					<Col xs='6'>
+					<Col xs={6}>
 						<Link
 							to='/add-rental'
 							className='cta'>
 							<HouseAdd
-								size='38'
+								size={38}
 								className='mb-2'
 							/>
 							Add a new rental

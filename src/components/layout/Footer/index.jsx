@@ -5,7 +5,7 @@ import styles from './index.module.sass'
 export default function Footer ({repositoryLink, repositoryLinkDesc}) {
 	return (
 		<footer className={styles.footer}>
-			<Container fluid>
+			<Container className="gx-5" fluid>
 				<Row>
 					<Col>
 						<p>

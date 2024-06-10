@@ -6,7 +6,7 @@ import { Hero } from '@components';
 
 export default function About() {
 	return (
-		<Container fluid>
+		<Container className="gx-5" fluid>
 			<Row>
 				<Col>
 					<Hero title='About this project' />
@@ -16,9 +16,9 @@ export default function About() {
 			<section>
 				<Row>
 					<Col
-						md='10'
-						lg='8'
-						xl='6'>
+						md={10}
+						lg={8}
+						xl={6}>
 						<div className='mb-4'>
 							<p className='lead'>
 								All done with my little hands, this dashboard was built and
@@ -33,7 +33,7 @@ export default function About() {
 									href='https://github.com/laurasinclair/happyhome'
 									className='wavy d-block'
 									target='_blank'>
-									GitHub repository <BoxArrowUpRight size="13" />
+									GitHub repository <BoxArrowUpRight size={13} />
 								</a>
 							</p>
 						</div>

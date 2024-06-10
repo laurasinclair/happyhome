@@ -96,7 +96,7 @@ export default function CreateRental() {
 
 	return (
 		<>
-			<Container fluid>
+			<Container className="gx-5" fluid>
 				<Row>
 					<Col>
 						<Hero
@@ -108,11 +108,13 @@ export default function CreateRental() {
 			</Container>
 
 			<section className={styles.CreateRental}>
+
+			<Container className="gx-5" fluid>
 				<form
 					className={styles.CreateRental_form}
 					onSubmit={handleSubmit}>
 					<Row className='mb-3'>
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='name'>
 									Name <span aria-label='required'>*</span>
@@ -132,7 +134,7 @@ export default function CreateRental() {
 							</div>
 						</Col>
 
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='country'>
 									Country <span aria-label='required'>*</span>
@@ -152,7 +154,7 @@ export default function CreateRental() {
 							</div>
 						</Col>
 
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='city'>
 									City <span aria-label='required'>*</span>
@@ -171,7 +173,7 @@ export default function CreateRental() {
 								/>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='image'>Image url</label>
 
@@ -185,7 +187,7 @@ export default function CreateRental() {
 								/>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='image'>
 									Property type <span aria-label='required'>*</span>
@@ -203,7 +205,7 @@ export default function CreateRental() {
 								</select>
 							</div>
 						</Col>
-						<Col sm='6'>
+						<Col sm={6}>
 							<div>
 								<label htmlFor='image'>
 									Room type <span aria-label='required'>*</span>
@@ -224,8 +226,8 @@ export default function CreateRental() {
 
 					<Row>
 						<Col
-							sm='6'
-							md='4'>
+							sm={6}
+							md={4}>
 							<NumberBlock
 								setFormData={setFormData}
 								keyName='accommodates'
@@ -235,8 +237,8 @@ export default function CreateRental() {
 							/>
 						</Col>
 						<Col
-							sm='6'
-							md='4'>
+							sm={6}
+							md={4}>
 							<NumberBlock
 								setFormData={setFormData}
 								keyName='beds'
@@ -246,8 +248,8 @@ export default function CreateRental() {
 							/>
 						</Col>
 						<Col
-							sm='6'
-							md='4'>
+							sm={6}
+							md={4}>
 							<NumberBlock
 								setFormData={setFormData}
 								keyName='bathrooms'
@@ -259,7 +261,7 @@ export default function CreateRental() {
 					</Row>
 
 					<Row>
-						<Col sm='12'>
+						<Col sm={12}>
 							<div>
 								<label htmlFor='description'>
 									Description <span aria-label='required'>*</span>
@@ -278,7 +280,7 @@ export default function CreateRental() {
 								/>
 							</div>
 						</Col>
-						<Col sm='12'>
+						<Col sm={12}>
 							<div>
 								<label htmlFor='price'>
 									Price in EUR per night <span aria-label='required'>*</span>
@@ -288,7 +290,7 @@ export default function CreateRental() {
 									name='price'
 									id='price'
 									type='number'
-									placeholder='40'
+									placeholder={40}
 									value={formData.price}
 									onChange={handleInputChange}
 									onFocus={handleInputFocus}
@@ -297,7 +299,7 @@ export default function CreateRental() {
 								/>
 							</div>
 						</Col>
-						<Col sm='12'>
+						<Col sm={12}>
 							<div>
 								<label htmlFor='score'>Rating</label>
 								<p>{formData.review_scores_rating / 20}</p>
@@ -344,6 +346,7 @@ export default function CreateRental() {
 						</>
 					)}
 				</form>
+				</Container>
 			</section>
 		</>
 	);

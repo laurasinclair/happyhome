@@ -31,8 +31,8 @@ const House = (props) => (
 		<defs>
 			<clipPath id='clip0_21_9'>
 				<rect
-					width='74'
-					height='74'
+					width={74}
+					height={74}
 					fill={props.fill}
 				/>
 			</clipPath>
@@ -216,20 +216,20 @@ export default function Stats() {
 				) : (
 					rentals && (
 						<>
-							<Col sm='12'>
+							<Col sm={12}>
 								<div className={styles.stats_block}>
 									<Row>
 										<Col
-											md='6'
-											lg='4'
+											md={6}
+											lg={4}
 											className={styles.stats_block_label}>
 											<h3 className='mb-4'>
 												You're managing <span>{rentals.length}</span> rentals
 											</h3>
 										</Col>
 										<Col
-											md='6'
-											lg='8'
+											md={6}
+											lg={8}
 											className={styles.stats_block_chart}>
 											{rentals &&
 												rentals.map((rental, index) => (
@@ -249,18 +249,18 @@ export default function Stats() {
 									</Row>
 								</div>
 							</Col>
-							<Col sm='6'>
+							<Col sm={6}>
 								<div className={styles.stats_block}>
 									<Row>
 										<Col
-											md='12'
+											md={12}
 											className={styles.stats_block_label}>
 											<h3 className='mb-4'>
 												Where in the <span>world</span> are your rentals?
 											</h3>
 										</Col>
 										<Col
-											md='12'
+											md={12}
 											className={classNames(
 												styles.stats_block_chart,
 												styles.stats_block_chart_countries
@@ -271,18 +271,18 @@ export default function Stats() {
 								</div>
 							</Col>
 
-							<Col sm='6'>
+							<Col sm={6}>
 								<div className={styles.stats_block}>
 									<Row>
 										<Col
-											md='12'
+											md={12}
 											className={styles.stats_block_label}>
 											<h3 className='mb-4'>
 												Which <span>city</span> are your rentals in?
 											</h3>
 										</Col>
 										<Col
-											md='12'
+											md={12}
 											className={classNames(
 												styles.stats_block_chart,
 												styles.stats_block_chart_cities

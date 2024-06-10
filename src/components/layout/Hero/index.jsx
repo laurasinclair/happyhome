@@ -17,8 +17,8 @@ export default function Hero({ size = 'm', title, category, leadText, hasLogo })
 
     return (
         <div className={heroContainerClass}>
-            <Container fluid>
-                <Row className={styles.row}>
+            <Container className="gx-5" fluid>
+                <Row>
                     <Col sm={9} lg={8}>
                         {category && <h3 className={styles['mb-3']}>{category}</h3>}
                         {hasLogo && <Logo size='s' hasText />}

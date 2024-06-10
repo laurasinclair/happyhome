@@ -8,7 +8,7 @@ import styles from './index.module.sass';
 function Error({ children, className }) {
 	return (
 		<div className={classNames(styles.error, className)}>
-			<X size='32' />
+			<X size={32} />
 			<p>
 				{children}
 			</p>

@@ -109,7 +109,7 @@ export default function Rental() {
 	return (
 		<>
 			<section className={styles.Rental}>
-				<Container fluid>
+				<Container className="gx-5" fluid>
 					<Row>
 						<Col className='p-4'>
 							<BackButton
@@ -139,7 +139,7 @@ export default function Rental() {
 								<div className={styles.Rental_item}>
 									<Row className='mb-4'>
 										<Col
-											md='6'
+											md={6}
 											className='mb-4'>
 											<div className={styles.Rental_item_thumbnail}>
 												{rental.review_scores_rating && (
@@ -158,7 +158,7 @@ export default function Rental() {
 										</Col>
 										<Col>
 											<div className={styles.Rental_item_characteristics_tag}>
-												<ID size='28' />
+												<ID size={28} />
 												<div
 													className={
 														styles.Rental_item_characteristics_tag_text
@@ -168,7 +168,7 @@ export default function Rental() {
 											</div>
 
 											<div className={styles.Rental_item_characteristics_tag}>
-												<Globe size='26' />
+												<Globe size={26} />
 												<div
 													className={
 														styles.Rental_item_characteristics_tag_text
@@ -193,7 +193,7 @@ export default function Rental() {
 											</div>
 
 											<div className={styles.Rental_item_characteristics_tag}>
-												<Map size='24' />
+												<Map size={24} />
 
 												<div
 													className={
@@ -221,7 +221,7 @@ export default function Rental() {
 
 											<div className={styles.Rental_item_characteristics_tag}>
 												<PriceTag
-													size='24'
+													size={24}
 													className='me-2'
 												/>
 												<div
@@ -302,7 +302,7 @@ export default function Rental() {
 
 									{isEditing && (
 										<Row>
-											<Col sm='12'>
+											<Col sm={12}>
 												<div>
 													<label htmlFor='score'>Rating</label>
 													<p>{formData.review_scores_rating / 20}</p>
@@ -324,8 +324,8 @@ export default function Rental() {
 									{isEditing && (
 										<Row>
 											<Col
-												lg='8'
-												xl='8'
+												lg={8}
+												xl={8}
 												className='mb-4'>
 												<h3>Rental name</h3>
 												<Row>
@@ -346,8 +346,8 @@ export default function Rental() {
 
 									<Row>
 										<Col
-											lg='8'
-											xl='8'
+											lg={8}
+											xl={8}
 											className='mb-4'>
 											<h3>Description</h3>
 											{isEditing ? (
@@ -437,7 +437,7 @@ export default function Rental() {
 														isEditing && setIsEditing(false);
 														confirmDelete && setConfirmDelete(false);
 													}}
-													iconLeft={<X size='30' />}>
+													iconLeft={<X size={30} />}>
 													Cancel
 												</Button>
 											)}
