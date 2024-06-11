@@ -6,10 +6,15 @@
 		width: 100%
 		overflow-x: auto
 		margin: 0
-		padding-left: 0.8rem
+		padding-left: 12px
+		@include media-breakpoint-up(sm)
+			padding-left: 20px
 		@include media-breakpoint-up(md)
+			padding-left: 28px
+		@include media-breakpoint-up(lg)
 			overflow-x: visible
-			padding: 0 1rem
+			padding-left: 32px
+			padding-right: 32px
 	&_grid
 		margin-bottom: 20px
 		border-top: 1px solid $primary-light-2
@@ -22,7 +27,7 @@
 		&_row
 			background-color: $white
 			display: grid
-			grid-template-columns: [dashboard_grid_id] 85px [dashboard_grid_name] auto [dashboard_grid_city] 15% [dashboard_grid_country] 10% [dashboard_grid_score] 10% [dashboard_grid_actions] 10%
+			grid-template-columns: [dashboard_grid_id] 85px [dashboard_grid_name] auto [dashboard_grid_city] 15% [dashboard_grid_country] 10% [dashboard_grid_score] 9% [dashboard_grid_actions] 11%
 		&_col
 			a 
 				font-weight: 400
