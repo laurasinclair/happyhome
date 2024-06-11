@@ -365,12 +365,12 @@ export default function Rental() {
 
 									<Row>
 										<Col className='mb-4'>
-											{rental.cancellation_policy && (
+											
 												<div className='d-flex align-items-center'>
 													<label className="me-1 mb-0">Cancellation policy:</label>
 													{!isEditing ? (
 														<span className='ms-1 tag'>
-															{rental.cancellation_policy.toLowerCase()}
+															{rental.cancellation_policy && rental.cancellation_policy.toLowerCase() || 'unknown'}
 														</span>
 													) : (
 														<>
@@ -382,7 +382,7 @@ export default function Rental() {
 																className='radio_input'
 																onChange={handleInputChange}
 																defaultChecked={
-																	rental.cancellation_policy.toLowerCase() ===
+																	rental.cancellation_policy && rental.cancellation_policy.toLowerCase() ===
 																		'strict'.toLowerCase() && true
 																}
 															/>
@@ -400,7 +400,7 @@ export default function Rental() {
 																className='radio_input'
 																onChange={handleInputChange}
 																defaultChecked={
-																	rental.cancellation_policy.toLowerCase() ===
+																	rental.cancellation_policy && rental.cancellation_policy.toLowerCase() ===
 																		'moderate'.toLowerCase() && true
 																}
 															/>
@@ -412,7 +412,6 @@ export default function Rental() {
 														</>
 													)}
 												</div>
-											)}
 										</Col>
 									</Row>
 
