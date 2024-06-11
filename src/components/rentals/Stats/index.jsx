@@ -9,36 +9,9 @@ import axios from 'axios';
 import styles from './index.module.sass';
 import useBreakpoints from '/src/context/useBreakpoints';
 import { Loading, Block } from '@components';
+import { House } from '@components/elements/Icons';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-
-const House = (props) => (
-	<svg
-		width={props.width}
-		height={props.height}
-		viewBox='0 0 74 74'
-		fill={props.fill}
-		className={props.className}
-		xmlns='http://www.w3.org/2000/svg'>
-		<g clipPath='url(#clip0_21_9)'>
-			<path
-				fillRule='evenodd'
-				clipRule='evenodd'
-				d='M3.91225 28.62L32.9123 1.62941C35.2158 -0.514494 38.7842 -0.51449 41.0877 1.62941L70.0878 28.62C71.3073 29.7551 72 31.3461 72 33.0121V68C72 71.3137 69.3137 74 66 74H8C4.68629 74 2 71.3137 2 68V33.0121C2 31.3461 2.6927 29.7551 3.91225 28.62ZM25.3333 41.9239C28.1348 41.9239 30.4058 39.6802 30.4058 36.9124C30.4058 34.1446 28.1348 31.9009 25.3333 31.9009C22.5319 31.9009 20.2609 34.1446 20.2609 36.9124C20.2609 39.6802 22.5319 41.9239 25.3333 41.9239ZM49.6812 41.9239C52.4826 41.9239 54.7536 39.6802 54.7536 36.9124C54.7536 34.1446 52.4826 31.9009 49.6812 31.9009C46.8797 31.9009 44.6087 34.1446 44.6087 36.9124C44.6087 39.6802 46.8797 41.9239 49.6812 41.9239ZM26.3557 47.0557C27.968 45.9529 30.18 46.3502 31.2962 47.9432C34.3002 52.2301 40.7143 52.2301 43.7183 47.9432C44.8345 46.3502 47.0465 45.9529 48.6588 47.0557C50.2711 48.1585 50.6733 50.3439 49.5571 51.9369C43.7292 60.2538 31.2853 60.2538 25.4574 51.9369C24.3412 50.3439 24.7434 48.1585 26.3557 47.0557Z'
-				fill={props.fill}
-			/>
-		</g>
-		<defs>
-			<clipPath id='clip0_21_9'>
-				<rect
-					width={74}
-					height={74}
-					fill={props.fill}
-				/>
-			</clipPath>
-		</defs>
-	</svg>
-);
 
 export default function Stats() {
 	const { xs, sm, md, lg, xl } = useBreakpoints();
@@ -159,6 +132,19 @@ export default function Stats() {
 		],
 	});
 
+	const returnColor = (index) => {
+		// const number = Math.floor(Math.random() * 3) / 1;
+		// return number === 0 ? '#253EC4' : (number === 1) ? '#E8D3D5' : '#DF927A';
+
+		return index % 9 === 0
+			? '#BDC1F8' // $primary
+			: index % 3 === 0
+			? '#E8D3D5' // $secondary-light-2
+			: index % 2 === 1
+			? '#253EC4' // $primary-light-2
+			: '#DF927A' // $secondary
+	};
+
 	useEffect(() => {
 		if (rentals && rentals.length > 0) {
 			setCountriesData((prevData) => ({
@@ -217,15 +203,9 @@ export default function Stats() {
 										{rentals &&
 											rentals.map((rental, index) => (
 												<House
-													fill={
-														index % 3 === 0
-															? '#253EC4'
-															: index % 3 === 1
-															? '#E8D3D5'
-															: '#DF927A'
-													}
-													key={rental.name + index}
-													width={
+													color={returnColor(index)}
+													key={rental._id + index}
+													size={
 														(xl && '5%') ||
 														(lg && '7%') ||
 														(md && '5%') ||
@@ -240,9 +220,8 @@ export default function Stats() {
 						</Col>
 						<Col sm={6}>
 							<Block className={styles.stats_block}>
-								<Row className="flex-column justify-content-between">
-									<Col
-										className={styles.stats_block_label}>
+								<Row className='flex-column justify-content-between'>
+									<Col className={styles.stats_block_label}>
 										<h3
 											className={classNames(
 												'display-h2',
@@ -269,9 +248,8 @@ export default function Stats() {
 
 						<Col sm={6}>
 							<Block className={styles.stats_block}>
-								<Row className="flex-column justify-content-between h-100">
-									<Col
-										className={styles.stats_block_label}>
+								<Row className='flex-column justify-content-between h-100'>
+									<Col className={styles.stats_block_label}>
 										<h3
 											className={classNames(
 												'display-h2',
@@ -285,7 +263,10 @@ export default function Stats() {
 											styles.stats_block_chart,
 											styles.stats_block_chart_cities
 										)}>
-										<Doughnut options={chartOptions} data={citiesData} />
+										<Doughnut
+											options={chartOptions}
+											data={citiesData}
+										/>
 									</Col>
 								</Row>
 							</Block>
