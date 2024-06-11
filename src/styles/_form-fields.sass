@@ -73,3 +73,20 @@ input, textarea, select
 			outline: 3px solid $white
 			cursor: pointer
 			border-radius: 50%
+
+.radio
+	&_input
+		display: none
+		&:checked
+			&+label
+				background-color: $primary-light-2
+				color: $primary
+	&_label
+		cursor: pointer
+		margin: 0 2px
+		font-weight: 500
+		border-radius: 4px
+		display: inline
+		padding: 10px 12px
+		background-color: $primary-light-3
+		color: $primary-light-1

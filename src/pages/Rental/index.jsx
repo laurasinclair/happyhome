@@ -1,26 +1,26 @@
-import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 import axios from 'axios';
-import { Row, Col } from 'react-bootstrap';
-import { Trash, Pen, FloppyFill, X, Globe, Map } from 'react-bootstrap-icons';
+import { Col, Row } from 'react-bootstrap';
+import { FloppyFill, Globe, Map, Pen, Trash, X } from 'react-bootstrap-icons';
 
-import { Bed, Bathtub, People, PriceTag, ID } from '@components/elements/Icons';
-import styles from './index.module.sass';
 import {
-	Container,
-	Hero,
-	Block,
-	NumberBlock,
-	Button,
 	BackButton,
-	RentalScore,
-	RentalImage,
-	Loading,
+	Block,
+	Button,
+	Container,
 	Error,
+	Hero,
+	Loading,
+	NumberBlock,
+	RentalImage,
+	RentalScore,
 	Success,
 	Warning,
 } from '@components';
+import { Bathtub, Bed, ID, People, PriceTag } from '@components/elements/Icons';
+import styles from './index.module.sass';
 
 export default function Rental() {
 	const [rental, setRental] = useState({}),
@@ -323,7 +323,7 @@ export default function Rental() {
 											lg={10}
 											xl={8}
 											className='mb-4'>
-											<h3>Description</h3>
+											<label htmlFor='description'>Description</label>
 											{isEditing ? (
 												<>
 													<textarea
@@ -368,7 +368,49 @@ export default function Rental() {
 											{rental.cancellation_policy && (
 												<div>
 													<strong>Cancellation policy:</strong>&nbsp;
-													{rental.cancellation_policy}
+													{!isEditing ? (
+														<san className='ms-1 tag'>
+															{rental.cancellation_policy.toLowerCase()}
+														</san>
+													) : (
+														<>
+															<input
+																type='radio'
+																id='strict'
+																name='cancellation_policy'
+																value='strict'
+																className='radio_input'
+																onChange={handleInputChange}
+																defaultChecked={
+																	rental.cancellation_policy.toLowerCase() ===
+																		'strict'.toLowerCase() && true
+																}
+															/>
+															<label
+																htmlFor='strict'
+																className='radio_label'>
+																strict
+															</label>
+
+															<input
+																type='radio'
+																id='moderate'
+																name='cancellation_policy'
+																value='moderate'
+																className='radio_input'
+																onChange={handleInputChange}
+																defaultChecked={
+																	rental.cancellation_policy.toLowerCase() ===
+																		'moderate'.toLowerCase() && true
+																}
+															/>
+															<label
+																htmlFor='moderate'
+																className='radio_label'>
+																moderate
+															</label>
+														</>
+													)}
 												</div>
 											)}
 										</Col>
@@ -414,7 +456,7 @@ export default function Rental() {
 													iconLeft={<Trash />}
 													onClick={() => {
 														setConfirmDelete(true);
-														setSuccessMessage(undefined)
+														setSuccessMessage(undefined);
 													}}>
 													Delete
 												</Button>
