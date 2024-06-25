@@ -6,6 +6,8 @@ HappyHome is an admin dashboard for an apartment rental platform. Frontend built
 
 [HappyHome](https://dev.laurasnclr.com/projects/happyhome)
 
+![HappyHome](https://github.com/laurasinclair/happyhome/blob/abaa0427e0d8151331e430640ead65cf9d5359df/public/happyhome_screenshot.jpg)
+
 ## Technologies used
 **Frontend**
 - React.js
